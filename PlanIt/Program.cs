@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 // Luke Manzitto
-
+// Luke Test with Mac and VS for Mac
 
 
 namespace PlanIt
