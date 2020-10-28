@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/lukemanzitto/Projects/PlanIt/PlanIt/PlanIt.csproj": {}
+    "/Users/dziems/Desktop/PlanIt/PlanIt/PlanIt.csproj": {}
   },
   "projects": {
-    "/Users/lukemanzitto/Projects/PlanIt/PlanIt/PlanIt.csproj": {
+    "/Users/dziems/Desktop/PlanIt/PlanIt/PlanIt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/lukemanzitto/Projects/PlanIt/PlanIt/PlanIt.csproj",
+        "projectUniqueName": "/Users/dziems/Desktop/PlanIt/PlanIt/PlanIt.csproj",
         "projectName": "PlanIt",
-        "projectPath": "/Users/lukemanzitto/Projects/PlanIt/PlanIt/PlanIt.csproj",
-        "packagesPath": "/Users/lukemanzitto/.nuget/packages/",
-        "outputPath": "/Users/lukemanzitto/Projects/PlanIt/PlanIt/obj/",
+        "projectPath": "/Users/dziems/Desktop/PlanIt/PlanIt/PlanIt.csproj",
+        "packagesPath": "/Users/dziems/.nuget/packages/",
+        "outputPath": "/Users/dziems/Desktop/PlanIt/PlanIt/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/lukemanzitto/.config/NuGet/NuGet.Config"
+          "/Users/dziems/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
