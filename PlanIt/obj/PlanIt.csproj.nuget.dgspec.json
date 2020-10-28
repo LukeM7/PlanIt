@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/lukemanzitto/Projects/PlanIt/PlanIt/PlanIt.csproj": {}
+    "C:\\Users\\lukem\\source\\repos\\PlanIt\\PlanIt\\PlanIt.csproj": {}
   },
   "projects": {
-    "/Users/lukemanzitto/Projects/PlanIt/PlanIt/PlanIt.csproj": {
+    "C:\\Users\\lukem\\source\\repos\\PlanIt\\PlanIt\\PlanIt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/lukemanzitto/Projects/PlanIt/PlanIt/PlanIt.csproj",
+        "projectUniqueName": "C:\\Users\\lukem\\source\\repos\\PlanIt\\PlanIt\\PlanIt.csproj",
         "projectName": "PlanIt",
-        "projectPath": "/Users/lukemanzitto/Projects/PlanIt/PlanIt/PlanIt.csproj",
-        "packagesPath": "/Users/lukemanzitto/.nuget/packages/",
-        "outputPath": "/Users/lukemanzitto/Projects/PlanIt/PlanIt/obj/",
+        "projectPath": "C:\\Users\\lukem\\source\\repos\\PlanIt\\PlanIt\\PlanIt.csproj",
+        "packagesPath": "C:\\Users\\lukem\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lukem\\source\\repos\\PlanIt\\PlanIt\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/lukemanzitto/.config/NuGet/NuGet.Config"
+          "C:\\Users\\lukem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,6 +37,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -53,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
