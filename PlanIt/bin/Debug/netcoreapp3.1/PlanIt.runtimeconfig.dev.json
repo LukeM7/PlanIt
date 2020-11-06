@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\lukem\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\lukem\\.nuget\\packages"
-    ]
-  }
-}
