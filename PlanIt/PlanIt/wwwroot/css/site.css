@@ -62,6 +62,12 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
+.datetime {
+    color: #FF0000;
+    font: 20pt;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
