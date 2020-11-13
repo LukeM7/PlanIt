@@ -68,6 +68,27 @@ body {
     font: 20pt;
 }
 
+.right-pane-title {
+    text-align: center;
+}
+
+.right-pane {
+    width: 25%;
+    height: 100%;
+    float: right;
+    background-color: #DDDDDD;
+}
+
+.category-table {
+    width: 100%;
+    background-color: #EEEEEE;
+}
+
+.category-table tr {
+    margin-top: 5px;
+    background-color: #F6F6f6;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
