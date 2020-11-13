@@ -1,80 +1,68 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+
+
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PlanIt</title>
+    <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <!--ICONS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>PlanIt</title>
 </head>
 <body>
-    <header>
-        
-    </header>
-    <div class="container">
+    <div class="navbar-container">
+
+    </div>
+    <div class="pane-container">
         <div class="right-pane">
-            <h3 class="right-pane-title">Categories</h3>
-            <table class="category-table">
+            <div class="categories-headline">Categories</div>
+            <table class="categories-table">
                 <tr>
-                    <td>
-                        <label class="category-label" for="category-toggle0">General</label>
-                    </td>
-                    <td>
+                    <td class="category-toggle-entry">
                         <form>
                             <input type="checkbox" value="None" class="category-toggle" id="category-toggle0" />
+                            <label class="category-label" for="category-toggle0">General</label>
                         </form>
                     </td>
                     <td>
-                        Delete
-                    </td>
-                    <td>
-                        Edit
+                        <button class="btn"><i class="fa fa-edit"></i></button>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <label class="category-label" for="category-toggle1">School</label>
-                    </td>
-                    <td>
+                    <td class="category-toggle-entry">
                         <form>
                             <input type="checkbox" value="None" class="category-toggle" id="category-toggle1" />
+                            <label class="category-label" for="category-toggle1">School</label>
                         </form>
                     </td>
                     <td>
-                        <input type = "button" name="Delete"/>
+                        <button class="btn"><i class="fa fa-edit"></i></button>
                     </td>
                     <td>
-                        <input type="button" name="Edit"/>
+                        <button class="btn"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <label class="category-label" for="category-toggle2">Soccer</label>
-                    </td>
-                    <td>
+                    <td class="category-toggle-entry">
                         <form>
                             <input type="checkbox" value="None" class="category-toggle" id="category-toggle2" />
+                            <label class="category-label" for="category-toggle2">Soccer</label>
                         </form>
                     </td>
                     <td>
-                        Delete
+                        <button class="btn"><i class="fa fa-edit"></i></button>
                     </td>
                     <td>
-                        Edit
+                        <button class="btn"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             </table>
         </div>
-        <main role="main" class="pb-3">
+        <div class="main-pane">
             @RenderBody()
-        </main>
+        </div>
     </div>
-
-    <footer>
-
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
 </body>
 </html>
