@@ -28,9 +28,56 @@ html, body {
 }
 
 .navbar-container {
-    height: 70px;
+    height: 80px;
+    width: 100%;
     background-color: #495464;
 }
+.navbar-right-pane {
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+    .nrp-upper-half {
+        height: 50%;
+        display: block;
+    }
+    .nrp-lower-half {
+        height: 50%;
+        display: block;
+        position: relative;
+    }
+        .nrp-search-prompt {
+            float: right;
+            margin-top: 8px;
+            margin-right: 4px;
+            color: #e8e8e6;
+            font-size: 20px;
+        }
+        .nrp-lower-half input[type=date] {
+            float: right;
+            width: 50%;
+            margin: 4px;
+            vertical-align: central;
+            font-size: 20px;
+        }
+
+.navbar-left-pane {
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: table;
+    table-layout: fixed;
+}
+    .navbar-pageicon-container {
+        display: table-cell;
+    }
+        .navbar-page-button {
+            height: 80%;
+            width: 80%;
+            display: block;
+            margin: auto;
+            margin-top: 8px;
+        }
 
 .pane-container {
     width: 100%;
@@ -43,7 +90,6 @@ html, body {
     float: left;
     background-color: #f4f4f2;
 }
-
 .right-pane {
     width: 20%;
     height: 100%;
