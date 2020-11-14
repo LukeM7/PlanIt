@@ -4,16 +4,34 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+
     <link rel="stylesheet" href="~/css/site.css" />
-
     <!--ICONS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
     <title>PlanIt</title>
 </head>
 <body>
     <div class="navbar-container">
-
+        <div class="navbar-right-pane">
+            <div class="nrp-upper-half">
+                
+            </div>
+            <div class="nrp-lower-half">
+                <span><input type="date" /></span>
+                <span class="nrp-search-prompt">Search Day</span>
+            </div>
+        </div>
+        <div class="navbar-left-pane">
+            <span class="navbar-pageicon-container" id="npic-social">
+                <button class="navbar-page-button"><span class="fas fa-users"></span></button>
+            </span>
+            <span class="navbar-pageicon-container" id="npic-calendar">
+                <button class="navbar-page-button"><span class="fas fa-calendar-week"></span></button>
+            </span>
+            <span class="navbar-pageicon-container" id="npic-checklist">
+                <button class="navbar-page-button"><span class="fas fa-tasks"></span></button>
+            </span>
+        </div>
     </div>
     <div class="pane-container">
         <div class="right-pane">
@@ -23,39 +41,39 @@
                     <td class="category-toggle-entry">
                         <form>
                             <input type="checkbox" value="None" class="category-toggle" id="category-toggle0" />
-                            <label class="category-label" for="category-toggle0">General</label>
+                            <label class="category-label" for="category-toggle0"> General</label>
                         </form>
                     </td>
                     <td>
-                        <button class="btn"><i class="fa fa-edit"></i></button>
+                        <button class="category-edit-button"><span class="far fa-edit"></span></button>
                     </td>
                 </tr>
                 <tr>
                     <td class="category-toggle-entry">
                         <form>
                             <input type="checkbox" value="None" class="category-toggle" id="category-toggle1" />
-                            <label class="category-label" for="category-toggle1">School</label>
+                            <label class="category-label" for="category-toggle1"> School</label>
                         </form>
                     </td>
                     <td>
-                        <button class="btn"><i class="fa fa-edit"></i></button>
+                        <button class="category-edit-button"><span class="far fa-edit"></span></button>
                     </td>
                     <td>
-                        <button class="btn"><i class="fa fa-trash"></i></button>
+                        <button class="category-delete-button"><span class="far fa-trash-alt"></span></button>
                     </td>
                 </tr>
                 <tr>
                     <td class="category-toggle-entry">
                         <form>
                             <input type="checkbox" value="None" class="category-toggle" id="category-toggle2" />
-                            <label class="category-label" for="category-toggle2">Soccer</label>
+                            <label class="category-label" for="category-toggle2"> Soccer</label>
                         </form>
                     </td>
                     <td>
-                        <button class="btn"><i class="fa fa-edit"></i></button>
+                        <button class="category-edit-button"><span class="far fa-edit"></span></button>
                     </td>
                     <td>
-                        <button class="btn"><i class="fa fa-trash"></i></button>
+                        <button class="category-delete-button"><span class="far fa-trash-alt"></span></button>
                     </td>
                 </tr>
             </table>
