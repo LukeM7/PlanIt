@@ -150,25 +150,37 @@ html, body {
     
 }
 
-.dwm-container {
-    position: fixed;
-    background-color: #333;
+ul {
     list-style-type: none;
-    padding: 25px 0;
-    bottom: 0;
-    width: 80%;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightgray;
+    position: fixed;
+    width: 79.25%;
     margin: 0;
+    left: 5px;
+    bottom: 5px;
     display: table;
-    table-layout: fixed;
 }
 
-.dwm-container span {
-    display: table-cell;
-    text-align: center;
+li {
+  display: table-cell;
 }
 
-.dwm-container a {
-    text-decoration: none!important;
-    font-size: 40px;
-    color: white;
+li a {
+  display: block;
+  padding: 14px 30px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  border: 1px solid black;
+}
+
+li a:hover {
+  background-color: darkgray;
+}
+
+.dwm-container a.day-view {
+    background-color: #828385;
 }
