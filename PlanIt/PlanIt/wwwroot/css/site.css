@@ -177,10 +177,11 @@ li a {
   border: 1px solid black;
 }
 
-li a:hover {
-  background-color: darkgray;
-}
+    li a:hover {
+        background-color: #bbbfca;
+    }
 
 .dwm-container a.day-view {
-    background-color: #828385;
+    color: #e8e8e6;
+    background-color: #495464;
 }

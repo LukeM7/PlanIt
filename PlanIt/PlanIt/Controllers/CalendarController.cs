@@ -9,21 +9,16 @@ using PlanIt.Models;
 
 namespace PlanIt.Controllers
 {
-    public class HomeController : Controller
+    public class CalendarController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CalendarController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public CalendarController(ILogger<CalendarController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
