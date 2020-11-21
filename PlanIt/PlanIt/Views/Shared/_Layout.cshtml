@@ -15,7 +15,7 @@
     <div class="navbar-container">
         <div class="navbar-right-pane">
             <div class="nrp-upper-half">
-                
+
             </div>
             <div class="nrp-lower-half">
                 <span><input type="date" /></span>
@@ -24,60 +24,22 @@
         </div>
         <div class="navbar-left-pane">
             <span class="navbar-pageicon-container" id="npic-social">
-                <button class="navbar-page-button"><span class="fas fa-users"></span></button>
+                <button class="navbar-page-button" style="font-size: 24px;"><span class="fas fa-users"></span></button>
             </span>
             <span class="navbar-pageicon-container" id="npic-calendar">
-                <button class="navbar-page-button"><span class="fas fa-calendar-week"></span></button>
+                <button class="navbar-page-button" style="font-size: 24px;"><span class="fas fa-calendar-week"></span></button>
             </span>
             <span class="navbar-pageicon-container" id="npic-checklist">
-                <button class="navbar-page-button"><span class="fas fa-tasks"></span></button>
+                <button class="navbar-page-button" style="font-size: 24px;"><span class="fas fa-tasks"></span></button>
             </span>
         </div>
     </div>
     <div class="pane-container">
         <div class="right-pane">
             <div class="categories-headline">Categories</div>
-            <table class="categories-table">
-                <tr>
-                    <td class="category-toggle-entry">
-                        <form>
-                            <input type="checkbox" value="None" class="category-toggle" id="category-toggle0" />
-                            <label class="category-label" for="category-toggle0"> General</label>
-                        </form>
-                    </td>
-                    <td>
-                        <button class="category-edit-button"><span class="far fa-edit"></span></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category-toggle-entry">
-                        <form>
-                            <input type="checkbox" value="None" class="category-toggle" id="category-toggle1" />
-                            <label class="category-label" for="category-toggle1"> School</label>
-                        </form>
-                    </td>
-                    <td>
-                        <button class="category-edit-button"><span class="far fa-edit"></span></button>
-                    </td>
-                    <td>
-                        <button class="category-delete-button"><span class="far fa-trash-alt"></span></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category-toggle-entry">
-                        <form>
-                            <input type="checkbox" value="None" class="category-toggle" id="category-toggle2" />
-                            <label class="category-label" for="category-toggle2"> Soccer</label>
-                        </form>
-                    </td>
-                    <td>
-                        <button class="category-edit-button"><span class="far fa-edit"></span></button>
-                    </td>
-                    <td>
-                        <button class="category-delete-button"><span class="far fa-trash-alt"></span></button>
-                    </td>
-                </tr>
+            <table id="categories-table">
             </table>
+
         </div>
         <div class="main-pane">
             @RenderBody()
@@ -90,5 +52,7 @@
             </ul>
         </div>
     </div>
+    <script src="~/js/createCategoriesTable.js"></script>
+
 </body>
 </html>
