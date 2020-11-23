@@ -3,17 +3,25 @@
 * TENTATIVE COLOR SCHEME *
 **************************
 
-    --for main view--
+    --main view--
+
+    backgrounds
     #f4f4f2     --very light grey
+
+    accents
     #e8e8e8     --light grey
+
+    titles and buttons
     #bbbfca     --grey
+    #c7ccd7     --slightly tinted up, button accent
+
+    navbars and selected buttons
     #495464     --greyish navy
 
-    --for layout's side bar, slightly tinted down--
-    #e8e8e6     --very light grey
-    #dbdbdb     --light grey
-    #b0b4bf     --grey
-    #495464     --greyish navy (same)
+    hover for a selected button
+    #708099     --greyish navy lighter 
+
+
 */
 
 
@@ -32,59 +40,6 @@ html, body {
     padding: 0;
 }
 
-.navbar-container {
-    height: 80px;
-    width: 100%;
-    background-color: #495464;
-}
-.navbar-right-pane {
-    width: 50%;
-    height: 100%;
-    float: right;
-}
-.nrp-upper-half {
-    height: 50%;
-    display: block;
-}
-.nrp-lower-half {
-    height: 50%;
-    display: block;
-    position: relative;
-}
-.nrp-search-prompt {
-    float: right;
-    margin-top: 8px;
-    margin-right: 4px;
-    color: #e8e8e6;
-    font-size: 20px;
-}
-.nrp-lower-half input[type=date] {
-    float: right;
-    width: 50%;
-    margin: 4px;
-    vertical-align: central;
-    font-size: 20px;
-}
-
-.navbar-left-pane {
-    width: 50%;
-    height: 100%;
-    float: left;
-    display: table;
-    table-layout: fixed;
-}
-    .navbar-pageicon-container {
-        display: table-cell;
-    }
-        .navbar-page-button {
-            height: 80%;
-            width: 80%;
-            display: block;
-            margin: auto;
-            margin-top: 8px;
-        }
-
-
 .pane-container {
     width: 100%;
     height: calc(100% - 80px);
@@ -99,70 +54,6 @@ html, body {
 }
 
 
-.right-pane {
-    width: 20%;
-    height: 100%;
-    float: right;
-    background-color: #e8e8e6;
-}
-.rp-half {
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-}
-    .rp-headline {
-        flex-shrink: 0;
-        height: 60px;
-        background-color: #b0b4bf;
-        font-size: 24px;
-        text-align: center;
-        vertical-align: middle;
-    }
-        .rp-table-container {
-            flex-grow: 1;
-            overflow-y: scroll;
-        }
-        #categories-table {
-            width: 100%;
-        }
-        .category-table-row {
-            height: 30px;
-        }
-            .category-table-row button {
-                opacity: 0;
-            }
-
-            .category-table-row:hover button {
-                opacity: 1;
-            }
-            .category-checkbox-entry {
-                width: 80%;
-            }
-            .category-checkbox {
-                display: none;
-            }
-
-            .category-label {
-                font-size: 24px;
-                display: inline-block;
-                width: 100%;
-                background-color: #b0b4bf;
-                border-radius: 2px;
-            }
-                .category-label-text {
-                    padding-left: 2px;
-                }
-                .category-label:hover {
-                    background-color: #f4f4f2;
-                }
-                .category-checkbox:checked + label {
-                    color: #e8e8e6;
-                    background-color: #495464;
-                }
-                .category-checkbox:checked + label:hover {
-                    background-color: #708099;
-                }
-
 /*
 ***************
 * /Home/Index *
@@ -174,54 +65,3 @@ html, body {
     height: 100%;
     position: relative;
 }
-.calendar-headline {
-    height: 60px;
-    text-align: center;
-    background-color: #bbbfca;
-    font-size: 24px;
-}
-.datetime {
-    
-}
-
-
-.dwm-container {
-    width: 100%;
-    height: 80px;
-    position: absolute;
-    bottom: 0px;
-    background: #bbbfca;
-}
-
-    .dwm-table {
-        table-layout: fixed;
-        border-spacing: 4px;
-        width: 100%;
-        height: 100%;
-    }
-
-        .dwm-table td {
-            text-align: center;
-            color: black;
-            font-size: 24px;
-        }
-        .view-selector {
-            display: none;
-        }
-        .view-selector-label {
-            display: inline-block;
-            height: 100%;
-            width: 100%;
-            color: black;
-        }
-        .view-selector-label:hover {
-            background-color: #f4f4f2;
-        }
-            .view-selector:checked + label {
-                color: #e8e8e6;
-                background-color: #495464;
-            }
-            .view-selector:checked + label:hover {
-                background-color: #708099;
-            }
-        

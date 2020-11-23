@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width" />
 
     <link rel="stylesheet" href="~/css/site.css" />
-    
+    <link rel="stylesheet" href="~/css/layoutTopmostNavbar.css" />
+    <link rel="stylesheet" href="~/css/layoutRightSidebar.css" />
+    <link rel="stylesheet" href="~/css/calendarIndexView.css" />
+
     <!--ICONS-->
     <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
     <title>PlanIt</title>
@@ -38,14 +41,18 @@
         <div class="right-pane">
             <div class="rp-half">
                 <div class="rp-headline">Categories</div>
+                <div class="toggle-all-btn-container">
+                    <input id="toggle-all-categories-input" type="checkbox" />
+                    <label for="toggle-all-categories-input" class="toggle-all-label">Toggle All</label>
+                </div>
                 <div class="rp-table-container">
                     <table id="categories-table">
                     </table>
                 </div>
             </div>
             <div class="rp-half">
-                <div class="rp-headline">Event Orbs</div>
-                <div class="event-orbs"></div>
+                <div class="rp-headline">Event Templates</div>
+                <div class="event-templates"></div>
             </div>
         </div>
         <div class="main-pane">
@@ -55,6 +62,7 @@
         </div>
     </div>
     <script src="~/js/createCategoriesTable.js"></script>
+    <script src="~/js/toggleAllCategories.js"></script>
 
 </body>
 </html>

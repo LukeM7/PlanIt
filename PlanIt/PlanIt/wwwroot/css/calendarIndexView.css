@@ -1,0 +1,58 @@
+﻿
+.calendar-headline {
+    height: 60px;
+    text-align: center;
+    background-color: #bbbfca;
+    border: solid #e8e8e8 2px;
+    font-size: 24px;
+}
+
+.datetime {
+}
+
+
+.dwm-container {
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0px;
+    background: #bbbfca;
+}
+
+.dwm-table {
+    table-layout: fixed;
+    border-spacing: 4px;
+    width: 100%;
+    height: 100%;
+}
+
+    .dwm-table td {
+        text-align: center;
+        color: black;
+        font-size: 24px;
+    }
+
+.view-selector {
+    display: none;
+}
+
+.view-selector-label {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-color: #cfd3df;
+    color: black;
+}
+
+    .view-selector-label:hover {
+        background-color: #f4f4f2;
+    }
+
+.view-selector:checked + label {
+    color: #e8e8e6;
+    background-color: #495464;
+}
+
+    .view-selector:checked + label:hover {
+        background-color: #708099;
+    }
