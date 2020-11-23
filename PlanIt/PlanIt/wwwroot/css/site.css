@@ -40,6 +40,12 @@ html, body {
     padding: 0;
 }
 
+.navbar-container {
+    height: 80px;
+    width: 100%;
+    background-color: #495464;
+}
+
 .pane-container {
     width: 100%;
     height: calc(100% - 80px);

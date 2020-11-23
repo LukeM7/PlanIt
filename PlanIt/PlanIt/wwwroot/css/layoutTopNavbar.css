@@ -1,10 +1,6 @@
-﻿.navbar-container {
-    height: 80px;
-    width: 100%;
-    background-color: #495464;
-}
+﻿
 
-.navbar-right-pane {
+.navbar-right-half-container {
     width: 50%;
     height: 100%;
     float: right;
@@ -37,7 +33,7 @@
     font-size: 20px;
 }
 
-.navbar-left-pane {
+.navbar-left-half-container {
     width: 50%;
     height: 100%;
     float: left;

@@ -20,5 +20,6 @@
   <ItemGroup>
     <Folder Include="Views\Calendar\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\viewInitializations\" />
   </ItemGroup>
 </Project>

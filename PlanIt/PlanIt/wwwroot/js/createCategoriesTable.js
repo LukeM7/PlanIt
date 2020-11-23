@@ -3,7 +3,7 @@ var categoriesTable = '';
 for (var row = 0; row < categoryTitles.length; row++) {
     categoriesTable += '<tr class="category-table-row">';
     categoriesTable += '<td class="category-checkbox-entry">'
-        + '<input type="checkbox" value="None" class="category-checkbox" id="category-checkbox' + row.toString() + '"/>'
+        + '<input type="checkbox" class="category-checkbox" id="category-checkbox' + row.toString() + '"/>'
         + '<label class="category-label" for="category-checkbox' + row.toString() + '"/><span class="category-label-text">' + categoryTitles[row] + '</span></label>'
         + '</td>';
 
