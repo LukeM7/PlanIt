@@ -1,10 +1,10 @@
-﻿var categoryTitles = ["General", "School", "Soccer", "Personal", "this is a test"];
+﻿var categoryTitles = ["General", "School", "Soccer", "Personal", "A", "B", "C", " D", "E", "F", "G", "AA", "AB", "AC", "AD", "AE", "AF", "AG"];
 var categoriesTable = '';
 for (var row = 0; row < categoryTitles.length; row++) {
-    categoriesTable += '<tr>';
-    categoriesTable += '<td class="category-toggle-entry">'
-        + '<input type="checkbox" value="None" class="category-toggle" id="category-toggle' + row.toString() + '"/>'
-        + '<label class="category-label" for="category-toggle' + row.toString() + '"/>' + categoryTitles[row] + '</label>'
+    categoriesTable += '<tr class="category-table-row">';
+    categoriesTable += '<td class="category-checkbox-entry">'
+        + '<input type="checkbox" value="None" class="category-checkbox" id="category-checkbox' + row.toString() + '"/>'
+        + '<label class="category-label" for="category-checkbox' + row.toString() + '"/><span class="category-label-text">' + categoryTitles[row] + '</span></label>'
         + '</td>';
 
     if (row > 0) {

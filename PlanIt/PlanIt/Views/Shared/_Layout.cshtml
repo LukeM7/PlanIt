@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
     <title>PlanIt</title>
 </head>
-<body>
+<body class="body-layout">
     <div class="navbar-container">
         <div class="navbar-right-pane">
             <div class="nrp-upper-half">
@@ -36,20 +36,22 @@
     </div>
     <div class="pane-container">
         <div class="right-pane">
-            <div class="categories-headline">Categories</div>
-            <table id="categories-table">
-            </table>
-
+            <div class="rp-half">
+                <div class="rp-headline">Categories</div>
+                <div class="rp-table-container">
+                    <table id="categories-table">
+                    </table>
+                </div>
+            </div>
+            <div class="rp-half">
+                <div class="rp-headline">Event Orbs</div>
+                <div class="event-orbs"></div>
+            </div>
         </div>
         <div class="main-pane">
             @RenderBody()
             <!-- Buttons for Previous, Today, and Next -->
             <!-- Day/Week/Month interface -->
-            <ul class="dwm-container">
-                <li><a href="#" class="day-view">Day</a></li>
-                <li><a href="#" class="week-view">Week</a></li>
-                <li><a href="#" class="month-view">Month</a></li>
-            </ul>
         </div>
     </div>
     <script src="~/js/createCategoriesTable.js"></script>
