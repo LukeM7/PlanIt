@@ -1,6 +1,13 @@
 ﻿
+.calendar-index-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .calendar-headline {
-    height: 60px;
+    height: 40px;
     flex: none;
     display: flex;
     justify-content: center;
@@ -13,15 +20,29 @@
 .datetime {
 }
 
+.calendar-display-container {
+    display: block;
+    overflow-x: scroll;
+    flex: auto;
+}
+/*IMPORTANT: THESE TWO CONTAINERS MUST CONTAIN SAME WIDTH PARAMETERS*/
+.event-container {
+    height: 85%;
+    width: 200%;
+}
+.daily-view-display {
+    height: 15%;
+    width: 200%;
+}
+
 
 .dwm-container {
+    flex: none;
     display: table;
     table-layout: fixed;
     border-spacing: 4px;
     width: 100%;
-    height: 80px;
-    position: absolute;
-    bottom: 0px;
+    height: 60px;
 }
 
 
