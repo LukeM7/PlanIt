@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
     <title>PlanIt</title>
 </head>
-<body class="body-layout">
+<body class="body-layout" id="body-layout">
     <div class="navbar-container">
         <div class="navbar-right-half-container">
             <div class="nrp-upper-half">
@@ -26,22 +26,33 @@
             </div>
         </div>
         <div class="navbar-left-half-container">
-            <span class="navbar-pageicon-container" id="npic-social">
-                <button class="navbar-page-button" style="font-size: 24px;"><span class="fas fa-users"></span></button>
-            </span>
-            <span class="navbar-pageicon-container" id="npic-calendar">
-                <button class="navbar-page-button" style="font-size: 24px;"><span class="fas fa-calendar-week"></span></button>
-            </span>
-            <span class="navbar-pageicon-container" id="npic-checklist">
-                <button class="navbar-page-button" style="font-size: 24px;"><span class="fas fa-tasks"></span></button>
-            </span>
+            <input type="radio" name="page-selector" class="navbar-page-input" id="npi-social-page-input" />
+            <label for="npi-social-page-input" class="npi-label">
+                <span class="fas fa-users">
+                    <a></a>
+                </span>
+            </label>
+            <input type="radio" name="page-selector" class="navbar-page-input" id="npi-calendar-page-input" />
+            <label for="npi-calendar-page-input" class="npi-label">
+                <span class="fas fa-calendar-week">
+                    <a></a>
+                </span>
+            </label>
+            <input type="radio" name="page-selector" class="navbar-page-input" id="npi-checklist-page-input" />
+            <label for="npi-checklist-page-input" class="npi-label">
+                <span class="fas fa-tasks">
+                    <a></a>
+                </span>
+            </label>
         </div>
+
     </div>
     <div class="pane-container">
         <div class="right-pane">
             <div class="rp-half">
                 <div class="rp-headline">Categories</div>
-                <input id="toggle-all-categories-input" type="checkbox"/>
+                <script src="~/js/toggleAllCategories.js"></script>
+                <input id="toggle-all-categories-input" type="checkbox" onclick="toggleAllCategories(this)" />
                 <label for="toggle-all-categories-input" id="toggle-all-label">
                     <span id="toggle-all-label-text"></span>
                 </label>
@@ -59,8 +70,10 @@
             @RenderBody()
         </div>
     </div>
-    <script src="~/js/createCategoriesTable.js"></script>
-    <script src="~/js/toggleAllCategories.js"></script>
 
+
+    <!--INITIALIZATION SCRIPT-->
+    <script src="~/js/viewInitializations/layoutInit.js"></script>
 </body>
+
 </html>

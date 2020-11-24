@@ -1,7 +1,10 @@
 ﻿
 .calendar-headline {
     height: 60px;
-    text-align: center;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #bbbfca;
     border: solid #cfd3df 2px;
     font-size: 24px;
@@ -12,49 +15,41 @@
 
 
 .dwm-container {
+    display: table;
+    table-layout: fixed;
+    border-spacing: 4px;
     width: 100%;
     height: 80px;
     position: absolute;
     bottom: 0px;
 }
 
-.dwm-table {
-    table-layout: fixed;
-    border-spacing: 4px;
-    width: 100%;
-    height: 100%;
-}
 
-    .dwm-table td {
-        color: black;
-        font-size: 24px;
-    }
-
-.view-selector {
+.calendar-view-selector {
     display: none;
 }
 
-.view-selector-label {
+.calendar-view-selector-label {
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
-    display: inline-block;
-    height: 100%;
-    width: 100%;
+    color: black;
+    font-size: 28px;
     background-color: #cfd3df;
     border-radius: 4px;
     border: solid 2px #bbbfca;
-    color: black;
 }
 
-    .view-selector-label:hover {
-        background-color: #e8e8e8;
-    }
+.calendar-view-selector-label:hover {
+    background-color: #e8e8e8;
+}
 
-    .view-selector:checked + label {
-        color: #e8e8e6;
-        background-color: #495464;
-        border-color: #708099;
-    }
+.calendar-view-selector:checked + label {
+    color: #e8e8e6;
+    background-color: #495464;
+    border-color: #708099;
+}
 
-    .view-selector:checked + label:hover {
-        background-color: #708099;
-    }
+.calendar-view-selector:checked + label:hover {
+    background-color: #708099;
+}
