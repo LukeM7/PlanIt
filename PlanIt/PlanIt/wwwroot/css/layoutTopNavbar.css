@@ -38,11 +38,8 @@
     float: left;
     display: table;
     table-layout: fixed;
-    border-spacing: 16px 8px;
+    border-spacing: 24px 8px;
 }
-    .navbar-left-half-container * {
-        box-sizing: content-box;
-    }
 
 .navbar-page-input {
     display: none;
