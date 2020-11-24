@@ -29,7 +29,6 @@
     float: right;
     width: 50%;
     margin: 4px;
-    vertical-align: central;
     font-size: 20px;
 }
 
@@ -39,16 +38,25 @@
     float: left;
     display: table;
     table-layout: fixed;
+    border-spacing: 16px 8px;
 }
-
-.navbar-pageicon-container {
+.navbar-page-input {
+    display: none;
+}
+.npi-label {
+    box-sizing: content-box;
     display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #f4f4f2;
+    border: solid 2px #e8e8e8;
+    border-radius: 4px;
 }
+    .npi-label:hover {
+        border: solid 4px #bbbfca;
+    }
 
-.navbar-page-button {
-    height: 80%;
-    width: 80%;
-    display: block;
-    margin: auto;
-    margin-top: 8px;
+.navbar-page-input:checked + label {
+    border: solid 4px #bbbfca;
+    background-color: #e8e8e8;
 }

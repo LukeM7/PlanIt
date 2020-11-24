@@ -30,11 +30,11 @@
         font-size: 24px;
     }
 
-.view-selector {
+.calendar-view-selector {
     display: none;
 }
 
-.view-selector-label {
+.calendar-view-selector-label {
     text-align: center;
     display: inline-block;
     height: 100%;
@@ -45,16 +45,16 @@
     color: black;
 }
 
-    .view-selector-label:hover {
-        background-color: #e8e8e8;
-    }
+.calendar-view-selector-label:hover {
+    background-color: #e8e8e8;
+}
 
-    .view-selector:checked + label {
-        color: #e8e8e6;
-        background-color: #495464;
-        border-color: #708099;
-    }
+.calendar-view-selector:checked + label {
+    color: #e8e8e6;
+    background-color: #495464;
+    border-color: #708099;
+}
 
-    .view-selector:checked + label:hover {
-        background-color: #708099;
-    }
+.calendar-view-selector:checked + label:hover {
+    background-color: #708099;
+}
