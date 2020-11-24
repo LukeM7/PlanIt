@@ -40,23 +40,31 @@
     table-layout: fixed;
     border-spacing: 16px 8px;
 }
+    .navbar-left-half-container * {
+        box-sizing: content-box;
+    }
+
 .navbar-page-input {
     display: none;
 }
 .npi-label {
-    box-sizing: content-box;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+    font-size: 20px;
     background-color: #f4f4f2;
+    color: #888888;
     border: solid 2px #e8e8e8;
     border-radius: 4px;
 }
+    
     .npi-label:hover {
         border: solid 4px #bbbfca;
     }
 
-.navbar-page-input:checked + label {
-    border: solid 4px #bbbfca;
-    background-color: #e8e8e8;
-}
+    .navbar-page-input:checked + label {
+        border: solid 2px #bbbfca;
+        color: #000000;
+        background-color: #e8e8e8;
+        font-size: 36px;
+    }
