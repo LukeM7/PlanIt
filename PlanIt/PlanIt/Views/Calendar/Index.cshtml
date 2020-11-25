@@ -12,20 +12,34 @@
     <script src="~/js/datetime.js"></script>
 
     <div class="calendar-display-container">
-        <div class="event-container">
+        @*Width for this element pre-set in the initialization script.*@
+        <div id="event-container">
 
         </div>
-        <img class="daily-view-display-img" src="~/images/day_number_line.svg" />
-        <div class="view-config-inputs-container">
-            <div>
+        @*Width also pre-set in the initialization script.*@
+        <img id="daily-view-display-img" src="~/images/day_number_line.svg" />
 
-            </div>
-            <div>
-
-            </div>
-        </div>
     </div>
-   
+    <div id="view-config-inputs-container">
+        <div id="zoom-buttons-container">
+            <script src="~/js/dailyViewZoomDisplay.js"></script>
+            <input id="zoom-out-input" type="button" onclick="zoomOut()" />
+            <label for="zoom-out-input"><span class="fas fa-search-minus"></span></label>
+            <span id="zoom-level-text">150%</span>
+            <input id="zoom-in-input" type="button" onclick="zoomIn()" />
+            <label for="zoom-in-input"><span class="fas fa-search-plus"></span></label>
+        </div>
+        <table id="date-buttons-container">
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
     
 
     <!-- Buttons for Previous, Today, and Next -->
