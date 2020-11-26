@@ -1,11 +1,10 @@
-﻿function createCategoriesTable() {
-    var categoryTitles = ["General", "School", "Soccer", "Personal", "A", "B", "C", " D", "E", "F", "G", "AA", "AB", "AC", "AD", "AE", "AF", "AG"];
+﻿function createCategoriesTable(categories) {
     var categoriesTable = '';
-    for (var row = 0; row < categoryTitles.length; row++) {
+    for (var row = 0; row < categories.length; row++) {
         categoriesTable += '<tr class="category-table-row">';
         categoriesTable += '<td class="category-checkbox-entry">'
             + '<input type="checkbox" class="category-checkbox" id="category-checkbox' + row.toString() + '" checked/>'
-            + '<label class="category-label" for="category-checkbox' + row.toString() + '"/><span class="category-label-text">' + categoryTitles[row] + '</span></label>'
+            + '<label class="category-label" for="category-checkbox' + row.toString() + '"/><span class="category-label-text">' + categories[row] + '</span></label>'
             + '</td>';
 
         if (row > 0) {
@@ -29,18 +28,3 @@
     //+ '{ "title" : "Soccer" },'
     //    + '{ "title" : "Personal" }, ]}')
 }
-
-
-function selectCalendarPage() {
-    document.getElementById('npi-calendar-page-input').checked = true;
-}
-
-
-createCategoriesTable();
-selectCalendarPage();
-
-
-
-
-
-
