@@ -13,7 +13,7 @@
     text-align: center;
 }
 
-label {
+.modalAddEvent-content label {
     float: left;
     width: 25%;
     padding: 10px;
@@ -58,7 +58,7 @@ label {
     animation-duration: 0.4s
 }
 
-input[type=text] {
+.modalAddEvent-content input[type=text] {
     background-color: lightgray;
 }
 
@@ -135,7 +135,7 @@ input[type=text] {
     padding-left: 4.5%;
 }
 
-.row {
+.addEvent-row {
     display: table;
     width: 100%;
     padding: 12px
