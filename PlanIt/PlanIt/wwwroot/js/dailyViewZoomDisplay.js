@@ -1,66 +1,67 @@
-﻿function adjustPadding(eventContainer) {
-    var paddingWidth = window.getComputedStyle(eventContainer).width;
-    paddingWidth = parseInt(paddingWidth);
+﻿//this keeps eventContainer perfectly aligned with numberline
+//important because the text offsets the position of the numberline by a little 
+function adjustPadding(eventPaddedContainer) {
+    var paddingWidth = parseFloat(window.getComputedStyle(eventPaddedContainer).width);
+    //hard coded value: (length of text offset)/(total length):
     paddingWidth *= 0.0080524;
-    //add 4 for the margins on the number line
-    eventContainer.style.paddingLeft = paddingWidth.toString() + "px";
-    eventContainer.style.paddingRight = paddingWidth.toString() + "px";
+    eventPaddedContainer.style.paddingLeft = paddingWidth.toString() + "px";
+    eventPaddedContainer.style.paddingRight = paddingWidth.toString() + "px";
 }
 
 function zoomIn() {
-    var eventContainer = document.getElementById('event-container');
-    var numberLine = document.getElementById('daily-view-display-img');
+    var eventPaddedContainer = document.getElementById('event-padded-outer-container');
+    var numberLine = document.getElementById('timeline-img');
 
     var currentWidth = numberLine.style.width;
     if (currentWidth == '100%') {
-        eventContainer.style.width = '125%';
+        eventPaddedContainer.style.width = '125%';
         numberLine.style.width = '125%';
         document.getElementById('zoom-level-text').innerHTML = '125%';
     }
     else if (currentWidth == '125%') {
-        eventContainer.style.width = '150%';
+        eventPaddedContainer.style.width = '150%';
         numberLine.style.width = '150%';
         document.getElementById('zoom-level-text').innerHTML = '150%';
     }
     else if (currentWidth == '150%') {
-        eventContainer.style.width = '175%';
+        eventPaddedContainer.style.width = '175%';
         numberLine.style.width = '175%';
         document.getElementById('zoom-level-text').innerHTML = '175%';
     }
     else if (currentWidth == '175%') {
-        eventContainer.style.width = '200%';
+        eventPaddedContainer.style.width = '200%';
         numberLine.style.width = '200%';
         document.getElementById('zoom-level-text').innerHTML = '200%';
     }
 
-    adjustPadding(eventContainer);
+    adjustPadding(eventPaddedContainer);
 }
 
 function zoomOut() {
-    var eventContainer = document.getElementById('event-container');
-    var numberLine = document.getElementById('daily-view-display-img');
+    var eventPaddedContainer = document.getElementById('event-padded-outer-container');
+    var numberLine = document.getElementById('timeline-img');
 
     var currentWidth = numberLine.style.width;
     if (currentWidth == '200%') {
-        eventContainer.style.width = '175%';
+        eventPaddedContainer.style.width = '175%';
         numberLine.style.width = '175%';
         document.getElementById('zoom-level-text').innerHTML = '175%';
     }
     else if (currentWidth == '175%') {
-        eventContainer.style.width = '150%';
+        eventPaddedContainer.style.width = '150%';
         numberLine.style.width = '150%';
         document.getElementById('zoom-level-text').innerHTML = '150%';
     }
     else if (currentWidth == '150%') {
-        eventContainer.style.width = '125%';
+        eventPaddedContainer.style.width = '125%';
         numberLine.style.width = '125%';
         document.getElementById('zoom-level-text').innerHTML = '125%';
     }
     else if (currentWidth == '125%') {
-        eventContainer.style.width = '100%';
+        eventPaddedContainer.style.width = '100%';
         numberLine.style.width = '100%';
         document.getElementById('zoom-level-text').innerHTML = '100%';
     }
 
-    adjustPadding(eventContainer);
+    adjustPadding(eventPaddedContainer);
 }

@@ -3,7 +3,7 @@
     Layout = "_Layout";
 }
 
-<div class="calendar-index-body">
+<div class="calendar-index-body" id="calendar-index-body">
     <!-- Day and time interface -->
     <div class="calendar-headline">
         <div class="datetime" id="datetime"></div>
@@ -12,23 +12,27 @@
     <script src="~/js/datetime.js"></script>
 
     <div class="calendar-display-container">
-        @*Width for this element pre-set in the initialization script.*@
-        <div id="event-container">
 
+        @*Width for this element pre-set in the initialization script.*@
+        <div id="event-padded-outer-container">
+            <div id="event-inner-container">
+            </div>
         </div>
         @*Width also pre-set in the initialization script.*@
-        <img id="daily-view-display-img" src="~/images/day_number_line.svg" />
+        <img id="timeline-img" src="~/images/day_number_line.svg" />
 
     </div>
     <div id="view-config-inputs-container">
-        <div id="zoom-buttons-container">
+        <div id="zoom-container">
             <script src="~/js/dailyViewZoomDisplay.js"></script>
             <input id="zoom-out-input" type="button" onclick="zoomOut()" />
             <label for="zoom-out-input"><span class="fas fa-search-minus"></span></label>
-            <span id="zoom-level-text">150%</span>
+            <span id="zoom-level-text">125%</span>
             <input id="zoom-in-input" type="button" onclick="zoomIn()" />
             <label for="zoom-in-input"><span class="fas fa-search-plus"></span></label>
         </div>
+
+        <!-- Buttons for Previous, Today, and Next -->
         <table id="date-buttons-container">
             <tr>
                 <td>
@@ -40,9 +44,9 @@
             </tr>
         </table>
     </div>
-    
 
-    <!-- Buttons for Previous, Today, and Next -->
+
+
     <!-- Day/Week/Month interface -->
     <div class="dwm-container">
         <input type="radio" class="calendar-view-selector" name="view-selector" id="day-view" />
@@ -54,6 +58,6 @@
         <input type="radio" class="calendar-view-selector" name="view-selector" id="month-view" />
         <label class="calendar-view-selector-label" for="month-view">Month</label>
     </div>
-
 </div>
 <script src="~/js/viewInitializations/calendarViewInit.js"></script>
+

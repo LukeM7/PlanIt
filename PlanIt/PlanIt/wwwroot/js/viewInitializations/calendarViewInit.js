@@ -2,11 +2,11 @@
     document.getElementById('day-view').checked = true;
 }
 function setDisplayZoom() {
-    var eventContainer = document.getElementById('event-container');
-    eventContainer.style.width = '125%';
-    document.getElementById('daily-view-display-img').style.width = '125%';
+    var eventPaddedContainer = document.getElementById('event-padded-outer-container');
+    eventPaddedContainer.style.width = '125%';
+    document.getElementById('timeline-img').style.width = '125%';
     document.getElementById('zoom-level-text').innerHTML = '125%';
-    adjustPadding(eventContainer);
+    adjustPadding(eventPaddedContainer);
 }
 
 
