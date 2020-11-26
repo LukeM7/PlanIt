@@ -42,8 +42,4 @@ function displayEvents(events, forDate) {
 }
 
 
-//event 1: starts at 12pm, duration is 2 hrs; event 3: starts at 6pm, duration is 1hr 20min
-
-var events = [["event1", 12, 120], ["event2", 8, 60], ["event3", 18, 90], ["event4", 0, 180]];
-displayEvents(events, 0);
 

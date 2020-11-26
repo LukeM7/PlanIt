@@ -2,7 +2,7 @@
 //important because the text offsets the position of the numberline by a little 
 function adjustPadding(eventPaddedContainer) {
     var paddingWidth = parseFloat(window.getComputedStyle(eventPaddedContainer).width);
-    //hard coded value: (length of text offset)/(total length):
+    //hard-coded value from the timeline image: (length of text offset)/(total length): 
     paddingWidth *= 0.0080524;
     eventPaddedContainer.style.paddingLeft = paddingWidth.toString() + "px";
     eventPaddedContainer.style.paddingRight = paddingWidth.toString() + "px";

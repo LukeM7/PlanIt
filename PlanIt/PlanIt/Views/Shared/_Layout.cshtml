@@ -122,7 +122,6 @@
         <div class="right-pane">
             <div class="rp-half">
                 <div class="rp-headline">Categories</div>
-                <script src="~/js/toggleAllCategories.js"></script>
                 <input id="toggle-all-categories-input" type="checkbox" onclick="toggleAllCategories(this)" />
                 <label for="toggle-all-categories-input" id="toggle-all-label">
                     <span id="toggle-all-label-text"></span>
@@ -142,15 +141,14 @@
         </div>
     </div>
 
-    <script src="~/js/createCategoriesTable.js"></script>
-    <script src="~/js/toggleAllCategories.js"></script>
-    <script src="~/js/addEvent.js"></script>
-    <script src="~/js/displayEvents.js"></script>
+    <script src="~/js/Layout/createCategoriesTable.js"></script>
+    <script src="~/js/Layout/addEvent.js"></script>
+    <script src="~/js/Layout/toggleAllCategories.js"></script>
 
 
 
-    <!--INITIALIZATION SCRIPT-->
-    <script src="~/js/viewInitializations/layoutInit.js"></script>
+    <!--INITIALIZATION SCRIPT (must go last)-->
+    <script src="~/js/Layout/layoutInit.js"></script>
 
 </body>
 

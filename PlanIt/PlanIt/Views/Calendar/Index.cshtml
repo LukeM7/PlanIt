@@ -9,7 +9,7 @@
         <div class="datetime" id="datetime"></div>
     </div>
 
-    <script src="~/js/datetime.js"></script>
+    
 
     <div class="calendar-display-container">
 
@@ -24,7 +24,6 @@
     </div>
     <div id="view-config-inputs-container">
         <div id="zoom-container">
-            <script src="~/js/dailyViewZoomDisplay.js"></script>
             <input id="zoom-out-input" type="button" onclick="zoomOut()" />
             <label for="zoom-out-input"><span class="fas fa-search-minus"></span></label>
             <span id="zoom-level-text">125%</span>
@@ -59,5 +58,12 @@
         <label class="calendar-view-selector-label" for="month-view">Month</label>
     </div>
 </div>
-<script src="~/js/viewInitializations/calendarViewInit.js"></script>
+
+<script src="~/js/CalendarView/datetime.js"></script>
+<script src="~/js/CalendarView/displayEvents.js"></script>
+<script src="~/js/CalendarView/dailyViewZoomDisplay.js"></script>
+
+<!--INITIALIZATION SCRIPT (must go last)-->
+<script src="~/js/CalendarView/calendarViewInit.js"></script>
+
 
