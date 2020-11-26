@@ -1,7 +1,17 @@
 ﻿
+.calendar-index-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .calendar-headline {
-    height: 60px;
-    text-align: center;
+    height: 40px;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #bbbfca;
     border: solid #cfd3df 2px;
     font-size: 24px;
@@ -10,51 +20,93 @@
 .datetime {
 }
 
-
-.dwm-container {
-    width: 100%;
-    height: 80px;
-    position: absolute;
-    bottom: 0px;
+.calendar-display-container {
+    flex: auto; /*<--- for relationship as child with calendar-index-body container*/
+    overflow-x: auto;
+    display: flex; /*<--- for relationship as parent containerr*/
+    flex-direction: column;
+    margin: 4px;
 }
 
-.dwm-table {
+#event-container {
+    flex: 1 1 auto;
+    position: relative;
+}
+.event {
+    position: absolute;
+    border-radius: 4px;
+    height: 12%;
+}
+
+#daily-view-display-img {
+    flex: none;
+    height: 15%;
+}
+
+#view-config-inputs-container {
+    flex: none;
+    width: 100%;
+    height: 10%;
+}
+#zoom-buttons-container {
+    height: 33%;
+    font-size: 16px;
+    margin-right: 4px;
+    margin-top: 4px;
+    float: right;
+}
+#zoom-out-input {
+    display: none;
+}
+#zoom-in-input {
+    display: none;
+}
+#zoom-level-text {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+#date-buttons-container {
+    height: 66%;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+.dwm-container {
+    flex: none;
+    display: table;
     table-layout: fixed;
     border-spacing: 4px;
     width: 100%;
-    height: 100%;
+    height: 60px;
 }
 
-    .dwm-table td {
-        text-align: center;
-        color: black;
-        font-size: 24px;
-    }
 
-.view-selector {
+.calendar-view-selector {
     display: none;
 }
 
-.view-selector-label {
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    background-color: #cfd3df;
+.calendar-view-selector-label {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: black;
+    font-size: 28px;
+    background-color: #cccfd7;
     border-radius: 4px;
     border: solid 2px #bbbfca;
-    color: black;
 }
 
-    .view-selector-label:hover {
-        background-color: #e8e8e8;
-    }
+.calendar-view-selector-label:hover {
+    background-color: #e8e8e8;
+}
 
-    .view-selector:checked + label {
-        color: #e8e8e6;
-        background-color: #495464;
-        border-color: #708099;
-    }
+.calendar-view-selector:checked + label {
+    color: #e8e8e8;
+    background-color: #495464;
+    border-color: #708099;
+}
 
-    .view-selector:checked + label:hover {
-        background-color: #708099;
-    }
+.calendar-view-selector:checked + label:hover {
+    background-color: #708099;
+}

@@ -1,16 +1,15 @@
-﻿function selectAllCategories() {
-    var toggleAllInput = document.getElementById('toggle-all-categories-input');
-    toggleAllInput.checked = true;
-    var checkboxes = document.getElementsByClassName('category-checkbox');
-    for (var checkbox of checkboxes) {
-        checkbox.checked = true;
-    }
-}
-
-function selectDailyView() {
+﻿function selectDailyView() {
     document.getElementById('day-view').checked = true;
-
+}
+function setDisplayZoom() {
+    var eventContainer = document.getElementById('event-container');
+    eventContainer.style.width = '125%';
+    document.getElementById('daily-view-display-img').style.width = '125%';
+    document.getElementById('zoom-level-text').innerHTML = '125%';
+    adjustPadding(eventContainer);
 }
 
-selectAllCategories();
+
+
+setDisplayZoom();
 selectDailyView();

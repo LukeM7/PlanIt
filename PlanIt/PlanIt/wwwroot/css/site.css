@@ -13,7 +13,7 @@
 
     titles and buttons
     #bbbfca     --grey
-    #c7ccd7     --slightly tinted up, button accent
+    #cccfd7     --slightly tinted up, button accent
 
     navbars and selected buttons
     #495464     --greyish navy
@@ -60,14 +60,3 @@ html, body {
 }
 
 
-/*
-***************
-* /Home/Index *
-***************
-*/
-
-.calendar-index-body {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}

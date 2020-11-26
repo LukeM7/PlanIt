@@ -1,12 +1,13 @@
-﻿document.getElementById('toggle-all-categories-input').onclick = function () {
+﻿function toggleAllCategories(toggleSource) {
     var checkboxes = document.getElementsByClassName('category-checkbox');
     for (var checkbox of checkboxes) {
-        checkbox.checked = this.checked;
+        checkbox.checked = toggleSource.checked;
     }
-    if (this.checked == true) {
-        document.getElementByID('toggle-all-label').innerHTML = 'Toggle All Off';
+
+    if (toggleSource.checked == true) {
+        document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All Off';
     }
-    else  {
-        document.getElementByID('toggle-all-label').innerHTML = 'Toggle All On';
+    else {
+        document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All On';
     }
 }

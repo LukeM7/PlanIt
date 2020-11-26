@@ -11,27 +11,49 @@
 
     <script src="~/js/datetime.js"></script>
 
-    <!-- Buttons for Previous, Today, and Next -->
+    <div class="calendar-display-container">
+        @*Width for this element pre-set in the initialization script.*@
+        <div id="event-container">
 
-    <!-- Day/Week/Month interface -->
-    <div class="dwm-container">
-        <table class="dwm-table" width="100%">
+        </div>
+        @*Width also pre-set in the initialization script.*@
+        <img id="daily-view-display-img" src="~/images/day_number_line.svg" />
+
+    </div>
+    <div id="view-config-inputs-container">
+        <div id="zoom-buttons-container">
+            <script src="~/js/dailyViewZoomDisplay.js"></script>
+            <input id="zoom-out-input" type="button" onclick="zoomOut()" />
+            <label for="zoom-out-input"><span class="fas fa-search-minus"></span></label>
+            <span id="zoom-level-text">150%</span>
+            <input id="zoom-in-input" type="button" onclick="zoomIn()" />
+            <label for="zoom-in-input"><span class="fas fa-search-plus"></span></label>
+        </div>
+        <table id="date-buttons-container">
             <tr>
                 <td>
-                    <input type="radio" class="view-selector" name="view-selector" id="day-view" />
-                    <label class="view-selector-label" for="day-view">Day</label>
                 </td>
                 <td>
-                    <input type="radio" class="view-selector" name="view-selector" id="week-view" />
-                    <label class="view-selector-label" for="week-view">Week</label>
                 </td>
                 <td>
-                    <input type="radio" class="view-selector" name="view-selector" id="month-view" />
-                    <label class="view-selector-label" for="month-view">Month</label>
                 </td>
             </tr>
         </table>
     </div>
+    
 
-    <script src="~/js/viewInitializations/calendarViewInit.js"></script>
+    <!-- Buttons for Previous, Today, and Next -->
+    <!-- Day/Week/Month interface -->
+    <div class="dwm-container">
+        <input type="radio" class="calendar-view-selector" name="view-selector" id="day-view" />
+        <label class="calendar-view-selector-label" for="day-view">Day</label>
+
+        <input type="radio" class="calendar-view-selector" name="view-selector" id="week-view" />
+        <label class="calendar-view-selector-label" for="week-view">Week</label>
+
+        <input type="radio" class="calendar-view-selector" name="view-selector" id="month-view" />
+        <label class="calendar-view-selector-label" for="month-view">Month</label>
+    </div>
+
 </div>
+<script src="~/js/viewInitializations/calendarViewInit.js"></script>
