@@ -4,8 +4,7 @@
     "\\PlanIt",
     "\\PlanIt\\PlanIt",
     "\\PlanIt\\PlanIt\\Models",
-    "\\PlanIt\\PlanIt\\Views",
-    "\\PlanIt\\PlanIt\\Views\\Home"
+    "\\PlanIt\\PlanIt\\Views"
   ],
   "PreviewInSolutionExplorer": false
 }
