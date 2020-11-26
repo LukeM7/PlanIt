@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/css/layoutTopNavbar.css" />
     <link rel="stylesheet" href="~/css/layoutRightSidebar.css" />
     <link rel="stylesheet" href="~/css/calendarIndexView.css" />
+    <link rel="stylesheet" href="~/css/addEvent.css" />
 
     <!--ICONS-->
     <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
@@ -18,7 +19,77 @@
     <div class="navbar-container">
         <div class="navbar-right-half-container">
             <div class="nrp-upper-half">
+                <!-- Add Event Button -->
+                <button id="btnAddEvent">Event</button>
+                <!-- Modal Add Event UI -->
+                <div id="modalAddEvent" class="addEvent">
+                    <!-- Content -->
+                    <div class="modalAddEvent-content">
+                        <form class="modalAddEvent animate" action="/add_event_page.php" method="post">
+                            <div class="container">
+                                <div class="addEvent-row">
+                                    <span class="square">Event Creator</span>
+                                    <input type="text" id="title" name="title" placeholder="Title" required />
+                                    <div>
+                                        <textarea id="description" name="description" placeholder="Description (Optional)"></textarea>
+                                    </div>
+                                    <div class="custom-select">
+                                        <select name="categories_ev" id="categories_ev">
+                                            <option value="Personal">Personal</option>
+                                            <option value="Travel">Travel</option>
+                                            <option value="School">School</option>
+                                            <option value="Work">Work</option>
+                                        </select>
+                                    </div>
+                                </div>
 
+                                <div class="addEvent-row">
+                                    <div class="field">
+                                        <label for="time">Time (Optional):</label>
+                                        <input type="time" id="time" placeholder="12:00pm" />
+                                        <input type="date" id="date" />
+                                    </div>
+                                    <div class="field">
+                                        <label for="duration">Duration</label>
+                                        <input type="number" min="0" id="duration"/>
+                                        <select name="duration-select" id="duration-select">
+                                            <option value="Minutes">Minutes</option>
+                                            <option value="Hours">Hours</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="addEvent-row">
+                                    <div class="field">
+                                        <label for="recurr-table">Recurrences (Optional)</label>
+                                        <table id="recurr-table" class="recurr-table" width="50%">
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" class="view-selector" name="view-selector" id="daily-opt" />
+                                                    <label class="view-selector-label" for="day-view">Daily</label>
+                                                </td>
+                                                <td>
+                                                    <input type="radio" class="view-selector" name="view-selector" id="weekly-opt" />
+                                                    <label class="view-selector-label" for="week-view">Weekly</label>
+                                                </td>
+                                                <td>
+                                                    <input type="radio" class="view-selector" name="view-selector" id="monthly-opt" />
+                                                    <label class="view-selector-label" for="month-view">Monthly</label>
+                                                </td>
+                                                <td>
+                                                    <input type="radio" class="view-selector" name="view-selector" id="yearly-opt" />
+                                                    <label class="view-selector-label" for="month-view">Yearly</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <button type="submit" id="btnCreateEvent">Create Event</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="nrp-lower-half">
                 <span><input type="date" /></span>
@@ -71,9 +142,15 @@
         </div>
     </div>
 
+    <script src="~/js/createCategoriesTable.js"></script>
+    <script src="~/js/toggleAllCategories.js"></script>
+    <script src="~/js/addEvent.js"></script>
+
+
 
     <!--INITIALIZATION SCRIPT-->
     <script src="~/js/viewInitializations/layoutInit.js"></script>
+
 </body>
 
 </html>
