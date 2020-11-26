@@ -1,0 +1,203 @@
+﻿/* Add Event Interface Styling*/
+.square {
+    position: relative;
+    width: 25%;
+    float: left;
+    padding: 4.5%;
+    margin-right: 2%;
+    font-weight: bold;
+    background-color: darkgray;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 20px;
+    text-align: center;
+}
+
+label {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    background-color: darkgray;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 20px;
+}
+
+.field {
+    padding: 20px 0px;
+}
+
+#btnAddEvent {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+}
+
+#btnAddEvent:hover {
+    opacity: 0.8;
+}
+
+.addEvent {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 99; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+input[type=text] {
+    background-color: lightgray;
+}
+
+
+#btnCreateEvent {
+    background-color: #4CAF50;
+    color: black;
+    padding: 2% 5%;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    font-size: 18px;
+}
+
+#btnCreateEvent:hover {
+    background-color: #45A049;
+}
+
+#title {
+    width: 70%;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 24px;
+    float: right;
+    border: 1px solid black;
+}
+
+#description {
+    width: 70%;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    float: right;
+    resize: none;
+    height: 100px;
+    background-color: lightgrey;
+    border: 1px solid black;
+}
+
+/* Categories Select dropdown */
+.custom-select {
+}
+
+#categories_ev {
+    width: 25%;
+    margin-top: 3%;
+    padding: 10px 4.5%;
+}
+
+#time {
+    margin-left: 5%;
+    padding: 10px 25px;
+}
+
+#date {
+    float: right;
+    padding: 10px 25px;
+}
+
+#duration {
+    margin-left: 5%;
+    padding: 10px 25px;
+}
+
+#duration-select {
+    float: right;
+    padding: 10px 25px;
+}
+
+.recurr-table {
+    padding-left: 4.5%;
+}
+
+.row {
+    display: table;
+    width: 100%;
+    padding: 12px
+}
+
+/* Content */
+.modalAddEvent-content {
+    background-color: #808080;
+    margin: 2% auto; /* 5% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    top: 0;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 25px;
+    border: 1px solid black;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes slideIn {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
