@@ -4,6 +4,7 @@
 function buildCategoriesTable(categoriesJSON) {
     var categoriesTable = document.getElementById('categories-table');
     for (var i = 0; i < categoriesJSON.categories.length; i++) {
+        var category = categoriesJSON.categories[i];
         var row = categoriesTable.insertRow(i);
         row.className = 'category-table-row';
         var categoryEntry0 = row.insertCell(0);
@@ -18,16 +19,16 @@ function buildCategoriesTable(categoriesJSON) {
         label.className = 'category-label';
         label.id = 'category-label' + i.toString();
         label.htmlFor = checkbox.id;
-        label.style.backgroundColor = categoriesJSON.categories[i].color;
+        label.style.backgroundColor = category.color;
         var labelText = document.createElement('span');
         labelText.className = 'category-label-text';
-        labelText.innerHTML = categoriesJSON.categories[i].title;
+        labelText.innerHTML = category.title;
         label.appendChild(labelText);
         categoryEntry0.appendChild(checkbox);
         categoryEntry0.appendChild(label);
 
         //these have to be const, for reasons I don't truly understand...  
-        const clr = categoriesJSON.categories[i].color;
+        const clr = category`.color;
         const lbl = label;
         checkbox.addEventListener('change', function () {
             updateCategory(this, lbl, clr);
@@ -82,3 +83,4 @@ function toggleAllCategories(toggleSource, categoriesJSON) {
         document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All On';
     }
 }
+
