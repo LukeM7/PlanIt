@@ -16,11 +16,13 @@ selectDailyView();
 
 var eventsJSON = {
     "events": [
-        { "title": "event1", "startingHour": 12, "duration": 120 },
-        { "title": "event2", "startingHour": 8, "duration": 60 },
-        { "title": "event3", "startingHour": 18, "duration": 90 },
-        { "title": "event4", "startingHour": 0, "duration": 180 }
+        { "title": "event0", "startingHour": 0.0, "duration": 180, "color": "lightskyblue" },
+        { "title": "event1", "startingHour": 1.0, "duration": 180, "color": "red" },
+        { "title": "event2", "startingHour": 3.25, "duration": 120, "color": "lightskyblue" },
+        { "title": "event3", "startingHour": 2.5, "duration": 90, "color": "lightskyblue" },
+        { "title": "event4", "startingHour": 3.5, "duration": 120, "color": "lightskyblue" },
+        { "title": "event5", "startingHour": 4, "duration": 120, "color": "purple" }
     ]
 };
-displayEvents(eventsJSON); //from displayEvent.js
+displayEvents(eventsJSON, 0); //from displayEvent.js
 
