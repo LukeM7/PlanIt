@@ -28,7 +28,7 @@ function buildCategoriesTable(categoriesJSON) {
         categoryEntry0.appendChild(label);
 
         //these have to be const, for reasons I don't truly understand...  
-        const clr = category`.color;
+        const clr = category.color;
         const lbl = label;
         checkbox.addEventListener('change', function () {
             updateCategory(this, lbl, clr);

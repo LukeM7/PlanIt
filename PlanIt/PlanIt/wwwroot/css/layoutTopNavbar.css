@@ -13,15 +13,18 @@
 
 .nrp-lower-half {
     height: 50%;
-    display: block;
-    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
-.nrp-search-prompt {
-    float: right;
-    margin-top: 8px;
-    margin-right: 4px;
-    color: #e8e8e6;
+#date-search-input {
+    flex: none;
+    font-size: 20px;
+}
+
+.date-search-button {
+    margin: 4px;
+    color: black;
     font-size: 20px;
 }
 

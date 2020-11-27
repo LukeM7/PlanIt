@@ -40,10 +40,8 @@
 }
 .event {
     position: absolute;
-    background-color: lightskyblue;
-    border-radius: 2px;
+    border-radius: 8px;
     height: 12%;
-    bottom: 4px;
 }
 
 #timeline-img {
