@@ -25,6 +25,5 @@
     <Folder Include="wwwroot\js\viewInitializations\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="wwwroot\js\displayEvents.js" />
   </ItemGroup>
 </Project>
