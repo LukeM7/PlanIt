@@ -12,7 +12,8 @@ var categoriesJSON = {
         { "title": "Doctor", "color": "Olive" },
         { "title": "Chores", "color": "LightSeaGreen" },
         { "title": "Dates<3", "color": "LightSkyBlue" },
-        { "title": "I dunno", "color": "Peru" }
+        { "title": "I dunno", "color": "Peru" },
+        { "title": "Yarr", "color": "red" }
     ]
 };
 

@@ -14,7 +14,13 @@ function setDisplayZoom() {
 setDisplayZoom();
 selectDailyView();
 
-//event 1: starts at 12pm, duration is 2 hrs; event 3: starts at 6pm, duration is 1hr 30min
-var events = [["event1", 12, 120], ["event2", 8, 60], ["event3", 18, 90], ["event4", 0, 180]];
-displayEvents(events, 0); //from displayEvent.js
+var eventsJSON = {
+    "events": [
+        { "title": "event1", "startingHour": 12, "duration": 120 },
+        { "title": "event2", "startingHour": 8, "duration": 60 },
+        { "title": "event3", "startingHour": 18, "duration": 90 },
+        { "title": "event4", "startingHour": 0, "duration": 180 }
+    ]
+};
+displayEvents(eventsJSON); //from displayEvent.js
 

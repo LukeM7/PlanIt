@@ -8,37 +8,37 @@
 //It's basically an update() function which pulls from the model
 
 
-function calculatePosition(event) {
+function calculatePosition(startingHour) {
     //position is start time
-    var pos = event[1];
+    var pos = startingHour;
     //align by the hour (over 24), multiply by 100 (for a percentage width) -> divide by 24/100
     pos /= 0.24;
 
     return pos.toString() + '%';
 }
-function calculateWidth(event) {
+function calculateWidth(duration) {
     //width is the duration
-    var width = event[2];
+    var width = duration;
     //divide by 1440 (number of minutes in a day), multiply by 100 (for a percentage width)
     width /= 14.4;
     
     return width.toString() + '%';
 }
-function displayEvents(events, forDate) {
+function displayEvents(eventsJSON) {
     var container = document.getElementById('event-inner-container');
-
-    var eventsHTML = '';
-    for (event of events) {
-        //if event.date == forDate {rest of function in here}
-
-        const pos = calculatePosition(event);
-        const width = calculateWidth(event);
-        eventsHTML += '<span class="event" ';
-        eventsHTML += 'style="width: ' + width + '; left: ' + pos + ';" >';
-        eventsHTML += event[0];
-        eventsHTML += '</span>';
+    for (var i = 0; i < eventsJSON.events.length; i++) {
+        const event = eventsJSON.events[i];
+        //if eventsJSON.event[i].date == forDate {rest of function in here}
+        
+        const pos = calculatePosition(event.startingHour);
+        const width = calculateWidth(event.duration);
+        var eventSpan = document.createElement('span');
+        eventSpan.className = 'event';
+        eventSpan.style.width = width;
+        eventSpan.style.left = pos;
+        eventSpan.innerHTML = event.title;
+        container.appendChild(eventSpan);
     }
-    container.innerHTML = eventsHTML;
 }
 
 
