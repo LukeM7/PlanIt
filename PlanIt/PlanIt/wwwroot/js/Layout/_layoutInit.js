@@ -2,32 +2,23 @@
     document.getElementById('npi-calendar-page-input').checked = true;
 }
 
-function searchDate(date) {
-    if (date != "") {
-        var dateHeadline = document.getElementById('calendar-headline');
-        dateHeadline.innerHTML = date;
-        //call this when you can properly access a JSON from the model 
-        //displayEvents(eventsJSON, date);
-    }
-    else {
-        alert('date is empty');
-    }
-}
 
-function activateSearchBar() {
+
+function initSearchBar() {
     var searchBar = document.getElementById('date-search-input');
     var searchButton = document.getElementById('date-search-button');
     searchBar.addEventListener('keyup', function (event) {
         //keyCode 13 is the return button
 
         if (event.keyCode == 13) {
-            searchDate(this.value);
+            searchDate(this.value); //from /CalendarView/dateNavigation.js
         }
     });
     searchButton.addEventListener('click', function () {
-        searchDate(searchBar.value);
+        searchDate(searchBar.value); //from /CalendarView/dateNavigation.js
     });
 }
+
 
 
 var categoriesJSON = {
@@ -57,7 +48,7 @@ function initToggleAll(categoriesJSON) {
 }
 
 selectCalendarPage();
-activateSearchBar();
+initSearchBar();
 
 buildCategoriesTable(categoriesJSON);
 initToggleAll(categoriesJSON);

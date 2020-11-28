@@ -17,7 +17,7 @@
     font-size: 24px;
 }
 
-.datetime {
+.date-headline {
 }
 
 .calendar-display-container {
@@ -43,6 +43,9 @@
     border-radius: 8px;
     height: 12%;
 }
+    .event:hover {
+        border: solid 2px #bbbfca;
+    }
 
 #timeline-img {
     flex: none;
