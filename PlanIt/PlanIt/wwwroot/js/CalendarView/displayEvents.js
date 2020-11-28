@@ -97,6 +97,8 @@ function layerIsOpen(eventStart, eventEnd, eventsOnLayer) {
 //    return layers;
 //}
 
+//consider making this a controller function, so that adding an event doesn't
+//require rebuilding this every time. 
 function calculateOverlaps(events) {
     if (events.length <= 0) {
         return;
@@ -123,13 +125,15 @@ function calculateOverlaps(events) {
 
 function displayEvents(eventsJSON, forDate) {
     var container = document.getElementById('event-inner-container');
-    //ith element in overlap tracker is the ith event's height
+    //create a new array of events only out of those included for a given date
+    //if (event.date == forDate) {}
 
+    //instead of passing in whole JSON, replace with array of events on given date: 
     var eventLayers = calculateOverlaps(eventsJSON.events);
     for (var layer = 0; layer < eventLayers.length; layer++) {
         for (var i = 0; i < eventLayers[layer].length; i++) {
             const event = eventLayers[layer][i];
-            //if event.date == forDate {rest of function in here}
+            
 
             const leftPos = calculateHorizPosition(event.startingHour);
             const width = calculateWidth(event.duration);
