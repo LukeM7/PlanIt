@@ -11,6 +11,7 @@ namespace PlanIt.Controllers
 {
     public class CalendarController : Controller
     {
+       
         private readonly ILogger<CalendarController> _logger;
 
         public CalendarController(ILogger<CalendarController> logger)
@@ -22,6 +23,9 @@ namespace PlanIt.Controllers
         {
             return View();
         }
+
+        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

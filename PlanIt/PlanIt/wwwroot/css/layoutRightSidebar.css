@@ -9,8 +9,10 @@
 
 .rp-half {
     height: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .rp-headline {
@@ -38,7 +40,7 @@
     border-bottom: solid #708099 2px;
     border-left: solid #708099 2px;
     border-right: solid #708099 2px;
-    color: #e8e8e6;
+    color: #e8e8e8;
     background-color: #495464;
 }
 
@@ -51,6 +53,60 @@
     padding-top: 8px;
     overflow-y: scroll;
 }
+#edit-category-menu {
+    position: absolute;
+    right: calc(100% + 8px);
+    z-index: 100;
+    background-color: white;
+    box-shadow: 2px 2px 8px #AAAAAA;
+    width: 200px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+}
+#edit-ctg-menu-title-container {
+    height: 24px;
+    flex: none;
+}
+#edit-ctg-menu-exit-btn {
+    display: none;
+}
+#edit-ctg-menu-exit-label {
+    margin-left: 4px;
+    display: inline;
+    font-size: 18px;
+    color: black;
+}
+    #edit-ctg-menu-exit-label:hover {
+        color: #bbbfca;
+    }
+#edit-ctg-menu-title {
+    font-size: 20px;
+    margin-left: 8px;
+    color: black;
+}
+
+.edit-ctg-menu-editing-container {
+    flex: auto;
+    margin: 4px;
+}
+.edit-ctg-menu-input {
+    height: 100%;
+    width: 50%;
+}
+
+#edit-ctg-menu-save-container {
+    height: 24px;
+    font-size: 24px;
+    flex: none;
+}
+#edit-ctg-menu-save-btn {
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+    float: right;
+}
+
 
 #categories-table {
     width: 100%;
@@ -58,6 +114,8 @@
 
 .category-table-row {
     height: 30px;
+    width: 100%;
+    overflow-x: visible;
 }
 
     .category-table-row button {
@@ -77,28 +135,15 @@
 }
 
 .category-label {
-    font-size: 24px;
-    display: inline-block;
     width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 24px;
+    color: black;
     border-radius: 2px;
-    background-color: #cccfd7;
-    border: solid 2px #bbbfca;
 }
 
 .category-label-text {
     padding-left: 2px;
 }
 
-.category-label:hover {
-    background-color: #e8e8e8;
-}
-
-.category-checkbox:checked + label {
-    color: #e8e8e6;
-    background-color: #495464;
-    border-color: #708099;
-}
-
-    .category-checkbox:checked + label:hover {
-        background-color: #708099;
-    }

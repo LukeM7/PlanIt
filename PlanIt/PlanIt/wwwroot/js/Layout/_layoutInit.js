@@ -6,7 +6,7 @@ function searchDate(date) {
     if (date != "") {
         var dateHeadline = document.getElementById('calendar-headline');
         dateHeadline.innerHTML = date;
-        //call this when you can properly access a JSON from the model
+        //call this when you can properly access a JSON from the model 
         //displayEvents(eventsJSON, date);
     }
     else {
@@ -32,16 +32,16 @@ function activateSearchBar() {
 
 var categoriesJSON = {
     "categories": [
-        { "title": "General", "color": "LightCoral" },
-        { "title": "School", "color": "LightSalmon" },
-        { "title": "Internship", "color": "Lavender" },
-        { "title": "Soccer", "color": "MediumPurple" },
-        { "title": "PT", "color": "LightGreen" },
-        { "title": "Doctor", "color": "Olive" },
-        { "title": "Chores", "color": "LightSeaGreen" },
-        { "title": "Dates<3", "color": "LightSkyBlue" },
-        { "title": "I dunno", "color": "Peru" },
-        { "title": "Yarr", "color": "red" }
+        { "title": "General", "color": "#bc665c" },
+        { "title": "School", "color": "#e3874a" },
+        { "title": "Internship", "color": "#f0d05c" },
+        { "title": "Soccer", "color": "#74b2e2" },
+        { "title": "PT", "color": "#86c6b9" },
+        { "title": "Doctor", "color": "#869ec6" },
+        { "title": "Chores", "color": "#8a86c6" },
+        { "title": "Dates<3", "color": "#cb80bf" },
+        { "title": "I dunno", "color": "#a06abe" },
+        { "title": "Yarr", "color": "#ce6474" }
     ]
 };
 
@@ -55,8 +55,10 @@ function initToggleAll(categoriesJSON) {
     })
     
 }
-activateSearchBar();
+
 selectCalendarPage();
+activateSearchBar();
+
 buildCategoriesTable(categoriesJSON);
 initToggleAll(categoriesJSON);
 
