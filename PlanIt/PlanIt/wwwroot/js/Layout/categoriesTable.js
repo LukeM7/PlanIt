@@ -6,81 +6,82 @@ function buildCategoriesTable(categoriesJSON) {
     for (var i = 0; i < categoriesJSON.categories.length; i++) {
         var category = categoriesJSON.categories[i];
 
-        var row = categoriesTable.insertRow(i);
-        row.className = 'category-table-row';
-        row.id = 'category-table-row' + i.toString();
+        buildCategoryRow(i, categoriesTable, category.title, category.color);
+    }
+}
+function buildCategoryRow(i, categoriesTable, ctgTitle, ctgColor) {
+    const row = categoriesTable.insertRow(i);
+    row.className = 'category-table-row';
+    row.id = 'category-table-row' + i.toString();
 
-        var categoryEntry0 = row.insertCell(0);
-        categoryEntry0.className = 'category-checkbox-entry';
+    var categoryEntry0 = row.insertCell(0);
+    categoryEntry0.className = 'category-checkbox-entry';
 
-        var checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.className = 'category-checkbox';
-        checkbox.id = 'category-checkbox' + i.toString();
-        checkbox.checked = true;
-        
-        var label = document.createElement('label');
-        label.className = 'category-label';
-        label.id = 'category-label' + i.toString();
-        label.htmlFor = checkbox.id;
-        label.style.backgroundColor = category.color;
-        label.style.border = "solid 2px " + category.color;
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'category-checkbox';
+    checkbox.id = 'category-checkbox' + i.toString();
+    checkbox.checked = true;
 
-        var labelText = document.createElement('span');
-        labelText.id = 'category-label-text' + i.toString();
-        labelText.className = 'category-label-text';
-        labelText.innerHTML = category.title;
-        label.appendChild(labelText);
+    var label = document.createElement('label');
+    label.className = 'category-label';
+    label.id = 'category-label' + i.toString();
+    label.htmlFor = checkbox.id;
+    label.style.backgroundColor = ctgColor;
+    label.style.border = "solid 2px " + ctgColor;
 
-        categoryEntry0.appendChild(checkbox);
-        categoryEntry0.appendChild(label);
+    var labelText = document.createElement('span');
+    labelText.id = 'category-label-text' + i.toString();
+    labelText.className = 'category-label-text';
+    labelText.innerHTML = ctgTitle;
+    label.appendChild(labelText);
 
-        //these have to be const, for reasons I don't truly understand...  
-        const color = category.color;
-        const lbl = label;
-        const lblTxt = labelText;
-        const title = category.title;
-        const index = i;
-        checkbox.addEventListener('change', function () {
-            updateCategory(this, lbl, lblTxt, color, title);
+    categoryEntry0.appendChild(checkbox);
+    categoryEntry0.appendChild(label);
+
+    //these have to be const, for reasons I don't truly understand...  
+    const color = ctgColor;
+    const lbl = label;
+    const lblTxt = labelText;
+    const title = ctgTitle;
+    const index = i;
+    checkbox.addEventListener('change', function () {
+        toggleCategory(this, lbl, color);
+    });
+
+    var categoryEntry1 = row.insertCell(1);
+    var editBtn = document.createElement('button');
+    editBtn.className = 'category-configure-button';
+    var editIcon = document.createElement('span');
+    editIcon.className = "far fa-edit";
+
+    editBtn.addEventListener('click', function () {
+        showCategoryEditMenu(index, title, color);
+    });
+
+    editBtn.appendChild(editIcon);
+    categoryEntry1.appendChild(editBtn);
+
+    if (i > 0) {
+        var categoryEntry2 = row.insertCell(2);
+        var deleteBtn = document.createElement('button');
+        deleteBtn.className = 'category-configure-button';
+        var deleteIcon = document.createElement('span');
+        deleteIcon.className = "far fa-trash-alt";
+        deleteBtn.addEventListener('click', function () {
+            alert('delete category from model and rebuild table');
         });
 
-        var categoryEntry1 = row.insertCell(1);
-        var editBtn = document.createElement('button');
-        editBtn.className = 'category-configure-button';
-        var editIcon = document.createElement('span');
-        editIcon.className = "far fa-edit";
-        
-        editBtn.addEventListener('click', function () {
-            showCategoryMenu(index, title, color);
-        });
-
-        editBtn.appendChild(editIcon);
-        categoryEntry1.appendChild(editBtn);
-
-        if (i > 0) {
-            var categoryEntry2 = row.insertCell(2);
-            var deleteBtn = document.createElement('button');
-            deleteBtn.className = 'category-configure-button';
-            var deleteIcon = document.createElement('span');
-            deleteIcon.className = "far fa-trash-alt";
-            deleteBtn.addEventListener('click', function () {
-                alert('delete category from model and rebuild table');
-            });
-
-            deleteBtn.appendChild(deleteIcon);
-            categoryEntry2.appendChild(deleteBtn);
-        }
+        deleteBtn.appendChild(deleteIcon);
+        categoryEntry2.appendChild(deleteBtn);
     }
 }
 
 
-function updateCategory(ctgCheckbox, ctgLabel, ctgLabelText, color, title) {
+function toggleCategory(ctgCheckbox, ctgLabel, color) {
     if (ctgCheckbox.checked) {
         ctgLabel.style.backgroundColor = color;
         ctgLabel.style.border = "solid 2px " + color;
-
-        ctgLabelText.innerHTML = title;
     }
     else {
         ctgLabel.style.backgroundColor = "#cccfd7";
@@ -88,9 +89,15 @@ function updateCategory(ctgCheckbox, ctgLabel, ctgLabelText, color, title) {
     }
 }
 
+function updateCategory(index, newTitle, newColor) {
+    var categoriesTable = document.getElementById('categories-table');
+    categoriesTable.deleteRow(index);
+    buildCategoryRow(index, categoriesTable, newTitle, newColor);
+}
+
 //pass in the index of the category from the json list of categories
 //pass in the label whose cosmetics will be edited
-function showCategoryMenu(index, ctgTitle, ctgColor) {
+function showCategoryEditMenu(index, ctgTitle, ctgColor) {
     var ctgRow = document.getElementById('category-table-row' + index.toString())
     var menu = document.getElementById('edit-category-menu');
     
@@ -189,13 +196,11 @@ function buildEditMenu(index, ctgTitle, ctgColor) {
         saveButton.id = 'edit-ctg-menu-save-btn';
         saveButton.value = 'Save Changes';
         saveButton.addEventListener('click', function () {
-            alert('write to model the new category values');
-            const ctgCheckbox = document.getElementById('category-checkbox' + index.toString());
-            const ctgLabel = document.getElementById('category-label' + index.toString());
-            const ctgLabelText = document.getElementById('category-label-text' + index.toString());
-            const color = document.getElementById('edit-ctg-menu-color-input').value;
-            const title = document.getElementById('edit-ctg-menu-title-input').value;
-            updateCategory(ctgCheckbox, ctgLabel, ctgLabelText, color, title);
+            alert('write to model the new category values, also call an update to the events UI');
+            
+            const newTitle = document.getElementById('edit-ctg-menu-title-input').value;
+            const newColor = document.getElementById('edit-ctg-menu-color-input').value;
+            updateCategory(index, newTitle, newColor);
         });
 
     saveContainer.appendChild(saveButton);
@@ -204,14 +209,15 @@ function buildEditMenu(index, ctgTitle, ctgColor) {
     return menu;
 }
 
-//toggleSource must be a checkbox 
+//toggleSource must be a checkbox
+
 function toggleAllCategories(toggleSource, categoriesJSON) {
     for (var i = 0; i < categoriesJSON.categories.length; i++) {
         const ctgCheckbox = document.getElementById('category-checkbox' + i.toString());
         ctgCheckbox.checked = toggleSource.checked;
         const ctgLabel = document.getElementById('category-label' + i.toString());
         const ctgColor = categoriesJSON.categories[i].color;
-        updateCategory(ctgCheckbox, ctgLabel, ctgColor);
+        toggleCategory(ctgCheckbox, ctgLabel, ctgColor);
     }
 
     if (toggleSource.checked == true) {
