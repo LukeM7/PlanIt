@@ -9,10 +9,10 @@ function buildCategoriesTable(categoriesJSON) {
         buildCategoryRow(i, categoriesTable, category.title, category.color);
     }
 }
-function buildCategoryRow(i, categoriesTable, ctgTitle, ctgColor) {
-    const row = categoriesTable.insertRow(i);
+function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
+    const row = categoriesTable.insertRow(index);
     row.className = 'category-table-row';
-    row.id = 'category-table-row' + i.toString();
+    row.id = 'category-table-row' + index.toString();
 
     var categoryEntry0 = row.insertCell(0);
     categoryEntry0.className = 'category-checkbox-entry';
@@ -20,18 +20,18 @@ function buildCategoryRow(i, categoriesTable, ctgTitle, ctgColor) {
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.className = 'category-checkbox';
-    checkbox.id = 'category-checkbox' + i.toString();
+    checkbox.id = 'category-checkbox' + index.toString();
     checkbox.checked = true;
 
     var label = document.createElement('label');
     label.className = 'category-label';
-    label.id = 'category-label' + i.toString();
+    label.id = 'category-label' + index.toString();
     label.htmlFor = checkbox.id;
     label.style.backgroundColor = ctgColor;
     label.style.border = "solid 2px " + ctgColor;
 
     var labelText = document.createElement('span');
-    labelText.id = 'category-label-text' + i.toString();
+    labelText.id = 'category-label-text' + index.toString();
     labelText.className = 'category-label-text';
     labelText.innerHTML = ctgTitle;
     label.appendChild(labelText);
@@ -39,14 +39,8 @@ function buildCategoryRow(i, categoriesTable, ctgTitle, ctgColor) {
     categoryEntry0.appendChild(checkbox);
     categoryEntry0.appendChild(label);
 
-    //these have to be const, for reasons I don't truly understand...  
-    const color = ctgColor;
-    const lbl = label;
-    const lblTxt = labelText;
-    const title = ctgTitle;
-    const index = i;
     checkbox.addEventListener('change', function () {
-        toggleCategory(this, lbl, color);
+        toggleCategory(this, label, ctgColor);
     });
 
     var categoryEntry1 = row.insertCell(1);
@@ -56,13 +50,13 @@ function buildCategoryRow(i, categoriesTable, ctgTitle, ctgColor) {
     editIcon.className = "far fa-edit";
 
     editBtn.addEventListener('click', function () {
-        showCategoryEditMenu(index, title, color);
+        showCategoryEditMenu(index, ctgTitle, ctgColor);
     });
 
     editBtn.appendChild(editIcon);
     categoryEntry1.appendChild(editBtn);
 
-    if (i > 0) {
+    if (index > 0) {
         var categoryEntry2 = row.insertCell(2);
         var deleteBtn = document.createElement('button');
         deleteBtn.className = 'category-configure-button';
@@ -172,7 +166,7 @@ function buildEditMenu(index, ctgTitle, ctgColor) {
     editingClrContainer.appendChild(colorInput);
     menu.appendChild(editingClrContainer);
 
-    if (ctgTitle != 'General') {
+    if (index > 0) {
         var editingTitleContainer = document.createElement('div');
         editingTitleContainer.className = 'edit-ctg-menu-editing-container';
             var titleInput = document.createElement('input');
@@ -198,8 +192,14 @@ function buildEditMenu(index, ctgTitle, ctgColor) {
         saveButton.value = 'Save Changes';
         saveButton.addEventListener('click', function () {
             alert('write to model the new category values, also call an update to the events UI');
-            
-            const newTitle = document.getElementById('edit-ctg-menu-title-input').value;
+
+            var newTitle;
+            if (index == 0) {
+                newTitle = 'General';
+            }
+            else {
+                newTitle = document.getElementById('edit-ctg-menu-title-input').value;
+            }
             const newColor = document.getElementById('edit-ctg-menu-color-input').value;
             updateCategory(index, newTitle, newColor);
         });
