@@ -11,11 +11,11 @@ function initSearchBar() {
         //keyCode 13 is the return button
 
         if (event.keyCode == 13) {
-            searchDate(this.value); //from /CalendarView/dateNavigation.js
+            searchDate(this.value); //from /dateNavigation.js
         }
     });
     searchButton.addEventListener('click', function () {
-        searchDate(searchBar.value); //from /CalendarView/dateNavigation.js
+        searchDate(searchBar.value); //from dateNavigation.js
     });
 }
 
