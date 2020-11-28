@@ -9,13 +9,13 @@
 
     const headline = dateAsHeadline(d); //from CalendarView/dateDisplay.js 
     if (dateAsHeadline(today) == headline) {
-        setDateHeadlineToday(); //from CalendarView/dateDisplay.js
+        setDateHeadlineToday(); //from CalendarView/dateDisplay.js 
     }
     else {
         document.getElementById('calendar-headline').innerHTML = headline; 
     }
-    alert('call displayEvents(eventsJSON, date) function once events can\nproperly be read from the model'); 
-    //displayEvents(eventsJSON, date); 
+    alert('updateCalendarDate() says: read events from model instead of from calendarViewInit');
+    displayEvents(eventsJSON, date);  //from CalendarView/displayEvents.js; also eventsJSON is temporarily constructed in _calendarViewInit
 }
 
 function searchDate(date) {

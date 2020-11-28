@@ -123,13 +123,36 @@ function calculateOverlaps(events) {
     return layers;
 }
 
+function getEventsOnDate(events, forDate) {
+    var eventsOnDate = [];
+    for (var i = 0; i < events.length; i++) {
+        if (eventsJSON.events[i].date == forDate) {
+            // for debug: alert('pushing ' + events[i].title);
+            eventsOnDate.push(events[i]);
+        }
+    }
+    //for debugging: alert('eventsOnDate: ' + eventsString(eventsOnDate));
+    return eventsOnDate;
+}
+
+function flushEventsContainer(container) {
+    while (container.firstChild != null) {
+        //for debugging: alert('removing ' + container.lastChild.id);
+        container.removeChild(container.lastChild);
+    }
+}
+
+//forDate must be a string with the following format: " YYYY-MM-DD '
 function displayEvents(eventsJSON, forDate) {
     var container = document.getElementById('event-inner-container');
+    flushEventsContainer(container);
     //create a new array of events only out of those included for a given date
-    //if (event.date == forDate) {}
+
+    // for debugging: alert('displayEvents() days: function called for date: ' + forDate); 
+    var eventsOnDate = getEventsOnDate(eventsJSON.events, forDate);
 
     //instead of passing in whole JSON, replace with array of events on given date: 
-    var eventLayers = calculateOverlaps(eventsJSON.events);
+    var eventLayers = calculateOverlaps(eventsOnDate);
     for (var layer = 0; layer < eventLayers.length; layer++) {
         for (var i = 0; i < eventLayers[layer].length; i++) {
             const event = eventLayers[layer][i];

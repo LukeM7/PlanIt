@@ -16,15 +16,24 @@ selectDailyView();
 initDisplayZoom();
 initDateHeadline();
 
+var d = new Date();
+//months start at zero, so add 1 to month value: 
+var date = d.getFullYear().toString() + '-' + (d.getMonth() + 1).toString() + '-' + d.getDate().toString();
 var eventsJSON = {
     "events": [
-        { "title": "event0", "startingHour": 0.0, "duration": 180, "color": "#bc665c"},
-        { "title": "event1", "startingHour": 1.0, "duration": 180, "color": "#e3874a" },
-        { "title": "event2", "startingHour": 3.25, "duration": 120, "color": "#f0d05c" },
-        { "title": "event3", "startingHour": 2.5, "duration": 90, "color": "#f0d05c" },
-        { "title": "event4", "startingHour": 3.5, "duration": 120, "color": "#8a86c6" },
-        { "title": "event5", "startingHour": 4, "duration": 120, "color": "#8a86c6" }
+        { "title": "event0", "startingHour": 0.0, "duration": 180, "color": "#bc665c", "date": "2020-11-28" },
+        { "title": "event1", "startingHour": 1.0, "duration": 180, "color": "#e3874a", "date": "2020-11-28" },
+        { "title": "event2", "startingHour": 3.25, "duration": 120, "color": "#f0d05c", "date": "2020-11-27" },
+        { "title": "event3", "startingHour": 2.5, "duration": 90, "color": "#f0d05c", "date": "2020-11-28" },
+        { "title": "event4", "startingHour": 3.5, "duration": 120, "color": "#8a86c6", "date": "2020-11-28" },
+        { "title": "event5", "startingHour": 7.0, "duration": 90, "color": "#8a86c6", "date": "2020-11-29" },
+        { "title": "event6", "startingHour": 11.0, "duration": 180, "color": "#bc665c", "date": "2020-11-29" },
+        { "title": "event7", "startingHour": 21.0, "duration": 60, "color": "#e3874a", "date": "2020-11-29" },
+        { "title": "event8", "startingHour": 9.0, "duration": 120, "color": "#f0d05c", "date": "2020-11-29" },
+        { "title": "event9", "startingHour": 12.0, "duration": 90, "color": "#f0d05c", "date": "2020-11-29" },
+        { "title": "event10", "startingHour": 15.0, "duration": 120, "color": "#8a86c6", "date": "2020-11-28" },
+        { "title": "event11", "startingHour": 17.0, "duration": 120, "color": "#8a86c6", "date": "2020-11-28" }
     ]
 };
-displayEvents(eventsJSON, 0); //from displayEvent.js
+displayEvents(eventsJSON, date); //from displayEvent.js
 
