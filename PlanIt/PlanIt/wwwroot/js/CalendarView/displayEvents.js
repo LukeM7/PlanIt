@@ -142,6 +142,11 @@ function displayEvents(eventsJSON, forDate) {
 
             var eventSpan = document.createElement('span');
             eventSpan.className = 'event';
+            eventSpan.id = 'event-withID-' + event.title;
+            eventSpan.addEventListener('click', function () {
+                alert('bring up event editor for ' + eventSpan.id);
+            });
+            
             eventSpan.style.width = width;
             eventSpan.style.left = leftPos;
             eventSpan.style.bottom = bottomPos;

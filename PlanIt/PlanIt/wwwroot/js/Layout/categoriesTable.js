@@ -79,6 +79,7 @@ function buildCategoryRow(i, categoriesTable, ctgTitle, ctgColor) {
 
 
 function toggleCategory(ctgCheckbox, ctgLabel, color) {
+    alert('call event display function to toggle event display once categories and events are properly connected');
     if (ctgCheckbox.checked) {
         ctgLabel.style.backgroundColor = color;
         ctgLabel.style.border = "solid 2px " + color;
