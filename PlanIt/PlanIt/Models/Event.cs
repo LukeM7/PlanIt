@@ -13,6 +13,6 @@ namespace PlanIt.Models
         //public Category* ParentCategory { get; set; }
         //instead of:
         //public string Category { get; set; }
-        //though this won't compile in its current state
+        //though this won't compile in its current state 
     }
 }
