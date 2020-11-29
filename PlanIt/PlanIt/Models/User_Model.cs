@@ -8,6 +8,7 @@ namespace PlanIt.Models
 {
     public class User_Model
     {
+        [Key]
         public string User_Id { get; set; }
         public string Name { get; set; }
 
