@@ -10,16 +10,16 @@ namespace PlanIt.Controllers
 {
     public class Category_Controller : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext db;
         public Category_Controller(ApplicationDbContext db)
         {
-            _db = db;
+            this.db = db;
 
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Category_Model> obj_list = _db.Category;
+            IEnumerable<Category_Model> obj_list = db.Category;
             return View(obj_list);
         }
     }

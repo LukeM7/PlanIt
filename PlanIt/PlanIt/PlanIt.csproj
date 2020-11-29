@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Calendar\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\CalendarView\" />

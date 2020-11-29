@@ -17,7 +17,9 @@ namespace PlanIt.Data
         public DbSet<Category_Model> Category{ get; set; }
         public DbSet<Checklist_Model> Checklist { get; set; }
         public DbSet<User_Model> User { get; set; }
-
+        public DbSet<Calendar_Model> Calendar { get; set; }
+        public DbSet<Event_Model> Event { get; set; }
+        public DbSet<Entry_Model> Entry { get; set; }
 
     }
 }

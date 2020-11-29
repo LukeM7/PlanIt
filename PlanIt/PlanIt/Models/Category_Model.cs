@@ -14,5 +14,8 @@ namespace PlanIt.Models
         public string Title { get; set; }
         public string Color { get; set; }
         public string Calendar_Id { get; set; }
+
+        [ForeignKey("Calender_Id")]
+        public Calendar_Model Calendar { get; set; }
     }
 }

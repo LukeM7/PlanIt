@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlanIt.Migrations
 {
-    public partial class add_user_category_checklist : Migration
+    public partial class add_models : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

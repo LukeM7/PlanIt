@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 
 namespace PlanIt.Models
 {
-    public class Checklist_Model
+    public class Calendar_Model
     {
         [Key]
-        public string Checklist_Id { get; set; }
-        public string Title { get; set; }
-        public string Category_Id { get; set; }
-
-        [ForeignKey("Category_Id")]
-        public Category_Model Category { get; set; }
+        public string Calendar_Id { get; set; }
 
         public string User_Id { get; set; }
+
         [ForeignKey("User_Id")]
         public User_Model User { get; set; }
-
     }
 }
