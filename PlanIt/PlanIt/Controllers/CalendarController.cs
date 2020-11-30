@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,10 +38,13 @@ namespace PlanIt.Controllers
         [HttpPost]
         public IActionResult Create_Event(FormCollection form)
         {
+            StringBuilder view_data = new StringBuilder();
             Event_Model new_event = new Event_Model();
             new_event.Event_Id = form["Event ID"];
             new_event.Title = form["Title"];
             new_event.At_Time = form["At Time"];
+
+            return View(view_data);
         }
     }
 }
