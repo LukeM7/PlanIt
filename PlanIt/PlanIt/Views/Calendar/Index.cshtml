@@ -1,14 +1,19 @@
-﻿@{
+﻿@model PlanIt.Models.Calendar_Model
+@{
     ViewData["Title"] = "Calendar";
     Layout = "_Layout";
 }
 
 <div class="calendar-index-body" id="calendar-index-body">
     <!-- Day and time interface -->
+    <div>
+        @Model.ToString()
+    </div>
     <div class="calendar-headline" id="calendar-headline">
     </div>
 
     <div class="calendar-display-container">
+
 
         @*Width for this element pre-set in the initialization script.*@
         <div id="event-padded-outer-container">
