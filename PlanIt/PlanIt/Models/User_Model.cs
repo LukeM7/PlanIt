@@ -19,5 +19,6 @@ namespace PlanIt.Models
         public string Phone_Number { get; set; }
 
         public string Password { get; set; }
+        public Calendar_Model Calendar { get; set; }
     }
 }
