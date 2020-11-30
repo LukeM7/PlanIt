@@ -16,5 +16,7 @@ namespace PlanIt.Models
 
         [ForeignKey("User_Id")]
         public User_Model User { get; set; }
+
+        public List<Category_Model> Categories { get; set; }
     }
 }

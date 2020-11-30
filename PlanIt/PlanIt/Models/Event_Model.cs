@@ -22,10 +22,13 @@ namespace PlanIt.Models
         [DataType(DataType.Time)]
         public string Duration { get; set; }
 
+
         public string Category_Id { get; set; }
 
         [ForeignKey("Category_Id")]
         public Category_Model Category { get; set; }
+
+
         public string Entry_Id { get; set; }
 
         [ForeignKey("Entry_Id")]

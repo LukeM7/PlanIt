@@ -12,8 +12,8 @@ namespace PlanIt.Models
         [Key]
         public string Checklist_Id { get; set; }
         public string Title { get; set; }
-        public string Category_Id { get; set; }
 
+        public string Category_Id { get; set; }
         [ForeignKey("Category_Id")]
         public Category_Model Category { get; set; }
 

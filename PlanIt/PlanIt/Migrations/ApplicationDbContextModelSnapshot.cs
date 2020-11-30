@@ -223,7 +223,8 @@ namespace PlanIt.Migrations
 
                     b.HasKey("Calendar_Id");
 
-                    b.HasIndex("User_Id");
+                    b.HasIndex("User_Id")
+                        .IsUnique();
 
                     b.ToTable("Calendar");
                 });
@@ -280,6 +281,9 @@ namespace PlanIt.Migrations
                     b.Property<string>("Entry_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Category_ModelCategory_Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.Property<string>("Checklist_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
@@ -290,6 +294,8 @@ namespace PlanIt.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Entry_Id");
+
+                    b.HasIndex("Category_ModelCategory_Id");
 
                     b.HasIndex("Checklist_Id");
 
@@ -406,14 +412,14 @@ namespace PlanIt.Migrations
             modelBuilder.Entity("PlanIt.Models.Calendar_Model", b =>
                 {
                     b.HasOne("PlanIt.Models.User_Model", "User")
-                        .WithMany()
-                        .HasForeignKey("User_Id");
+                        .WithOne("Calendar")
+                        .HasForeignKey("PlanIt.Models.Calendar_Model", "User_Id");
                 });
 
             modelBuilder.Entity("PlanIt.Models.Category_Model", b =>
                 {
                     b.HasOne("PlanIt.Models.Calendar_Model", "Calendar")
-                        .WithMany()
+                        .WithMany("Categories")
                         .HasForeignKey("Calender_Id");
                 });
 
@@ -430,6 +436,10 @@ namespace PlanIt.Migrations
 
             modelBuilder.Entity("PlanIt.Models.Entry_Model", b =>
                 {
+                    b.HasOne("PlanIt.Models.Category_Model", null)
+                        .WithMany("Entries")
+                        .HasForeignKey("Category_ModelCategory_Id");
+
                     b.HasOne("PlanIt.Models.Checklist_Model", "Checklist")
                         .WithMany()
                         .HasForeignKey("Checklist_Id");
