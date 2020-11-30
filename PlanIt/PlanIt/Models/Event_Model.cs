@@ -31,6 +31,7 @@ namespace PlanIt.Models
 
         [ForeignKey("Category_Model")]
         public string Category_Id { get; set; }
+        public virtual Category_Model Category { get; set; }
 
 
 
