@@ -98,7 +98,7 @@ function layerIsOpen(eventStart, eventEnd, eventsOnLayer) {
 //}
 
 //consider making this a controller function, so that adding an event doesn't
-//require rebuilding this every time. 
+//require rebuilding this every time.    
 function calculateOverlaps(events) {
     if (events.length <= 0) {
         return;
@@ -123,6 +123,7 @@ function calculateOverlaps(events) {
     return layers;
 }
 
+//string format for dates: " YYYY-MM-DD "  
 function getEventsOnDate(events, forDate) {
     var eventsOnDate = [];
     for (var i = 0; i < events.length; i++) {
@@ -142,7 +143,7 @@ function flushEventsContainer(container) {
     }
 }
 
-//forDate must be a string with the following format: " YYYY-MM-DD '
+//forDate must be a string with the following format: " YYYY-MM-DD " 
 function displayEvents(eventsJSON, forDate) {
     var container = document.getElementById('event-inner-container');
     flushEventsContainer(container);
@@ -151,8 +152,8 @@ function displayEvents(eventsJSON, forDate) {
     // for debugging: alert('displayEvents() days: function called for date: ' + forDate); 
     var eventsOnDate = getEventsOnDate(eventsJSON.events, forDate);
 
-    //instead of passing in whole JSON, replace with array of events on given date: 
-    var eventLayers = calculateOverlaps(eventsOnDate);
+    //instead of passing in whole JSON, replace with array of events on given date:    
+    var eventLayers = calculateOverlaps(eventsOnDate);   
     for (var layer = 0; layer < eventLayers.length; layer++) {
         for (var i = 0; i < eventLayers[layer].length; i++) {
             const event = eventLayers[layer][i];
@@ -175,6 +176,7 @@ function displayEvents(eventsJSON, forDate) {
             eventSpan.style.bottom = bottomPos;
             eventSpan.style.backgroundColor = event.color;
             eventSpan.innerHTML = event.title;
+
             container.appendChild(eventSpan);
         }
     }

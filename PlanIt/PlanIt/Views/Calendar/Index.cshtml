@@ -13,13 +13,14 @@
         @*Width for this element pre-set in the initialization script.*@
         <div id="event-padded-outer-container">
             <div id="event-inner-container">
+
             </div>
         </div>
         @*Width also pre-set in the initialization script.*@
         <img id="timeline-img" src="~/images/day_number_line.svg" />
 
     </div>
-    <div id="view-config-inputs-container">
+    <div id="view-config-inputs-container" class="calendar-content-padding">
         <div id="zoom-container">
             <input id="zoom-out-input" type="button" onclick="zoomOut()" />
             <label for="zoom-out-input"><span class="fas fa-search-minus"></span></label>
@@ -31,14 +32,14 @@
         <!-- Buttons for Previous, Today, and Next -->
         <table id="ptn-buttons-container">
             <tr>
-                <td class="ptn-button">
-                    
+                <td class="calendar-day-content">
+                    <button class="calendar-day-button" onclick="showPreviousDay()">Previous</button>
                 </td>
-                <td class="ptn-button">
-
+                <td class="calendar-day-content">
+                    <button class="calendar-day-button" onclick="showToday()">Today</button>
                 </td>
-                <td class="ptn-button">
-
+                <td class="calendar-day-content">
+                    <button class="calendar-day-button" onclick="showNextDay()">Next</button>
                 </td>
             </tr>
         </table>

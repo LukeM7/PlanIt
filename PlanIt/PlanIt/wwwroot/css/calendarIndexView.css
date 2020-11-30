@@ -41,7 +41,7 @@
 .event {
     position: absolute;
     border-radius: 8px;
-    height: 12%;
+    height: 11%;
 }
     .event:hover {
         border: solid 2px #bbbfca;
@@ -74,15 +74,34 @@
     margin-left: 4px;
     margin-right: 4px;
 }
+
 #ptn-buttons-container {
     height: 67%;
     width: 100%;
     table-layout: fixed;
 }
-.ptn-button {
 
+.calendar-day-button {
+    width: 50%;
+    height: 100%;
+    font-size: 16px;
+    color: black;
+    background-color: #cccfd7;
+    border-radius: 4px;
+    border: solid 2px #bbbfca;
+}
+    .calendar-day-button:hover {
+        background-color: #e8e8e8;
+    }
+
+.calendar-day-content {
+    vertical-align: middle;
+    text-align: center;
 }
 
+.calendar-content-padding {
+    margin-bottom: 5px;
+}
 
 
 .dwm-container {

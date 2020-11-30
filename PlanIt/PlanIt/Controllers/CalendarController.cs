@@ -25,6 +25,8 @@ namespace PlanIt.Controllers
 
         public IActionResult Index()
         {
+            //declare data
+            //data can be accessed by front end view
             return View();
         }
 

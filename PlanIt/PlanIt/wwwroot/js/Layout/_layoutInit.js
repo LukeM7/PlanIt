@@ -19,8 +19,6 @@ function initSearchBar() {
     });
 }
 
-
-
 var categoriesJSON = {
     "categories": [
         { "title": "General", "color": "#bc665c" },
