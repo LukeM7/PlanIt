@@ -9,6 +9,16 @@ namespace PlanIt.Models
 {
     public class Event_Model
     {
+        public Event_Model()
+        {
+            this.Event_Id = "0";
+            this.Date = "0";
+            this.Title = "0";
+            this.At_Time = "0";
+            this.Duration = "0";
+            this.Category_Id = "0";
+        }
+
         [Key]
         public string Event_Id { get; set; }
         
@@ -22,17 +32,16 @@ namespace PlanIt.Models
         [DataType(DataType.Time)]
         public string Duration { get; set; }
 
-
+        [ForeignKey("Category_Model")]
         public string Category_Id { get; set; }
 
-        [ForeignKey("Category_Id")]
-        public Category_Model Category { get; set; }
 
 
+        /*
         public string Entry_Id { get; set; }
 
         [ForeignKey("Entry_Id")]
         public Entry_Model Entry { get; set; }
-
+        */
     }
 }

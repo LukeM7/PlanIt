@@ -19,8 +19,10 @@ namespace PlanIt.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Category_Model> obj_list = db.Category;
-            return View(obj_list);
+            Calendar_Model calendar = new Calendar_Model();
+            db.Add(calendar);
+            db.SaveChanges();
+            return View();
         }
     }
 }
