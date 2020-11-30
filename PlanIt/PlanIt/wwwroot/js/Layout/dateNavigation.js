@@ -7,4 +7,3 @@ function searchDate(date) {
         alert('date is incomplete');
     }
 }
-

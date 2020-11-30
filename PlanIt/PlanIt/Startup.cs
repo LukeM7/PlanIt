@@ -28,8 +28,10 @@ namespace PlanIt
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), mysqloptions =>
+                {
+                    mysqloptions.ServerVersion(new Version(8, 0, 22), Pomelo.EntityFrameworkCore.MySql.Infrastructure.ServerType.MySql);
+                }));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
