@@ -9,7 +9,7 @@ using PlanIt.Data;
 namespace PlanIt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201130101400_new_migration")]
+    [Migration("20201130102552_new_migration")]
     partial class new_migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -308,19 +308,16 @@ namespace PlanIt.Migrations
                     b.Property<string>("Event_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<string>("At_Time")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Category_Id")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Category_Id1")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Date")
+                    b.Property<string>("Duration")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Duration")
+                    b.Property<string>("StartTime")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")
