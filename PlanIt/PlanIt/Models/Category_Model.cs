@@ -26,5 +26,6 @@ namespace PlanIt.Models
 
         [ForeignKey("Calender_Model")]
         public string Calendar_Id { get; set; }
+        public virtual Calendar_Model Calendar { get; set; }
     }
 }
