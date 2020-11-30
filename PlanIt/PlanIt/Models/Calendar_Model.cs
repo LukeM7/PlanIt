@@ -13,6 +13,7 @@ namespace PlanIt.Models
         public string Calendar_Id { get; set; }
 
         public string User_Id { get; set; }
+        public virtual User_Model User { get; set; }
 
         [ForeignKey("User_Id")]
         public User_Model User { get; set; }
