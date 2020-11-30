@@ -9,6 +9,7 @@ function buildCategoriesTable(categoriesJSON) {
         buildCategoryRow(i, categoriesTable, category.title, category.color);
     }
 }
+
 function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
     const row = categoriesTable.insertRow(index);
     row.className = 'category-table-row';
@@ -91,7 +92,7 @@ function updateCategory(index, newTitle, newColor) {
 }
 
 //pass in the index of the category from the json list of categories
-//pass in the label whose cosmetics will be edited
+//pass in the label whose cosmetics will be edited   
 function showCategoryEditMenu(index, ctgTitle, ctgColor) {
     var ctgRow = document.getElementById('category-table-row' + index.toString())
     var menu = document.getElementById('edit-category-menu');
@@ -178,9 +179,6 @@ function buildEditMenu(index, ctgTitle, ctgColor) {
         editingTitleContainer.appendChild(titleInput);
         menu.appendChild(editingTitleContainer);
     }
-
-    
-
 
     //MENU SAVE BUTTON 
     var saveContainer = document.createElement('div');
