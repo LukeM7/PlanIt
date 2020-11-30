@@ -239,9 +239,8 @@ namespace PlanIt.Migrations
                 columns: table => new
                 {
                     Event_Id = table.Column<string>(nullable: false),
-                    Date = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
-                    At_Time = table.Column<string>(nullable: true),
+                    StartTime = table.Column<string>(nullable: true),
                     Duration = table.Column<string>(nullable: true),
                     Category_Id = table.Column<string>(nullable: true),
                     Category_Id1 = table.Column<string>(nullable: true)
