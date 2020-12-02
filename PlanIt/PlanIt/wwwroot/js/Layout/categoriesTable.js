@@ -1,12 +1,12 @@
 ﻿//these functions are used in _layoutInit.js
 //and may be called via interaction later
 
-function buildCategoriesTable(categoriesJSON) {
+function buildCategoriesTable(modelsJSON) {
     var categoriesTable = document.getElementById('categories-table');
-    for (var i = 0; i < categoriesJSON.categories.length; i++) {
-        var category = categoriesJSON.categories[i];
+    for (var i = 0; i < modelsJSON.Categories.length; i++) {
+        var category = modelsJSON.Categories[i];
 
-        buildCategoryRow(i, categoriesTable, category.title, category.color);
+        buildCategoryRow(i, categoriesTable, category.Title, category.Color);
     }
 }
 
@@ -210,12 +210,12 @@ function buildEditMenu(index, ctgTitle, ctgColor) {
 
 //toggleSource must be a checkbox
 
-function toggleAllCategories(toggleSource, categoriesJSON) {
-    for (var i = 0; i < categoriesJSON.categories.length; i++) {
+function toggleAllCategories(toggleSource, modelsJSON) {
+    for (var i = 0; i < modelsJSON.Categories.length; i++) {
         const ctgCheckbox = document.getElementById('category-checkbox' + i.toString());
         ctgCheckbox.checked = toggleSource.checked;
         const ctgLabel = document.getElementById('category-label' + i.toString());
-        const ctgColor = categoriesJSON.categories[i].color;
+        const ctgColor = modelsJSON.Categories[i].Color;
         toggleCategory(ctgCheckbox, ctgLabel, ctgColor);
     }
 

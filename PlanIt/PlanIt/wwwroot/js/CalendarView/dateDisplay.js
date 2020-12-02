@@ -92,7 +92,7 @@ function setDateHeadlineToday() {
 
 
 //IN: 'YYYY-MM-DD' 
-function updateCalendarDateDisplay(categoriesJSON, dateString) {
+function updateCalendarDateDisplay(modelJSON, dateString) {
     //check whether today's headline is running (it's a special refreshing function)   
     var todayH = document.getElementById('today-headline');
     if (todayH != null) {
@@ -110,23 +110,23 @@ function updateCalendarDateDisplay(categoriesJSON, dateString) {
         document.getElementById('calendar-headline').innerHTML = headline;
     }
     alert('updateCalendarDate() says: read events from model instead of from calendarViewInit');
-    displayEvents(categoriesJSON, dateString); 
+    displayEvents(modelJSON, dateString); 
 }
 
 
 
-function showToday(categoriesJSON) {
+function showToday(modelsJSON) {
     setDateHeadlineToday(); //sets currentDisplayDate to today 
-    updateCalendarDateDisplay(categoriesJSON, dateToString(currentDisplayedDate));
+    updateCalendarDateDisplay(modelsJSON, dateToString(currentDisplayedDate));
 }
 
-function showPreviousDay(categoriesJSON) {
+function showPreviousDay(modelsJSON) {
     currentDisplayedDate.setDate(currentDisplayedDate.getDate() - 1);
-    updateCalendarDateDisplay(categoriesJSON, dateToString(currentDisplayedDate));
+    updateCalendarDateDisplay(modelsJSON, dateToString(currentDisplayedDate));
 }
 
-function showNextDay(categoriesJSON) {
+function showNextDay(modelsJSON) {
     currentDisplayedDate.setDate(currentDisplayedDate.getDate() + 1);
-    updateCalendarDateDisplay(categoriesJSON, dateToString(currentDisplayedDate));
+    updateCalendarDateDisplay(modelsJSON, dateToString(currentDisplayedDate));
 }
 
