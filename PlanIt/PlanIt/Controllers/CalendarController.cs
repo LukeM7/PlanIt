@@ -75,7 +75,7 @@ namespace PlanIt.Controllers
             {
                 if(i.User_Id == )
             }*/
-            return View();
+            return View(userCalendar);
         }
 
         [HttpPost]
@@ -138,8 +138,6 @@ namespace PlanIt.Controllers
             var duration = evt.Duration;
 
             //call update to database to construct new event...
-            db.Add(evt);
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
