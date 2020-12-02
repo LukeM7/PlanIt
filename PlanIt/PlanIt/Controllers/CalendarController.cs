@@ -16,20 +16,25 @@ namespace PlanIt.Controllers
     public class CalendarController : Controller
     {
         
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext db;
         private readonly ILogger<CalendarController> _logger;
 
         public CalendarController(ILogger<CalendarController> logger, ApplicationDbContext db)
         {
             _logger = logger;
-            _db = db;
+            this.db = db;
         }
 
         //GET: Calendar
         public IActionResult Index()
         {
             //build user's calendar by pulling from database
-            return View(new Calendar_Model());
+            /*Calendar_Model calendar;
+            foreach(var i in db.Calendar)
+            {
+                if(i.User_Id == )
+            }*/
+            return View();
         }
 
         [HttpPost]
@@ -81,8 +86,8 @@ namespace PlanIt.Controllers
             var duration = evt.Duration;
 
             //call update to database to construct new event...
-            _db.Add(evt);
-            _db.SaveChanges();
+            db.Add(evt);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -21,8 +21,8 @@ namespace PlanIt.Controllers
         {
             Calendar_Model calendar = new Calendar_Model();
             db.Add(calendar);
-            calendar.Categories.Add(new Category_Model() { Title = "Luke" });
-            calendar.Categories.Add(new Category_Model() { Title = "Daniel" });
+            calendar.Categories.Add(new Category_Model() { Title = "Test0" });
+            calendar.Categories.Add(new Category_Model() { Title = "Test1" });
             db.SaveChanges();
             return calendar.Calendar_Id;
         }
