@@ -11,11 +11,12 @@ namespace PlanIt.Models
     {
         public Category_Model()
         {
-            this.Category_Id = "0";
+            var new_id = Guid.NewGuid();
+            this.Category_Id = new_id.ToString();
             this.Title = "0";
-            this.Events = new List<Event_Model>();
             this.Color = "0";
-            this.Calendar_Id = "0";
+            this.Events = new List<Event_Model>();
+       
         }
 
         [Key]
@@ -24,8 +25,9 @@ namespace PlanIt.Models
         public string Color { get; set; }
         public List<Event_Model> Events { get; set; }
 
-        [ForeignKey("Calender_Model")]
-        public string Calendar_Id { get; set; }
+        
+        //public virtual string Calendar_Id { get; set; }
+        [ForeignKey("Calender_Id")]
         public virtual Calendar_Model Calendar { get; set; }
     }
 }

@@ -10,7 +10,8 @@ namespace PlanIt.Models
     {
         public User_Model()
         {
-            this.User_Id = "0";
+            Guid new_id = new Guid();
+            this.User_Id = new_id.ToString();
             this.Name = "Test";
             this.Email = "0";
             this.Phone_Number = "0";

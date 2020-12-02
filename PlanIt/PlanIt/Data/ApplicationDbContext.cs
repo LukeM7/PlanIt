@@ -15,11 +15,25 @@ namespace PlanIt.Data
         }
 
         public DbSet<Category_Model> Category{ get; set; }
-        public DbSet<Checklist_Model> Checklist { get; set; }
         public DbSet<User_Model> User { get; set; }
         public DbSet<Calendar_Model> Calendar { get; set; }
         public DbSet<Event_Model> Event { get; set; }
-        public DbSet<Entry_Model> Entry { get; set; }
 
+        public IEnumerable<Category_Model> Get_Categories()
+        {
+            return Category;
+        }
+        public IEnumerable<User_Model> Get_Users()
+        {
+            return User;
+        }
+        public IEnumerable<Calendar_Model> Get_Calendars()
+        {
+            return Calendar;
+        }
+        public IEnumerable<Event_Model> Get_Events()
+        {
+            return Event;
+        }
     }
 }
