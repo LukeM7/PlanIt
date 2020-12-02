@@ -5,70 +5,87 @@
 }
 
 <div class="calendar-index-body" id="calendar-index-body">
-    <!-- Day and time interface -->
-    <div class="calendar-headline" id="calendar-headline">
+
+
+    <div class="main-pane">
+        <!-- Day and time interface -->
+        <div class="calendar-headline" id="calendar-headline">
+        </div>
+
+        <div class="calendar-display-container">
+            <div id="event-padded-outer-container">
+                <div id="event-inner-container">
+
+                </div>
+            </div>
+            <img id="timeline-img" src="~/images/day_number_line.svg" />
+
+        </div>
+        <div id="view-config-inputs-container" class="calendar-content-padding">
+            <div id="zoom-container">
+                <input id="zoom-out-input" type="button" onclick="zoomOut()" />
+                <label for="zoom-out-input"><span class="fas fa-search-minus"></span></label>
+                <span id="zoom-level-text">125%</span>
+                <input id="zoom-in-input" type="button" onclick="zoomIn()" />
+                <label for="zoom-in-input"><span class="fas fa-search-plus"></span></label>
+            </div>
+
+            <!-- Buttons for Previous, Today, and Next -->
+            <table id="ptn-buttons-container">
+                <tr>
+                    <td class="calendar-day-content" id="previous-button">
+                        <button class="calendar-day-button">Previous</button>
+                    </td>
+                    <td class="calendar-day-content" id="today-button">
+                        <button class="calendar-day-button">Today</button>
+                    </td>
+                    <td class="calendar-day-content" id="next-button">
+                        <button class="calendar-day-button">Next</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+        <!-- Day/Week/Month interface -->
+        <div class="dwm-container">
+            <input type="radio" class="calendar-view-selector" name="view-selector" id="day-view" />
+            <label class="calendar-view-selector-label" for="day-view">Day</label>
+
+            <input type="radio" class="calendar-view-selector" name="view-selector" id="week-view" />
+            <label class="calendar-view-selector-label" for="week-view">Week</label>
+
+            <input type="radio" class="calendar-view-selector" name="view-selector" id="month-view" />
+            <label class="calendar-view-selector-label" for="month-view">Month</label>
+        </div>
     </div>
-
-    <div class="calendar-display-container">
-
-
-        @*Width for this element pre-set in the initialization script.*@
-        <div id="event-padded-outer-container">
-            <div id="event-inner-container">
-
+    <div class="right-pane">
+        <div class="rp-half">
+            <div class="rp-headline">Categories</div>
+            <input id="toggle-all-categories-input" type="checkbox" />
+            <label for="toggle-all-categories-input" id="toggle-all-label">
+                <span id="toggle-all-label-text"></span>
+            </label>
+            <div class="rp-table-container">
+                <table id="categories-table">
+                </table>
             </div>
         </div>
-        @*Width also pre-set in the initialization script.*@
-        <img id="timeline-img" src="~/images/day_number_line.svg" />
-
-    </div>
-    <div id="view-config-inputs-container" class="calendar-content-padding">
-        <div id="zoom-container">
-            <input id="zoom-out-input" type="button" onclick="zoomOut()" />
-            <label for="zoom-out-input"><span class="fas fa-search-minus"></span></label>
-            <span id="zoom-level-text">125%</span>
-            <input id="zoom-in-input" type="button" onclick="zoomIn()" />
-            <label for="zoom-in-input"><span class="fas fa-search-plus"></span></label>
+        <div class="rp-half">
+            <div class="rp-headline">Event Templates</div>
+            <div class="event-templates"></div>
         </div>
-
-        <!-- Buttons for Previous, Today, and Next -->
-        <table id="ptn-buttons-container">
-            <tr>
-                <td class="calendar-day-content" id="previous-button">
-                    <button class="calendar-day-button">Previous</button>
-                </td>
-                <td class="calendar-day-content" id="today-button">
-                    <button class="calendar-day-button">Today</button>
-                </td>
-                <td class="calendar-day-content" id="next-button">
-                    <button class="calendar-day-button">Next</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-
-
-    <!-- Day/Week/Month interface -->
-    <div class="dwm-container">
-        <input type="radio" class="calendar-view-selector" name="view-selector" id="day-view" />
-        <label class="calendar-view-selector-label" for="day-view">Day</label>
-
-        <input type="radio" class="calendar-view-selector" name="view-selector" id="week-view" />
-        <label class="calendar-view-selector-label" for="week-view">Week</label>
-
-        <input type="radio" class="calendar-view-selector" name="view-selector" id="month-view" />
-        <label class="calendar-view-selector-label" for="month-view">Month</label>
     </div>
 </div>
+
+
 
 <script src="~/js/CalendarView/displayEvents.js"></script>
 <script src="~/js/CalendarView/dailyViewZoomDisplay.js"></script>
 <script src="~/js/CalendarView/dateDisplay.js"></script>
 <script src="~/js/CalendarView/calendarDailyViewInit.js"></script>
 
-<script>
-    initCalendarDailyView(modelJSON);
-</script>
+<script>initCalendarDailyView(modelJSON);</script>
 
 

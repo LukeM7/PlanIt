@@ -9,8 +9,8 @@
 
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/layoutTopNavbar.css" />
-    <link rel="stylesheet" href="~/css/layoutRightSidebar.css" />
-    <link rel="stylesheet" href="~/css/calendarIndexView.css" />
+    <link rel="stylesheet" href="~/css/CalendarRightSidebar.css" />
+    <link rel="stylesheet" href="~/css/calendarMainView.css" />
     <link rel="stylesheet" href="~/css/addEvent.css" />
 
     <!--temporary object declaration-->
@@ -129,27 +129,7 @@
 
     </div>
     <div class="pane-container">
-        <div class="right-pane">
-            <div class="rp-half">
-                <div class="rp-headline">Categories</div>
-                <input id="toggle-all-categories-input" type="checkbox" />
-                <label for="toggle-all-categories-input" id="toggle-all-label">
-                    <span id="toggle-all-label-text"></span>
-                </label>
-                <div class="rp-table-container">
-                    <table id="categories-table">
-
-                    </table>
-                </div>
-            </div>
-            <div class="rp-half">
-                <div class="rp-headline">Event Templates</div>
-                <div class="event-templates"></div>
-            </div>
-        </div>
-        <div class="main-pane">
-            @RenderBody()
-        </div>
+        @RenderBody()
     </div>
 
     <script src="~/js/Layout/categoriesTable.js"></script>
@@ -157,6 +137,7 @@
     <script src="~/js/Layout/dateNavigation.js"></script>
     <script src="~/js/Layout/layoutInit.js"></script>
 
+    
     <script>
         initLayoutView(modelJSON);
     </script>
