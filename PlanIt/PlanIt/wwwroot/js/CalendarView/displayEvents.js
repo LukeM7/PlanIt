@@ -53,8 +53,8 @@ function layerIsOpen(eventStart, eventEnd, eventsOnLayer) {
         var evtOL = eventsOnLayer[i];
         const ithStart = evtOL.StartTime;
         const ithEnd = ithStart + (evtOL.Duration);
-        alert('comparing: (' + eventStart.toString() + ', ' + eventEnd.toString()
-            + ') to (' + ithStart.toString() + ', ' + ithEnd.toString() + ')');
+        //alert('comparing: (' + eventStart.toString() + ', ' + eventEnd.toString()
+        //    + ') to (' + ithStart.toString() + ', ' + ithEnd.toString() + ')');
         if (doesOverlap(eventStart, eventEnd, ithStart, ithEnd)) {
             return false;
         }
@@ -62,32 +62,46 @@ function layerIsOpen(eventStart, eventEnd, eventsOnLayer) {
     return true;
 }
 
- 
-function generateStructure(events) {
-    if (events.length <= 0) {
+
+function swap(arr, a, b) {
+    var temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+}
+
+function generateColoredStructure(events, eventColors) {
+    var numEvents = events.length;
+    if (numEvents <= 0) {
         return;
     }
     var layers = [[events[0]]];
+    var colors = [[eventColors[0]]];
     for (var i = 1; i < events.length; i++) {
+        
         var evt = events[i];
+        var evtClr = eventColors[i]
         const eventStart = evt.StartTime;
-        alert('duration: ' + evt.Duration);
         const eventEnd = eventStart + (evt.Duration);
         for (var layer = 0; layer < layers.length; layer++) {
             if (layerIsOpen(eventStart, eventEnd, layers[layer])) {
-                alert('open, event: ' + evt.Title);
                 layers[layer].push(evt);
+                colors[layer].push(evtClr);
                 break;
             }
             else {
                 if (layer == layers.length - 1) {
                     layers.push([evt]);
+                    colors.push([evtClr]);
                     break;
                 }
             }
         }
     }
-    return layers;
+
+    return {
+        layers,
+        colors
+    };
 }
 
 
@@ -104,42 +118,48 @@ function displayEvents(modelJSON, forDate) {
     flushEventsContainer(container);
 
     var eventsOnDate = [];
-    var eventColors = [];
+    var fruits = [];
+    
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
         for (j = 0; j < ctg.Events.length; j++) {
             if (ctg.Events[j].StartDate == forDate) {
                 eventsOnDate.push(ctg.Events[j]);
-                eventColors.push[ctg.Color];
+                fruits.push(ctg.Color);
             }
         }
     }
-    var eventLayers = generateStructure(eventsOnDate);
-    for (var layer = 0; layer < eventLayers.length; layer++) {
-        for (var i = 0; i < eventLayers[layer].length; i++) {
-            const event = eventLayers[layer][i];
 
-            const leftPos = calculateHorizPosition(event.StartTime);
-            const width = calculateWidth(event.Duration);
-            const bottomPos = (layer * 44).toString() + 'px';
-            //create element and add it to view:
+    for (var i = 0; i < eventsOnDate.length; i++) {
+        spawnEventElement(eventsOnDate[i], i);
+    }
+    
+    var eventLayers = generateColoredStructure(eventsOnDate, fruits);
+    for (var layer = 0; layer < eventLayers.layers.length; layer++) {
+        for (var i = 0; i < eventLayers.layers[layer].length; i++) {
+            
+            const event = eventLayers.layers[layer][i];
+            const color = eventLayers.colors[layer][i];
 
             var eventSpan = document.createElement('span');
             eventSpan.className = 'event';
-            eventSpan.id = 'event-withID-' + event.Title;
+            eventSpan.id = 'event-withID-' + event.Title + i.toString();
             eventSpan.addEventListener('click', function () {
                 alert('bring up event editor for ' + eventSpan.id);
             });
-            
-            eventSpan.style.width = width;
-            eventSpan.style.left = leftPos;
-            eventSpan.style.bottom = bottomPos;
-            eventSpan.style.backgroundColor = "#CCCCCC";
-            eventSpan.innerHTML = event.Title;
 
+            eventSpan.style.width = calculateWidth(event.Duration);
+            eventSpan.style.left = calculateHorizPosition(event.StartTime);
+            eventSpan.style.bottom = (layer * 42).toString() + 'px';
+            eventSpan.style.backgroundColor = color;
+            eventSpan.innerHTML = event.Title;
             container.appendChild(eventSpan);
         }
     }
+}
+
+function spawnEventElement(event, id) {
+    
 }
 
 
