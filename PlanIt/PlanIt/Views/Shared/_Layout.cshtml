@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="~/css/calendarIndexView.css" />
     <link rel="stylesheet" href="~/css/addEvent.css" />
 
+    <!--temporary object declaration-->
+    <script src="~/js/categoriesobject.js"></script>
+    <!--JQUERY-->
+    <script></script>
     <!--ICONS-->
     <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
     <title>PlanIt</title>
@@ -147,11 +151,11 @@
     <script src="~/js/Layout/categoriesTable.js"></script>
     <script src="~/js/Layout/addEvent.js"></script>
     <script src="~/js/Layout/dateNavigation.js"></script>
+    <script src="~/js/Layout/layoutInit.js"></script>
 
-
-    <!--INITIALIZATION SCRIPT (must go last)-->
-    <script src="~/js/Layout/_layoutInit.js"></script>
-
+    <script>
+        initLayoutView(categoriesJSON);
+    </script>
 </body>
 
 </html>

@@ -9,14 +9,9 @@ function initDisplayZoom() {
     adjustPadding(eventPaddedContainer); //from dailyViewZoomDisplay.js
 }
 
-function initDateHeadline() {
-    setDateHeadlineToday(); //from dateDisplay.js
+
+function initCalendarDailyView(categoriesJSON) {
+    selectDailyView();
+    initDisplayZoom();
+    showToday(categoriesJSON);
 }
-
-selectDailyView();
-initDisplayZoom();
-initDateHeadline();
-
-
-displayEvents(eventsJSON, dateToString(currentDisplayedDate)); //from displayEvent.js, note: eventsJSON temporarily stored in dateDisplay.js
-

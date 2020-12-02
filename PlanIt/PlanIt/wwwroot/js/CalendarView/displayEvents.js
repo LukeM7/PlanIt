@@ -8,9 +8,9 @@
 //It's basically an update() function which pulls from the model
 
 
-function calculateHorizPosition(startingHour) {
+function calculateHorizPosition(startTime) {
     //position is start time
-    var pos = startingHour;
+    var pos = startTime;
     //align by the hour (over 24), multiply by 100 (for a percentage width) -> divide by 24/100
     pos /= 0.24;
 
@@ -19,14 +19,14 @@ function calculateHorizPosition(startingHour) {
 function calculateWidth(duration) {
     //width is the duration
     var width = duration;
-    //divide by 1440 (number of minutes in a day), multiply by 100 (for a percentage width)
-    width /= 14.4;
+    //divide by 24 (number of minutes in a day), multiply by 100 (for a percentage width)
+    width /= 0.24;
     
     return width.toString() + '%';
 }
 
 function doesOverlap(startA, endA, startB, endB) {
-    if ((startB < startA && startA < endB) || (startA < startB && startB < endA)) {
+    if ((startB <= startA && startA < endB) || (startA <= startB && startB < endA)) {
         return true;
     }
     else {
@@ -50,8 +50,8 @@ function eventsString(events) {
 function layerIsOpen(eventStart, eventEnd, eventsOnLayer) {
     
     for (var i = 0; i < eventsOnLayer.length; i++) {
-        const ithStart = eventsOnLayer[i].startingHour;
-        const ithEnd = ithStart + (eventsOnLayer[i].duration / 60);
+        const ithStart = eventsOnLayer[i].startTime;
+        const ithEnd = ithStart + (eventsOnLayer[i].duration);
         //alert('comparing: (' + eventStart.toString() + ', ' + eventEnd.toString()
         //    + ') to (' + ithStart.toString() + ', ' + ithEnd.toString() + ')');
         if (doesOverlap(eventStart, eventEnd, ithStart, ithEnd)) {
@@ -69,8 +69,8 @@ function layerIsOpen(eventStart, eventEnd, eventsOnLayer) {
 //    //first event will always be open, so this is placed in layer 0 by default:
 //    var layers = [ [events[0]] ];
 //    for (var i = 1; i < events.length; i++) {
-//        const eventStart = events[i].startingHour;
-//        const eventEnd = eventStart + (events[i].duration / 60);
+//        const eventStart = events[i].startTime;
+//        const eventEnd = eventStart + (events[i].duration);
 //        alert('*running for event*: ' + events[i].title);
 //        for (var layer = 0; layer < layers.length; layer++) {
 //            alert('layers.length = ' + layers.length.toString());
@@ -99,14 +99,14 @@ function layerIsOpen(eventStart, eventEnd, eventsOnLayer) {
 
 //consider making this a controller function, so that adding an event doesn't
 //require rebuilding this every time.    
-function calculateOverlaps(events) {
+function generateStructure(events) {
     if (events.length <= 0) {
         return;
     }
     var layers = [[events[0]]];
     for (var i = 1; i < events.length; i++) {
-        const eventStart = events[i].startingHour;
-        const eventEnd = eventStart + (events[i].duration / 60);
+        const eventStart = events[i].startTime;
+        const eventEnd = eventStart + (events[i].duration);
         for (var layer = 0; layer < layers.length; layer++) {
             if (layerIsOpen(eventStart, eventEnd, layers[layer])) {
                 layers[layer].push(events[i]);
@@ -127,7 +127,7 @@ function calculateOverlaps(events) {
 function getEventsOnDate(events, forDate) {
     var eventsOnDate = [];
     for (var i = 0; i < events.length; i++) {
-        if (eventsJSON.events[i].date == forDate) {
+        if (events[i].startDate == forDate) {
             // for debug: alert('pushing ' + events[i].title);
             eventsOnDate.push(events[i]);
         }
@@ -144,24 +144,36 @@ function flushEventsContainer(container) {
 }
 
 //forDate must be a string with the following format: " YYYY-MM-DD " 
-function displayEvents(eventsJSON, forDate) {
+function displayEvents(categoriesJSON, forDate) {
     var container = document.getElementById('event-inner-container');
     flushEventsContainer(container);
+
+    var allEvents = [];
+    //var colors = [];
+    for (var i = 0; i < categoriesJSON.categories.length; i++) {
+        var ctg = categoriesJSON.categories[i]
+        if (ctg.events.length > 0) {
+            allEvents.push(...(ctg.events));
+        }
+    }
     //create a new array of events only out of those included for a given date
 
-    // for debugging: alert('displayEvents() days: function called for date: ' + forDate); 
-    var eventsOnDate = getEventsOnDate(eventsJSON.events, forDate);
+    // for debugging: alert('displayEvents() days: function called for date: ' + forDate);
 
+    var eventsOnDate = getEventsOnDate(allEvents, forDate);
+    if (eventsOnDate.type == 'undefined') {
+        alert('no events for today');
+        return;
+    }
     //instead of passing in whole JSON, replace with array of events on given date:    
-    var eventLayers = calculateOverlaps(eventsOnDate);   
+    var eventLayers = generateStructure(eventsOnDate);
     for (var layer = 0; layer < eventLayers.length; layer++) {
         for (var i = 0; i < eventLayers[layer].length; i++) {
             const event = eventLayers[layer][i];
-            
 
-            const leftPos = calculateHorizPosition(event.startingHour);
+            const leftPos = calculateHorizPosition(event.startTime);
             const width = calculateWidth(event.duration);
-            const bottomPos = (layer * 12).toString() + '%';
+            const bottomPos = (layer * 46).toString() + 'px';
             //create element and add it to view:
 
             var eventSpan = document.createElement('span');
@@ -174,7 +186,7 @@ function displayEvents(eventsJSON, forDate) {
             eventSpan.style.width = width;
             eventSpan.style.left = leftPos;
             eventSpan.style.bottom = bottomPos;
-            eventSpan.style.backgroundColor = event.color;
+            eventSpan.style.backgroundColor = "#CCCCCC";
             eventSpan.innerHTML = event.title;
 
             container.appendChild(eventSpan);

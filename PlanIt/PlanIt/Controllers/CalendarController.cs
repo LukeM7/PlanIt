@@ -29,7 +29,9 @@ namespace PlanIt.Controllers
         public IActionResult Index()
         {
             //build user's calendar by pulling from database
-            return View(new Calendar_Model());
+
+
+            return View();
         }
 
         [HttpPost]
