@@ -11,11 +11,11 @@ using Microsoft.Extensions.Logging;
 using PlanIt.Data;
 using PlanIt.Models;
 
+
 namespace PlanIt.Controllers
 {
     public class CalendarController : Controller
     {
-        
         private readonly ApplicationDbContext _db;
         private readonly ILogger<CalendarController> _logger;
 
@@ -30,8 +30,40 @@ namespace PlanIt.Controllers
         {
             //build user's calendar by pulling from database
 
+            var userCalendar = new Calendar_Model(new List<Category_Model>()
+                {
+                new Category_Model("General", "#bc665c", true, new List<Event_Model>()
+                    { new Event_Model("general1", "2020-12-2", 12f, 4f),
+                      new Event_Model("general2", "2020-12-2", 6f, 1f),
+                      new Event_Model("general3", "2020-12-2", 16f, 5f),
+                      new Event_Model("general4", "2020-12-2", 10f, 3f),
+                    }),
+                new Category_Model("School", "#e3874a", true, new List<Event_Model>()
+                    { new Event_Model("school1", "2020-12-2", 18f, 2f),
+                      new Event_Model("school2", "2020-12-2", 20f, 3f),
+                      new Event_Model("school3", "2020-12-2", 3f, 2.5f),
+                      new Event_Model("school4", "2020-12-2", 8f, 1.5f),
+                    }),
+                new Category_Model("Work", "#bc665c", true, new List<Event_Model>()
+                    { new Event_Model("work1", "2020-12-2", 7f, 3f),
+                      new Event_Model("work2", "2020-12-2", 9f, 2f),
+                      new Event_Model("work3", "2020-12-2", 13f, 0.5f),
+                      new Event_Model("work4", "2020-12-2", 15f, 2f),
+                    }),
+                new Category_Model("Soccer", "#e3874a", true, new List<Event_Model>()
+                    { new Event_Model("soccer1", "2020-12-2", 12f, 2f),
+                      new Event_Model("soccer2", "2020-12-2", 22f, 2f),
+                      new Event_Model("soccer3", "2020-12-2", 5f, 2.5f),
+                      new Event_Model("soccer4", "2020-12-2", 17f, 1.5f),
+                    })
+                }
+            );
+            return View(userCalendar);
+        }
 
-            return View();
+        public void Test()
+        {
+            Console.WriteLine("output from test");
         }
 
         [HttpPost]

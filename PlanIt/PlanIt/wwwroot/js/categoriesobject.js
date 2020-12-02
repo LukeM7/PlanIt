@@ -1,83 +1,86 @@
-﻿var categoriesJSON = {
-    "categories": [
+﻿//THIS IS A TEMPLATE
+
+var categoriesJSON = {
+    "Categories": [
         {
-            "title": "General", "color": "#bc665c",
-            "events": [
+            "Title": "General", "Color": "#bc665c",
+            "Events": [
                 {
-                    "title": "General1", "startDate": "2020-12-2",
-                    "startTime": 12.0, "duration": 3
+                    "Title": "General1", "StartDate": "2020-12-2",
+                    "StartTime": 12.0, "Duration": 3
                 },
                 {
-                    "title": "General2", "startDate": "2020-12-2",
-                    "startTime": 6.0, "duration": 3
+                    "Title": "General2", "StartDate": "2020-12-2",
+                    "StartTime": 6.0, "Duration": 3
                 },
                 {
-                    "title": "General3", "startDate": "2020-12-2",
-                    "startTime": 9.0, "duration": 3
-                },
-            ]
-        },
-        {
-            "title": "School", "color": "#e3874a",
-            "events": [
-                {
-                    "title": "School1", "startDate": "2020-12-2",
-                    "startTime": 8.0, "duration": 3
-                },
-                {
-                    "title": "School2", "startDate": "2020-12-2",
-                    "startTime": 16.0, "duration": 2
-                },
-                {
-                    "title": "School3", "startDate": "2020-12-2",
-                    "startTime": 14.0, "duration": 6
+                    "Title": "General3", "StartDate": "2020-12-2",
+                    "StartTime": 9.0, "Duration": 3
                 },
             ]
         },
         {
-            "title": "Internship", "color": "#f0d05c",
-            "events": [
+            "Title": "School", "Color": "#e3874a",
+            "Events": [
                 {
-                    "title": "Internship1", "startDate": "2020-12-2",
-                    "startTime": 20.0, "duration": 3
+                    "Title": "School1", "StartDate": "2020-12-2",
+                    "StartTime": 8.0, "Duration": 3
                 },
                 {
-                    "title": "Internship2", "startDate": "2020-12-2",
-                    "startTime": 4.0, "duration": 2
+                    "Title": "School2", "StartDate": "2020-12-2",
+                    "StartTime": 16.0, "Duration": 2
                 },
                 {
-                    "title": "Internship3", "startDate": "2020-12-2",
-                    "startTime": 9.0, "duration": 2.75
+                    "Title": "School3", "StartDate": "2020-12-2",
+                    "StartTime": 14.0, "Duration": 6
                 },
             ]
         },
         {
-            "title": "Soccer", "color": "#74b2e2",
-            "events": []
+            "Title": "Internship", "Color": "#f0d05c",
+            "Events": [
+                {
+                    "Title": "Internship1", "StartDate": "2020-12-2",
+                    "StartTime": 20.0, "Duration": 3
+                },
+                {
+                    "Title": "Internship2", "StartDate": "2020-12-2",
+                    "StartTime": 4.0, "Duration": 2
+                },
+                {
+                    "Title": "Internship3", "StartDate": "2020-12-2",
+                    "StartTime": 9.0, "Duration": 2.75
+                },
+            ]
         },
         {
-            "title": "PT", "color": "#86c6b9",
-            "events": []
+            "Title": "Soccer", "Color": "#74b2e2",
+            "Events": []
         },
         {
-            "title": "Doctor", "color": "#869ec6",
-            "events": []
+            "Title": "PT", "Color": "#86c6b9",
+            "Events": []
         },
         {
-            "title": "Chores", "color": "#8a86c6",
-            "events": []
+            "Title": "Doctor", "Color": "#869ec6",
+            "Events": []
         },
         {
-            "title": "Dates<3", "color": "#cb80bf",
-            "events": []
+            "Title": "Chores", "Color": "#8a86c6",
+            "Events": []
         },
         {
-            "title": "I dunno", "color": "#a06abe",
-            "events": []
+            "Title": "Dates<3", "Color": "#cb80bf",
+            "Events": []
         },
         {
-            "title": "Yarr", "color": "#ce6474",
-            "events": []
+            "Title": "I dunno", "Color": "#a06abe",
+            "Events": []
+        },
+        {
+            "Title": "Yarr", "Color": "#ce6474",
+            "Events": []
         }
     ]
 };
+
