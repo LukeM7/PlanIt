@@ -109,7 +109,6 @@ function updateCalendarDateDisplay(modelJSON, dateString) {
     else {
         document.getElementById('calendar-headline').innerHTML = headline;
     }
-    alert('updateCalendarDate() says: read events from model instead of from calendarViewInit');
     displayEvents(modelJSON, dateString); 
 }
 

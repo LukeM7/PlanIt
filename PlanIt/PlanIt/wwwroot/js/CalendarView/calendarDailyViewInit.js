@@ -8,10 +8,21 @@ function initDisplayZoom() {
     document.getElementById('zoom-level-text').innerHTML = '125%';
     adjustPadding(eventPaddedContainer); //from dailyViewZoomDisplay.js
 }
+function initPrevTodNextBtns(modelsJSON) {
+    document.getElementById('previous-button').addEventListener('click', function () {
+        showPreviousDay(modelsJSON);
+    });
+    document.getElementById('today-button').addEventListener('click', function () {
+        showToday(modelsJSON);
+    });
+    document.getElementById('next-button').addEventListener('click', function () {
+        showNextDay(modelsJSON);
+    });
+}
 
-
-function initCalendarDailyView(categoriesJSON) {
+function initCalendarDailyView(modelsJSON) {
     selectDailyView();
     initDisplayZoom();
-    showToday(categoriesJSON);
+    initPrevTodNextBtns(modelsJSON);
+    showToday(modelsJSON);
 }

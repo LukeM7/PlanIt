@@ -6,11 +6,11 @@ function buildCategoriesTable(modelsJSON) {
     for (var i = 0; i < modelsJSON.Categories.length; i++) {
         var category = modelsJSON.Categories[i];
 
-        buildCategoryRow(i, categoriesTable, category.Title, category.Color);
+        buildCategoryRow(i, categoriesTable, category.Title, category.Color, category.Category_ID);
     }
 }
 
-function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
+function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor, ctgUID) {
     const row = categoriesTable.insertRow(index);
     row.className = 'category-table-row';
     row.id = 'category-table-row' + index.toString();
@@ -65,6 +65,14 @@ function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
         deleteIcon.className = "far fa-trash-alt";
         deleteBtn.addEventListener('click', function () {
             alert('delete category from model and rebuild table');
+            var d = JSON.stringify(ctgUID);
+            $.ajax({
+                url: '/Calendar/Test',
+                data: d,
+                success: function () {
+                    alert('reached test method in controller');
+                }
+            })
         });
 
         deleteBtn.appendChild(deleteIcon);
