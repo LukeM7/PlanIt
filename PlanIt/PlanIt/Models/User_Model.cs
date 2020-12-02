@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-
+using PlanIt.Data;
 namespace PlanIt.Models
 {
     public class User_Model
@@ -17,6 +17,7 @@ namespace PlanIt.Models
             this.Phone_Number = "0";
             this.Password = "0";
         }
+        
 
         [Key]
         public string User_Id { get; set; }
@@ -29,5 +30,13 @@ namespace PlanIt.Models
         public string Phone_Number { get; set; }
 
         public string Password { get; set; }
+
+        [ForeignKey("Calender_Id")]
+        public virtual Calendar_Model User_Calendar { get; set; }
+ 
+        User_Calendar identifyUser(string id) {
+            User_Id = id
+            return Calendar_Model.User_Id;
+        }
     }
 }
