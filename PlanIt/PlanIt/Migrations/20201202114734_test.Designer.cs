@@ -9,8 +9,8 @@ using PlanIt.Data;
 namespace PlanIt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201130102552_new_migration")]
-    partial class new_migration
+    [Migration("20201202114734_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -220,15 +220,7 @@ namespace PlanIt.Migrations
                     b.Property<string>("Calendar_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<string>("User_Id")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("User_Id1")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.HasKey("Calendar_Id");
-
-                    b.HasIndex("User_Id1");
 
                     b.ToTable("Calendar");
                 });
@@ -238,10 +230,7 @@ namespace PlanIt.Migrations
                     b.Property<string>("Category_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Calendar_Id")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Calendar_Id1")
+                    b.Property<string>("Calender_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Color")
@@ -252,55 +241,9 @@ namespace PlanIt.Migrations
 
                     b.HasKey("Category_Id");
 
-                    b.HasIndex("Calendar_Id1");
+                    b.HasIndex("Calender_Id");
 
                     b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("PlanIt.Models.Checklist_Model", b =>
-                {
-                    b.Property<string>("Checklist_Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Category_Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("User_Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.HasKey("Checklist_Id");
-
-                    b.HasIndex("Category_Id");
-
-                    b.HasIndex("User_Id");
-
-                    b.ToTable("Checklist");
-                });
-
-            modelBuilder.Entity("PlanIt.Models.Entry_Model", b =>
-                {
-                    b.Property<string>("Entry_Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Checklist_Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Event_Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Entry_Id");
-
-                    b.HasIndex("Checklist_Id");
-
-                    b.HasIndex("Event_Id");
-
-                    b.ToTable("Entry");
                 });
 
             modelBuilder.Entity("PlanIt.Models.Event_Model", b =>
@@ -309,9 +252,6 @@ namespace PlanIt.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Category_Id")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Category_Id1")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Duration")
@@ -325,7 +265,7 @@ namespace PlanIt.Migrations
 
                     b.HasKey("Event_Id");
 
-                    b.HasIndex("Category_Id1");
+                    b.HasIndex("Category_Id");
 
                     b.ToTable("Event");
                 });
@@ -403,47 +343,18 @@ namespace PlanIt.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PlanIt.Models.Calendar_Model", b =>
-                {
-                    b.HasOne("PlanIt.Models.User_Model", "User")
-                        .WithMany()
-                        .HasForeignKey("User_Id1");
-                });
-
             modelBuilder.Entity("PlanIt.Models.Category_Model", b =>
                 {
                     b.HasOne("PlanIt.Models.Calendar_Model", "Calendar")
                         .WithMany("Categories")
-                        .HasForeignKey("Calendar_Id1");
-                });
-
-            modelBuilder.Entity("PlanIt.Models.Checklist_Model", b =>
-                {
-                    b.HasOne("PlanIt.Models.Category_Model", "Category")
-                        .WithMany()
-                        .HasForeignKey("Category_Id");
-
-                    b.HasOne("PlanIt.Models.User_Model", "User")
-                        .WithMany()
-                        .HasForeignKey("User_Id");
-                });
-
-            modelBuilder.Entity("PlanIt.Models.Entry_Model", b =>
-                {
-                    b.HasOne("PlanIt.Models.Checklist_Model", "Checklist")
-                        .WithMany()
-                        .HasForeignKey("Checklist_Id");
-
-                    b.HasOne("PlanIt.Models.Event_Model", "Event")
-                        .WithMany()
-                        .HasForeignKey("Event_Id");
+                        .HasForeignKey("Calender_Id");
                 });
 
             modelBuilder.Entity("PlanIt.Models.Event_Model", b =>
                 {
                     b.HasOne("PlanIt.Models.Category_Model", "Category")
                         .WithMany("Events")
-                        .HasForeignKey("Category_Id1");
+                        .HasForeignKey("Category_Id");
                 });
 #pragma warning restore 612, 618
         }

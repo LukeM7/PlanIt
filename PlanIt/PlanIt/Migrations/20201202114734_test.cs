@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlanIt.Migrations
 {
-    public partial class new_migration : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,17 @@ namespace PlanIt.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Calendar",
+                columns: table => new
+                {
+                    Calendar_Id = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calendar", x => x.Calendar_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,68 +180,22 @@ namespace PlanIt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Calendar",
-                columns: table => new
-                {
-                    Calendar_Id = table.Column<string>(nullable: false),
-                    User_Id = table.Column<string>(nullable: true),
-                    User_Id1 = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Calendar", x => x.Calendar_Id);
-                    table.ForeignKey(
-                        name: "FK_Calendar_User_User_Id1",
-                        column: x => x.User_Id1,
-                        principalTable: "User",
-                        principalColumn: "User_Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
                 {
                     Category_Id = table.Column<string>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
-                    Calendar_Id = table.Column<string>(nullable: true),
-                    Calendar_Id1 = table.Column<string>(nullable: true)
+                    Calender_Id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Category_Id);
                     table.ForeignKey(
-                        name: "FK_Category_Calendar_Calendar_Id1",
-                        column: x => x.Calendar_Id1,
+                        name: "FK_Category_Calendar_Calender_Id",
+                        column: x => x.Calender_Id,
                         principalTable: "Calendar",
                         principalColumn: "Calendar_Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Checklist",
-                columns: table => new
-                {
-                    Checklist_Id = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Category_Id = table.Column<string>(nullable: true),
-                    User_Id = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Checklist", x => x.Checklist_Id);
-                    table.ForeignKey(
-                        name: "FK_Checklist_Category_Category_Id",
-                        column: x => x.Category_Id,
-                        principalTable: "Category",
-                        principalColumn: "Category_Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Checklist_User_User_Id",
-                        column: x => x.User_Id,
-                        principalTable: "User",
-                        principalColumn: "User_Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -242,43 +207,16 @@ namespace PlanIt.Migrations
                     Title = table.Column<string>(nullable: true),
                     StartTime = table.Column<string>(nullable: true),
                     Duration = table.Column<string>(nullable: true),
-                    Category_Id = table.Column<string>(nullable: true),
-                    Category_Id1 = table.Column<string>(nullable: true)
+                    Category_Id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Event", x => x.Event_Id);
                     table.ForeignKey(
-                        name: "FK_Event_Category_Category_Id1",
-                        column: x => x.Category_Id1,
+                        name: "FK_Event_Category_Category_Id",
+                        column: x => x.Category_Id,
                         principalTable: "Category",
                         principalColumn: "Category_Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Entry",
-                columns: table => new
-                {
-                    Entry_Id = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Checklist_Id = table.Column<string>(nullable: true),
-                    Event_Id = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Entry", x => x.Entry_Id);
-                    table.ForeignKey(
-                        name: "FK_Entry_Checklist_Checklist_Id",
-                        column: x => x.Checklist_Id,
-                        principalTable: "Checklist",
-                        principalColumn: "Checklist_Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Entry_Event_Event_Id",
-                        column: x => x.Event_Id,
-                        principalTable: "Event",
-                        principalColumn: "Event_Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -320,39 +258,14 @@ namespace PlanIt.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Calendar_User_Id1",
-                table: "Calendar",
-                column: "User_Id1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Category_Calendar_Id1",
+                name: "IX_Category_Calender_Id",
                 table: "Category",
-                column: "Calendar_Id1");
+                column: "Calender_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Checklist_Category_Id",
-                table: "Checklist",
-                column: "Category_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Checklist_User_Id",
-                table: "Checklist",
-                column: "User_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Entry_Checklist_Id",
-                table: "Entry",
-                column: "Checklist_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Entry_Event_Id",
-                table: "Entry",
-                column: "Event_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Event_Category_Id1",
+                name: "IX_Event_Category_Id",
                 table: "Event",
-                column: "Category_Id1");
+                column: "Category_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -373,7 +286,10 @@ namespace PlanIt.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Entry");
+                name: "Event");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -382,19 +298,10 @@ namespace PlanIt.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Checklist");
-
-            migrationBuilder.DropTable(
-                name: "Event");
-
-            migrationBuilder.DropTable(
                 name: "Category");
 
             migrationBuilder.DropTable(
                 name: "Calendar");
-
-            migrationBuilder.DropTable(
-                name: "User");
         }
     }
 }
