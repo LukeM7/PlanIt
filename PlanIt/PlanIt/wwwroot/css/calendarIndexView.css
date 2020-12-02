@@ -41,7 +41,7 @@
 .event {
     position: absolute;
     border-radius: 8px;
-    height: 11%;
+    height: 42px;
 }
     .event:hover {
         border: solid 2px #bbbfca;

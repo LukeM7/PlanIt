@@ -11,11 +11,11 @@ namespace PlanIt.Models
     {
         public Event_Model()
         {
-            this.Event_Id = "0";
+            Guid new_id = new Guid();
+            this.Event_Id = new_id.ToString();
             this.Title = "0";
             this.StartTime = "0";
             this.Duration = "0";
-            this.Category_Id = "0";
         }
 
         [Key]
@@ -29,8 +29,9 @@ namespace PlanIt.Models
         [DataType(DataType.Time)]
         public string Duration { get; set; }
 
-        [ForeignKey("Category_Model")]
-        public string Category_Id { get; set; }
+        
+        public virtual string Category_Id { get; set; }
+        [ForeignKey("Category_Id")]
         public virtual Category_Model Category { get; set; }
 
 

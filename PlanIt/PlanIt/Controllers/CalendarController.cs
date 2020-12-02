@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +29,9 @@ namespace PlanIt.Controllers
         public IActionResult Index()
         {
             //build user's calendar by pulling from database
-            return View(new Calendar_Model());
+
+
+            return View();
         }
 
         [HttpPost]
@@ -36,7 +39,6 @@ namespace PlanIt.Controllers
         {
             var title = ctg.Title;
             var color = ctg.Color;
-
             //call update to database on category with particluar id and write the values...
 
             return RedirectToAction("Index");
@@ -67,8 +69,8 @@ namespace PlanIt.Controllers
             var startTime = evt.StartTime;
             var duration = evt.Duration;
 
-
             //call update to database on event with particular id and write the values...
+
 
             return RedirectToAction("Index");
         }
@@ -81,7 +83,8 @@ namespace PlanIt.Controllers
             var duration = evt.Duration;
 
             //call update to database to construct new event...
-
+            _db.Add(evt);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
