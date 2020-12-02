@@ -81,6 +81,7 @@ function buildCategoryRow(index, categoriesTable, category) {
                 type: 'POST',
                 data: {
                     data: d,
+                    index: index,
                 },
                 success: function () {
                     alert('reached test method in controller');
@@ -112,8 +113,9 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
             index: index,
         },
         success: function () {
-
+            location.reload(true);
             displayEvents(modelJSON, currentDisplayedDate);
+            
         }
     });
 }
