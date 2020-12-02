@@ -25,7 +25,7 @@ namespace PlanIt.Controllers
             _db = db;
         }
 
-        public Calendar_Model userCalendar = new Calendar_Model(new List<Category_Model>()
+        public static Calendar_Model userCalendar = new Calendar_Model(new List<Category_Model>()
                 {
                 new Category_Model("General", "#bc665c", true, new List<Event_Model>()
                     { new Event_Model("general0", "2020-12-2", 12f, 4f),
@@ -67,15 +67,17 @@ namespace PlanIt.Controllers
         //GET: Calendar
         public IActionResult Index()
         {
+
             //build user's calendar by pulling from database
             Console.WriteLine("index called");
             return View(userCalendar);
         }
 
         [HttpPost]
-        public void Test(string data)
+        public void Test(string data, int index)
         {
             Console.WriteLine("output from test with msg: " + data);
+            Console.WriteLine("now " + userCalendar.Categories[index].isToggled.ToString());
         }
 
         [HttpPost]
@@ -93,8 +95,9 @@ namespace PlanIt.Controllers
         {
             Console.WriteLine("ToggleCategory: " + id);
             Console.WriteLine("ToggleCategory: " + index.ToString());
+            Console.WriteLine("toggling " + userCalendar.Categories[index].Title + " off of " + userCalendar.Categories[index].isToggled.ToString());
             userCalendar.Categories[index].isToggled = !userCalendar.Categories[index].isToggled;
-
+            Console.WriteLine("now " + userCalendar.Categories[index].isToggled.ToString());
             return RedirectToAction("Index");
         }
 
