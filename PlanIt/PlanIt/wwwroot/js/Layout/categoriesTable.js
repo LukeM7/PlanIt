@@ -1,19 +1,23 @@
 ﻿//these functions are used in _layoutInit.js
 //and may be called via interaction later
 
-function buildCategoriesTable(categoriesJSON) {
+function buildCategoriesTable(modelsJSON) {
     var categoriesTable = document.getElementById('categories-table');
-    for (var i = 0; i < categoriesJSON.categories.length; i++) {
-        var category = categoriesJSON.categories[i];
+    for (var i = 0; i < modelsJSON.Categories.length; i++) {
+        var category = modelsJSON.Categories[i];
 
-        buildCategoryRow(i, categoriesTable, category.title, category.color);
+        buildCategoryRow(i, categoriesTable, category);
     }
 }
 
-function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
+function buildCategoryRow(index, categoriesTable, category) {
     const row = categoriesTable.insertRow(index);
     row.className = 'category-table-row';
     row.id = 'category-table-row' + index.toString();
+
+    const ctgColor = category.Color;
+    const ctgTitle = category.Title;
+    const ctgUID = category.Category_Id
 
     var categoryEntry0 = row.insertCell(0);
     categoryEntry0.className = 'category-checkbox-entry';
@@ -22,14 +26,20 @@ function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
     checkbox.type = 'checkbox';
     checkbox.className = 'category-checkbox';
     checkbox.id = 'category-checkbox' + index.toString();
-    checkbox.checked = true;
+    checkbox.checked = category.isToggled;
 
     var label = document.createElement('label');
     label.className = 'category-label';
     label.id = 'category-label' + index.toString();
     label.htmlFor = checkbox.id;
-    label.style.backgroundColor = ctgColor;
-    label.style.border = "solid 2px " + ctgColor;
+    if (category.isToggled) {
+        label.style.backgroundColor = ctgColor;
+        label.style.border = "solid 2px " + ctgColor;
+    }
+    else {
+        label.style.backgroundColor = "#cccfd7";
+        label.style.border = "solid 2px #bbbfca";
+    }
 
     var labelText = document.createElement('span');
     labelText.id = 'category-label-text' + index.toString();
@@ -41,7 +51,7 @@ function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
     categoryEntry0.appendChild(label);
 
     checkbox.addEventListener('change', function () {
-        toggleCategory(this, label, ctgColor);
+        toggleCategory(ctgUID, index, this, label, ctgColor);
     });
 
     var categoryEntry1 = row.insertCell(1);
@@ -51,7 +61,7 @@ function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
     editIcon.className = "far fa-edit";
 
     editBtn.addEventListener('click', function () {
-        showCategoryEditMenu(index, ctgTitle, ctgColor);
+        showCategoryEditMenu(ctgUID, index, ctgTitle, ctgColor);
     });
 
     editBtn.appendChild(editIcon);
@@ -65,6 +75,18 @@ function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
         deleteIcon.className = "far fa-trash-alt";
         deleteBtn.addEventListener('click', function () {
             alert('delete category from model and rebuild table');
+            var d = JSON.stringify(ctgUID);
+            $.ajax({
+                url: '/Calendar/Test',
+                type: 'POST',
+                data: {
+                    data: d,
+                    index: index,
+                },
+                success: function () {
+                    alert('reached test method in controller');
+                },
+            })
         });
 
         deleteBtn.appendChild(deleteIcon);
@@ -73,8 +95,7 @@ function buildCategoryRow(index, categoriesTable, ctgTitle, ctgColor) {
 }
 
 
-function toggleCategory(ctgCheckbox, ctgLabel, color) {
-    alert('call event display function to toggle event display once categories and events are properly connected');
+function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
     if (ctgCheckbox.checked) {
         ctgLabel.style.backgroundColor = color;
         ctgLabel.style.border = "solid 2px " + color;
@@ -83,29 +104,43 @@ function toggleCategory(ctgCheckbox, ctgLabel, color) {
         ctgLabel.style.backgroundColor = "#cccfd7";
         ctgLabel.style.border = "solid 2px #bbbfca";
     }
+    var id = JSON.stringify(ctgUID);
+    $.ajax({
+        url: '/Calendar/ToggleCategory',
+        type: 'POST',
+        data: {
+            id: id,
+            index: index,
+        },
+        success: function () {
+            location.reload(true);
+            displayEvents(modelJSON, currentDisplayedDate);
+            
+        }
+    });
 }
 
-function updateCategory(index, newTitle, newColor) {
+function updateCategory(index, newTitle, newColor, ctgUID) {
     var categoriesTable = document.getElementById('categories-table');
     categoriesTable.deleteRow(index);
-    buildCategoryRow(index, categoriesTable, newTitle, newColor);
+    buildCategoryRow(index, categoriesTable, newTitle, newColor, ctgUID);
 }
 
 //pass in the index of the category from the json list of categories
 //pass in the label whose cosmetics will be edited   
-function showCategoryEditMenu(index, ctgTitle, ctgColor) {
+function showCategoryEditMenu(ctgUID, index, ctgTitle, ctgColor) {
     var ctgRow = document.getElementById('category-table-row' + index.toString())
     var menu = document.getElementById('edit-category-menu');
     
     if (menu == null) {
-        menu = buildEditMenu(index, ctgTitle, ctgColor);
+        menu = buildEditMenu(ctgUID, index, ctgTitle, ctgColor);
         ctgRow.appendChild(menu);
     }
     else {
         //if menu's parent is not the same
         if (menu.parentElement.id != ctgRow.id) {
-            menu.parentElement.removeChild(menu);
-            menu = buildEditMenu(index, ctgTitle, ctgColor);
+            menu.parentElement.ctgUID(menu);
+            menu = buildEditMenu(cgtUID, index, ctgTitle, ctgColor);
             ctgRow.appendChild(menu);
         }
         else {
@@ -113,7 +148,7 @@ function showCategoryEditMenu(index, ctgTitle, ctgColor) {
         }
     }
 }
-function buildEditMenu(index, ctgTitle, ctgColor) {
+function buildEditMenu(ctgUID, index, ctgTitle, ctgColor) {
     var menu = document.createElement('span');
     menu.style.border = 'solid 2px ' + ctgColor;
     menu.id = 'edit-category-menu';
@@ -199,7 +234,7 @@ function buildEditMenu(index, ctgTitle, ctgColor) {
                 newTitle = document.getElementById('edit-ctg-menu-title-input').value;
             }
             const newColor = document.getElementById('edit-ctg-menu-color-input').value;
-            updateCategory(index, newTitle, newColor);
+            updateCategory(index, newTitle, newColor, ctgUID);
         });
 
     saveContainer.appendChild(saveButton);
@@ -210,13 +245,13 @@ function buildEditMenu(index, ctgTitle, ctgColor) {
 
 //toggleSource must be a checkbox
 
-function toggleAllCategories(toggleSource, categoriesJSON) {
-    for (var i = 0; i < categoriesJSON.categories.length; i++) {
+function toggleAllCategories(toggleSource, modelsJSON) {
+    for (var i = 0; i < modelsJSON.Categories.length; i++) {
         const ctgCheckbox = document.getElementById('category-checkbox' + i.toString());
         ctgCheckbox.checked = toggleSource.checked;
         const ctgLabel = document.getElementById('category-label' + i.toString());
-        const ctgColor = categoriesJSON.categories[i].color;
-        toggleCategory(ctgCheckbox, ctgLabel, ctgColor);
+        const ctgColor = modelsJSON.Categories[i].Color;
+        toggleCategory(ctgUID, i, ctgCheckbox, ctgLabel, ctgColor);
     }
 
     if (toggleSource.checked == true) {

@@ -2,8 +2,6 @@
     document.getElementById('npi-calendar-page-input').checked = true;
 }
 
-
-
 function initSearchBar() {
     var searchBar = document.getElementById('date-search-input');
     var searchButton = document.getElementById('date-search-button');
@@ -19,21 +17,6 @@ function initSearchBar() {
     });
 }
 
-var categoriesJSON = {
-    "categories": [
-        { "title": "General", "color": "#bc665c" },
-        { "title": "School", "color": "#e3874a" },
-        { "title": "Internship", "color": "#f0d05c" },
-        { "title": "Soccer", "color": "#74b2e2" },
-        { "title": "PT", "color": "#86c6b9" },
-        { "title": "Doctor", "color": "#869ec6" },
-        { "title": "Chores", "color": "#8a86c6" },
-        { "title": "Dates<3", "color": "#cb80bf" },
-        { "title": "I dunno", "color": "#a06abe" },
-        { "title": "Yarr", "color": "#ce6474" }
-    ]
-};
-
 function initToggleAll(categoriesJSON) {
     var toggleAll = document.getElementById('toggle-all-categories-input');
     
@@ -45,11 +28,12 @@ function initToggleAll(categoriesJSON) {
     
 }
 
-selectCalendarPage();
-initSearchBar();
-
-buildCategoriesTable(categoriesJSON);
-initToggleAll(categoriesJSON);
+function initLayoutView(categoriesJSON) {
+    selectCalendarPage();
+    initSearchBar();
+    buildCategoriesTable(categoriesJSON);
+    initToggleAll(categoriesJSON);
+}
 
 
 

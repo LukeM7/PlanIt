@@ -1,7 +1,15 @@
 ﻿
+
+
 .calendar-index-body {
     width: 100%;
     height: 100%;
+}
+.main-pane {
+    height: 100%;
+    width: 80%;
+    float: left;
+    background-color: #f4f4f2;
     display: flex;
     flex-direction: column;
 }
@@ -41,7 +49,7 @@
 .event {
     position: absolute;
     border-radius: 8px;
-    height: 11%;
+    height: 42px;
 }
     .event:hover {
         border: solid 2px #bbbfca;
