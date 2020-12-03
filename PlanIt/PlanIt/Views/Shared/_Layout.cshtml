@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/css/layoutTopNavbar.css" />
     <link rel="stylesheet" href="~/css/CalendarRightSidebar.css" />
     <link rel="stylesheet" href="~/css/calendarMainView.css" />
-    <link rel="stylesheet" href="~/css/addEvent.css" />
+    <link rel="stylesheet" href="~/css/eventCreator.css" />
 
     <!--temporary object declaration-->
     <script src="~/js/categoriesobject.js"></script>
@@ -36,12 +36,12 @@
                     <!-- Content -->
                     <div class="modalAddEvent-content">
                         <form class="modalAddEvent animate" action="/add_event_page.php" method="post">
-                            <div class="container">
+                            <div class="modalContainer">
                                 <div class="addEvent-row">
-                                    <span class="square">Event Creator</span>
-                                    <input type="text" id="title" name="title" placeholder="Title" required />
+                                    <span class="square" id="eventModalLabel"></span>
+                                    <input type="text" id="eventTitle" name="title" placeholder="Title" required />
                                     <div>
-                                        <textarea id="description" name="description" placeholder="Description (Optional)"></textarea>
+                                        <textarea id="eventDescription" name="description" placeholder="Description (Optional)"></textarea>
                                     </div>
                                     <div class="custom-select">
                                         <select name="categories_ev" id="categories_ev">
@@ -52,17 +52,16 @@
 
                                 <div class="addEvent-row">
                                     <div class="field">
-                                        <label for="time">Time (Optional):</label>
-                                        <input type="time" id="time" placeholder="12:00pm" />
-                                        <input type="date" id="date" />
+                                        <label for="eventTime" class="fieldLabel">Time</label>
+                                        <input type="time" id="eventTime" placeholder="12:00pm" />
+                                        <input type="date" id="eventDate" />
                                     </div>
                                     <div class="field">
-                                        <label for="duration">Duration</label>
-                                        <input type="number" min="0" id="duration" />
-                                        <select name="duration-select" id="duration-select">
-                                            <option value="Minutes">Minutes</option>
-                                            <option value="Hours">Hours</option>
-                                        </select>
+                                        <label for="eventHours" class="fieldLabel">Duration</label>
+                                        <input type="number" value="0" min="0" max="24" id="eventHours" class="eventDuration" />
+                                        <span>Hours</span>
+                                        <input type="number" value="30" min="0" max="60" id="eventMinutes" class="eventDuration" />
+                                        <span>Minutes</span>
                                     </div>
                                 </div>
                                 
@@ -105,13 +104,13 @@
         @RenderBody()
     </div>
 
-    <script src="~/js/Layout/addEvent.js"></script>
+    <script src="~/js/Layout/eventCreator.js"></script>
     <script src="~/js/Layout/dateNavigation.js"></script>
     <script src="~/js/Layout/layoutInit.js"></script>
 
     
     <script>
-        initLayoutView(modelJSON);
+        initLayoutView();
     </script>
 </body>
 
