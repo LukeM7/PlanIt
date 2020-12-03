@@ -94,9 +94,8 @@ function buildCategoryRow(index, categoriesTable, category) {
     }
 }
 
-
-function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
-    if (ctgCheckbox.checked) {
+function toggleColorUpdate(isToggled, ctgLabel, color) {
+    if (isToggled) {
         ctgLabel.style.backgroundColor = color;
         ctgLabel.style.border = "solid 2px " + color;
     }
@@ -104,6 +103,10 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
         ctgLabel.style.backgroundColor = "#cccfd7";
         ctgLabel.style.border = "solid 2px #bbbfca";
     }
+}
+
+function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
+    toggleColorUpdate(ctgCheckbox.checked, ctgLabel, color);
 
     var id = JSON.stringify(ctgUID);
     $.ajax({
@@ -114,7 +117,8 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
             index: index,
         },
         success: function (result) {
-            displayEvents(JSON.parse(result), dateToString(currentDisplayedDate));
+            modelJSON = JSON.parse(result);
+            displayEvents(modelJSON, dateToString(currentDisplayedDate));
         }
     });
 }
@@ -242,19 +246,31 @@ function buildEditMenu(ctgUID, index, ctgTitle, ctgColor) {
     return menu;
 }
 
+
 //toggleSource must be a checkbox
 
-function toggleAllCategories(toggleSource, modelJSON) {
-    var toggleValue = toggleSource.checked;
+function toggleAllCategories(modelJSON) {
+    var togglerAll = document.getElementById('toggle-all-categories-input');
+    var toggleValue = togglerAll.checked;
+    togglerAll = !toggleValue;
+
     $.ajax({
         url: '/Calendar/ToggleAllCategories',
         type: 'POST',
-        data: toggleValue,
-        success: function (result) {
-            
+        data: {
+            toggleValue: toggleValue,
         },
+        success: function (result) {
+            modelJSON = JSON.parse(result);
+            //update colors for all categories
+            for (var i = 0; i < modelJSON.Categories.length; i++) {
+                var ctgColor = modelJSON.Categories[i].Color;
+                var ctgLabel = document.getElementById('category-label' + i.toString());
+                toggleColorUpdate(toggleValue, ctgLabel, ctgColor);
+            }
+            displayEvents(modelJSON, dateToString(currentDisplayedDate));
+        }
     });
-
     if (toggleSource.checked == true) {
         document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All Off';
     }
