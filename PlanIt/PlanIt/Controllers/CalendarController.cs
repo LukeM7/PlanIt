@@ -116,14 +116,15 @@ namespace PlanIt.Controllers
         }
 
         [HttpPost]
-        public HtmlString ToggleCategory(string id, int index)
+        public JsonResult ToggleCategory(string id, int index)
         {
             calVM.userCalendar.Categories[index].isToggled = !calVM.userCalendar.Categories[index].isToggled;
             Console.WriteLine(calVM.userCalendar.Categories[index].Title + " now " + calVM.userCalendar.Categories[index].isToggled.ToString());
 
             Console.WriteLine("calVM HtmlString: " + calVM.userCalendar.ToJsonHtmlString());
-            return calVM.userCalendar.ToJsonHtmlString();
+            return Json(calVM.userCalendar.ToJson());
         }
+
         public IActionResult ToggleAllCategories(bool toggleValue)
         {
 
