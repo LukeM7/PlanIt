@@ -16,6 +16,7 @@ namespace PlanIt.Models
             this.Email = "0";
             this.Phone_Number = "0";
             this.Password = "0";
+            this.Calendars = new List<Calendar_Model>();
         }
 
         [Key]
@@ -29,5 +30,7 @@ namespace PlanIt.Models
         public string Phone_Number { get; set; }
 
         public string Password { get; set; }
+
+        List<Calendar_Model> Calendars;
     }
 }
