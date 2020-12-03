@@ -31,6 +31,6 @@ namespace PlanIt.Models
 
         public string Password { get; set; }
 
-        List<Calendar_Model> Calendars;
+        public List<Calendar_Model> Calendars { get; set; }
     }
 }
