@@ -14,7 +14,6 @@ function initPrevTodNextBtns(modelJSON) {
             url: '/Calendar/GetModelJSON',
             type: 'GET',
             success: function (result) {
-                alert('success?');
                 modelJSON = JSON.parse(result);
                 showPreviousDay(modelJSON);
             },
@@ -25,7 +24,6 @@ function initPrevTodNextBtns(modelJSON) {
             url: '/Calendar/GetModelJSON',
             type: 'GET',
             success: function (result) {
-                alert('success?');
                 modelJSON = JSON.parse(result);
                 showToday(modelJSON);
             },
@@ -36,7 +34,6 @@ function initPrevTodNextBtns(modelJSON) {
             url: '/Calendar/GetModelJSON',
             type: 'GET',
             success: function (result) {
-                alert('success?');
                 modelJSON = JSON.parse(result);
                 showNextDay(modelJSON);
             },

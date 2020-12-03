@@ -107,7 +107,6 @@ function toggleColorUpdate(isToggled, ctgLabel, color) {
 
 function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
     toggleColorUpdate(ctgCheckbox.checked, ctgLabel, color);
-
     var id = JSON.stringify(ctgUID);
     $.ajax({
         url: '/Calendar/ToggleCategory',
@@ -123,7 +122,7 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
     });
 }
 
-function updateCategory(index, newTitle, newColor, ctgUID) {
+function overwriteCategory(index, newTitle, newColor, ctgUID) {
     var categoriesTable = document.getElementById('categories-table');
     categoriesTable.deleteRow(index);
     buildCategoryRow(index, categoriesTable, newTitle, newColor, ctgUID);
@@ -237,7 +236,7 @@ function buildEditMenu(ctgUID, index, ctgTitle, ctgColor) {
                 newTitle = document.getElementById('edit-ctg-menu-title-input').value;
             }
             const newColor = document.getElementById('edit-ctg-menu-color-input').value;
-            updateCategory(index, newTitle, newColor, ctgUID);
+            overwriteCategory(index, newTitle, newColor, ctgUID);
         });
 
     saveContainer.appendChild(saveButton);
@@ -264,6 +263,7 @@ function toggleAllCategories(modelJSON) {
             modelJSON = JSON.parse(result);
             //update colors for all categories
             for (var i = 0; i < modelJSON.Categories.length; i++) {
+                document.getElementById('category-checkbox' + i.toString()).checked = toggleValue;
                 var ctgColor = modelJSON.Categories[i].Color;
                 var ctgLabel = document.getElementById('category-label' + i.toString());
                 toggleColorUpdate(toggleValue, ctgLabel, ctgColor);
@@ -271,7 +271,7 @@ function toggleAllCategories(modelJSON) {
             displayEvents(modelJSON, dateToString(currentDisplayedDate));
         }
     });
-    if (toggleSource.checked == true) {
+    if (toggleValue == true) {
         document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All Off';
     }
     else {
