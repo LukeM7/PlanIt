@@ -10,6 +10,7 @@ function parseDate(dateString) {
 }
 
 //IN: 'YYYY-MM-DD'
+
 function searchDate(modelJSON, dateString) {
     if (dateString != "") {
         currentDisplayedDate = parseDate(dateString);
