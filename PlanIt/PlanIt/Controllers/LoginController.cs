@@ -14,7 +14,7 @@ namespace PlanIt.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string username, string password)
+        public IActionResult Authenticate(string username, string password)
         {
             
             // Switches View to Calendar after Login
