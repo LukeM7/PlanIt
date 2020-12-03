@@ -12,5 +12,13 @@ namespace PlanIt.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Index(string username, string password)
+        {
+            
+            // Switches View to Calendar after Login
+            return RedirectToAction("Index", "Calendar");
+        }
     }
 }

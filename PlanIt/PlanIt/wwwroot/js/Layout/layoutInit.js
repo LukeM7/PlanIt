@@ -18,9 +18,10 @@ function initSearchBar() {
 }
 
 
-function initLayoutView() {
+function initLayoutView(modelJSON) {
     selectCalendarPage();
     initSearchBar();
+    initAddEventModal(modelJSON);
 }
 
 
