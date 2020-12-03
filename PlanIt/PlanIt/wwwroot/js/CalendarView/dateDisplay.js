@@ -1,20 +1,4 @@
-﻿var eventsJSON = {
-    "events": [
-        { "title": "event0", "startingTime": 0.0, "duration": 180, "color": "#bc665c", "startDate": "2020-11-28" },
-        { "title": "event1", "startingTime": 1.0, "duration": 180, "color": "#e3874a", "startDate": "2020-11-28" },
-        { "title": "event2", "startingTime": 3.25, "duration": 120, "color": "#f0d05c", "startDate": "2020-11-27" },
-        { "title": "event3", "startingTime": 2.5, "duration": 90, "color": "#f0d05c", "startDate": "2020-11-28" },
-        { "title": "event4", "startingTime": 3.5, "duration": 120, "color": "#8a86c6", "startDate": "2020-11-28" },
-        { "title": "event5", "startingTime": 7.0, "duration": 90, "color": "#8a86c6", "startDate": "2020-11-29" },
-        { "title": "event6", "startingTime": 11.0, "duration": 180, "color": "#bc665c", "startDate": "2020-11-29" },
-        { "title": "event7", "startingTime": 21.0, "duration": 60, "color": "#e3874a", "startDate": "2020-11-29" },
-        { "title": "event8", "startingTime": 9.0, "duration": 120, "color": "#f0d05c", "startDate": "2020-11-29" },
-        { "title": "event9", "startingTime": 12.0, "duration": 90, "color": "#f0d05c", "startDate": "2020-11-29" },
-        { "title": "event10", "startingTime": 15.0, "duration": 120, "color": "#8a86c6", "startDate": "2020-11-28" },
-        { "title": "event11", "startingTime": 17.0, "duration": 120, "color": "#8a86c6", "startDate": "2020-11-28" }
-    ]
-};
-var currentDisplayedDate = new Date();
+﻿var currentDisplayedDate = new Date();
 
 
 
@@ -114,18 +98,18 @@ function updateCalendarDateDisplay(modelJSON, dateString) {
 
 
 
-function showToday(modelsJSON) {
+function showToday(modelJSON) {
     setDateHeadlineToday(); //sets currentDisplayDate to today 
-    updateCalendarDateDisplay(modelsJSON, dateToString(currentDisplayedDate));
+    updateCalendarDateDisplay(modelJSON, dateToString(currentDisplayedDate));
 }
 
-function showPreviousDay(modelsJSON) {
+function showPreviousDay(modelJSON) {
     currentDisplayedDate.setDate(currentDisplayedDate.getDate() - 1);
-    updateCalendarDateDisplay(modelsJSON, dateToString(currentDisplayedDate));
+    updateCalendarDateDisplay(modelJSON, dateToString(currentDisplayedDate));
 }
 
-function showNextDay(modelsJSON) {
+function showNextDay(modelJSON) {
     currentDisplayedDate.setDate(currentDisplayedDate.getDate() + 1);
-    updateCalendarDateDisplay(modelsJSON, dateToString(currentDisplayedDate));
+    updateCalendarDateDisplay(modelJSON, dateToString(currentDisplayedDate));
 }
 

@@ -29,6 +29,7 @@
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\CalendarView\" />
     <Folder Include="wwwroot\js\Layout\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

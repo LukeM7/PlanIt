@@ -17,22 +17,10 @@ function initSearchBar() {
     });
 }
 
-function initToggleAll(categoriesJSON) {
-    var toggleAll = document.getElementById('toggle-all-categories-input');
-    
-    toggleAll.checked = true;
-    document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All Off';
-    toggleAll.addEventListener('change', function () {
-        toggleAllCategories(this, categoriesJSON);
-    })
-    
-}
 
-function initLayoutView(categoriesJSON) {
+function initLayoutView() {
     selectCalendarPage();
     initSearchBar();
-    buildCategoriesTable(categoriesJSON);
-    initToggleAll(categoriesJSON);
 }
 
 

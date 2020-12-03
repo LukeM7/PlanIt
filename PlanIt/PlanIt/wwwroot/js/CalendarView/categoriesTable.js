@@ -1,10 +1,10 @@
 ﻿//these functions are used in _layoutInit.js
 //and may be called via interaction later
 
-function buildCategoriesTable(modelsJSON) {
+function buildCategoriesTable(modelJSON) {
     var categoriesTable = document.getElementById('categories-table');
-    for (var i = 0; i < modelsJSON.Categories.length; i++) {
-        var category = modelsJSON.Categories[i];
+    for (var i = 0; i < modelJSON.Categories.length; i++) {
+        var category = modelJSON.Categories[i];
 
         buildCategoryRow(i, categoriesTable, category);
     }
@@ -245,14 +245,16 @@ function buildEditMenu(ctgUID, index, ctgTitle, ctgColor) {
 
 //toggleSource must be a checkbox
 
-function toggleAllCategories(toggleSource, modelsJSON) {
-    for (var i = 0; i < modelsJSON.Categories.length; i++) {
-        const ctgCheckbox = document.getElementById('category-checkbox' + i.toString());
-        ctgCheckbox.checked = toggleSource.checked;
-        const ctgLabel = document.getElementById('category-label' + i.toString());
-        const ctgColor = modelsJSON.Categories[i].Color;
-        toggleCategory(ctgUID, i, ctgCheckbox, ctgLabel, ctgColor);
-    }
+function toggleAllCategories(toggleSource, modelJSON) {
+    var toggleValue = toggleSource.checked;
+    $.ajax({
+        url: '/Calendar/ToggleAllCategories',
+        type: 'POST',
+        data: toggleValue,
+        success: function (result) {
+            location.reload(true);
+        },
+    });
 
     if (toggleSource.checked == true) {
         document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All Off';
