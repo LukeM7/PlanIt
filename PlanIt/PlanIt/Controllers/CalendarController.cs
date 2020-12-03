@@ -82,12 +82,13 @@ namespace PlanIt.Controllers
             //Console.WriteLine("index called");
             //return View(viewModel);
         }
-        
-        [HttpPost]
-        public void Test(string data, int index)
+
+        [HttpGet]
+        public JsonResult GetModelJSON()
         {
-            Console.WriteLine("output from test with msg: " + data);
+            return Json(calVM.userCalendar.ToJson());
         }
+
 
         [HttpPost]
         public ActionResult EditCategory(Category_Model ctg)
@@ -119,22 +120,19 @@ namespace PlanIt.Controllers
         public JsonResult ToggleCategory(string id, int index)
         {
             calVM.userCalendar.Categories[index].isToggled = !calVM.userCalendar.Categories[index].isToggled;
-            Console.WriteLine(calVM.userCalendar.Categories[index].Title + " now " + calVM.userCalendar.Categories[index].isToggled.ToString());
-
-            Console.WriteLine("calVM HtmlString: " + calVM.userCalendar.ToJsonHtmlString());
             return Json(calVM.userCalendar.ToJson());
         }
 
-        public IActionResult ToggleAllCategories(bool toggleValue)
+        public JsonResult ToggleAllCategories(bool toggleValue)
         {
 
             foreach (Category_Model category in calVM.userCalendar.Categories)
             {
                 category.isToggled = toggleValue;
             }
-            return RedirectToAction("Index");
+            calVM.ToggleAllCategoriesChecker = !toggleValue;
+            return Json(calVM.userCalendar.ToJson());
         }
-
         [HttpPost]
         public ActionResult AddCategory(Category_Model ctg)
         {

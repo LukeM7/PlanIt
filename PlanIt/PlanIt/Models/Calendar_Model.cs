@@ -36,8 +36,7 @@ namespace PlanIt.Models
         
         public string ToJson()
         {
-            Console.WriteLine("serialization being called");
-            Console.WriteLine(JsonSerializer.Serialize(this));
+            Console.WriteLine("calendar serialization called");
             return JsonSerializer.Serialize(this);
         }
         public HtmlString ToJsonHtmlString()
