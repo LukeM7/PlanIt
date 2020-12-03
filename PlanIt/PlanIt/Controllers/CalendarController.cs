@@ -26,15 +26,7 @@ namespace PlanIt.Controllers
             _logger = logger;
             this.db = db;
         }
-        private User_Model Find_User(string name, string password)
-        {
-            foreach (var i in db.User)
-            {
-                if (i.Name == name && i.Password == password) return i;
-            }
 
-            return null;
-        }
         private Calendar_Model Find_Calendar(string cal_id)
         {
             foreach(var i in db.Calendar)
