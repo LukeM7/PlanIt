@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Html;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
@@ -39,6 +40,10 @@ namespace PlanIt.Models
             Console.WriteLine(JsonSerializer.Serialize(this));
             return JsonSerializer.Serialize(this);
         }
-        
+        public HtmlString ToJsonHtmlString()
+        {
+            return new HtmlString(this.ToJson());
+        }
+
     }
 }

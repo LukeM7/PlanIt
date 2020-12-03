@@ -104,6 +104,7 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
         ctgLabel.style.backgroundColor = "#cccfd7";
         ctgLabel.style.border = "solid 2px #bbbfca";
     }
+
     var id = JSON.stringify(ctgUID);
     $.ajax({
         url: '/Calendar/ToggleCategory',
@@ -112,10 +113,8 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
             id: id,
             index: index,
         },
-        success: function () {
-            location.reload(true);
-            displayEvents(modelJSON, currentDisplayedDate);
-            
+        success: function (result) {
+            displayEvents(JSON.parse(result), dateToString(currentDisplayedDate));
         }
     });
 }
@@ -252,7 +251,7 @@ function toggleAllCategories(toggleSource, modelJSON) {
         type: 'POST',
         data: toggleValue,
         success: function (result) {
-            location.reload(true);
+            
         },
     });
 

@@ -21,10 +21,7 @@
     <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
     <title>PlanIt</title>
     <script>
-        //var True = true;
-        var modelJSON = @(Html.Raw(Model.userCalendar.ToJson()));
-        var toggleAllCtgsVal = @(Model.ToggleAllCategoriesChecker);
-        alert(toggleAllCtgsVal);
+        var modelJSON = @((Model.userCalendar.ToJsonHtmlString()));
     </script>
 </head>
 <body class="body-layout" id="body-layout">
