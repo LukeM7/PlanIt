@@ -112,7 +112,8 @@ function flushEventsContainer(container) {
     }
 }
 
-//forDate must be a string with the following format: " YYYY-MM-DD " 
+//forDate must be a string with the following format: " YYYY-MM-DD "
+
 function displayEvents(modelJSON, forDate) {
     var container = document.getElementById('event-inner-container');
     flushEventsContainer(container);
@@ -131,6 +132,7 @@ function displayEvents(modelJSON, forDate) {
         }
     }
     if (eventsOnDate.length > 0) {
+        var counter = 0;
         var eventLayers = generateColoredStructure(eventsOnDate, eventColors);
         for (var layer = 0; layer < eventLayers.layers.length; layer++) {
             for (var i = 0; i < eventLayers.layers[layer].length; i++) {
@@ -140,22 +142,29 @@ function displayEvents(modelJSON, forDate) {
 
                 var eventSpan = document.createElement('span');
                 eventSpan.className = 'event';
-                eventSpan.id = 'event-withID-' + event.Title + i.toString();
+                eventSpan.id = 'event-' + event.Title + "-" + counter.toString();
+                const evtId = eventSpan.id;
+
+                const evt = event;
                 eventSpan.addEventListener('click', function () {
-                    alert('bring up event editor for ' + eventSpan.id);
+                    initEventModal_editor(modelJSON, evt, evtId, "School");
+                    activateEventModal_editor();
                 });
 
                 eventSpan.style.width = calculateWidth(event.Duration);
                 eventSpan.style.left = calculateHorizPosition(event.StartTime);
-                eventSpan.style.bottom = (layer * 42).toString() + 'px';
+                eventSpan.style.bottom = (layer * 43).toString() + 'px';
                 eventSpan.style.backgroundColor = color;
                 eventSpan.innerHTML = event.Title;
                 container.appendChild(eventSpan);
+
+                counter++;
             }
         }
     }
     
 }
+
 
 
 
