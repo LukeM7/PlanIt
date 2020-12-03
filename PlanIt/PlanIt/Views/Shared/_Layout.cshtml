@@ -1,4 +1,4 @@
-﻿@model PlanIt.Models.Calendar_Model
+﻿@model PlanIt.ViewModels.CalendarViewModel
 
 <!DOCTYPE html>
 
@@ -21,7 +21,10 @@
     <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
     <title>PlanIt</title>
     <script>
-        var modelJSON = @(Html.Raw(Model.ToJson() ));
+        //var True = true;
+        var modelJSON = @(Html.Raw(Model.userCalendar.ToJson()));
+        var toggleAllCtgsVal = @(Model.ToggleAllCategoriesChecker);
+        alert(toggleAllCtgsVal);
     </script>
 </head>
 <body class="body-layout" id="body-layout">
@@ -132,14 +135,13 @@
         @RenderBody()
     </div>
 
-    <script src="~/js/Layout/categoriesTable.js"></script>
     <script src="~/js/Layout/addEvent.js"></script>
     <script src="~/js/Layout/dateNavigation.js"></script>
     <script src="~/js/Layout/layoutInit.js"></script>
 
     
     <script>
-        initLayoutView(modelJSON);
+        initLayoutView();
     </script>
 </body>
 

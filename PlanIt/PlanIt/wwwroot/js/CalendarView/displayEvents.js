@@ -131,29 +131,31 @@ function displayEvents(modelJSON, forDate) {
             }
         }
     }
+    if (eventsOnDate.length > 0) {
+        var eventLayers = generateColoredStructure(eventsOnDate, fruits);
+        for (var layer = 0; layer < eventLayers.layers.length; layer++) {
+            for (var i = 0; i < eventLayers.layers[layer].length; i++) {
 
-    var eventLayers = generateColoredStructure(eventsOnDate, fruits);
-    for (var layer = 0; layer < eventLayers.layers.length; layer++) {
-        for (var i = 0; i < eventLayers.layers[layer].length; i++) {
-            
-            const event = eventLayers.layers[layer][i];
-            const color = eventLayers.colors[layer][i];
+                const event = eventLayers.layers[layer][i];
+                const color = eventLayers.colors[layer][i];
 
-            var eventSpan = document.createElement('span');
-            eventSpan.className = 'event';
-            eventSpan.id = 'event-withID-' + event.Title + i.toString();
-            eventSpan.addEventListener('click', function () {
-                alert('bring up event editor for ' + eventSpan.id);
-            });
+                var eventSpan = document.createElement('span');
+                eventSpan.className = 'event';
+                eventSpan.id = 'event-withID-' + event.Title + i.toString();
+                eventSpan.addEventListener('click', function () {
+                    alert('bring up event editor for ' + eventSpan.id);
+                });
 
-            eventSpan.style.width = calculateWidth(event.Duration);
-            eventSpan.style.left = calculateHorizPosition(event.StartTime);
-            eventSpan.style.bottom = (layer * 42).toString() + 'px';
-            eventSpan.style.backgroundColor = color;
-            eventSpan.innerHTML = event.Title;
-            container.appendChild(eventSpan);
+                eventSpan.style.width = calculateWidth(event.Duration);
+                eventSpan.style.left = calculateHorizPosition(event.StartTime);
+                eventSpan.style.bottom = (layer * 42).toString() + 'px';
+                eventSpan.style.backgroundColor = color;
+                eventSpan.innerHTML = event.Title;
+                container.appendChild(eventSpan);
+            }
         }
     }
+    
 }
 
 
