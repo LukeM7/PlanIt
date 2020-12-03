@@ -5,8 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using PlanIt.Data;
 using PlanIt.ViewModels;
@@ -57,6 +59,7 @@ namespace PlanIt.Controllers
         }
 
         public static CalendarViewModel calVM = new CalendarViewModel();
+        
         //GET: Calendar
         public IActionResult Index()
         {
@@ -65,8 +68,19 @@ namespace PlanIt.Controllers
             user.Calendars[0].Categories.Add(new Category_Model() { Title = "Test", Color = "#bc665c" });
             CalendarViewModel viewModel = new CalendarViewModel() { userCalendar = user.Calendars[0] };
             //build user's calendar by pulling from database
-            Console.WriteLine("index called");
-            return View(viewModel);
+            
+            
+            return View(calVM);
+
+
+            /*Calendar_Model calendar;
+            foreach(var i in db.Calendar)
+            {
+                if(i.User_Id == )
+            }*/
+
+            //Console.WriteLine("index called");
+            //return View(viewModel);
         }
         
         [HttpPost]
@@ -102,14 +116,13 @@ namespace PlanIt.Controllers
         }
 
         [HttpPost]
-        public IActionResult ToggleCategory(string id, int index)
+        public HtmlString ToggleCategory(string id, int index)
         {
-            Console.WriteLine("ToggleCategory: " + id);
-            Console.WriteLine("ToggleCategory: " + index.ToString());
-            Console.WriteLine("toggling " + calVM.userCalendar.Categories[index].Title + " off of " + calVM.userCalendar.Categories[index].isToggled.ToString());
             calVM.userCalendar.Categories[index].isToggled = !calVM.userCalendar.Categories[index].isToggled;
-            Console.WriteLine("now " + calVM.userCalendar.Categories[index].isToggled.ToString());
-            return RedirectToAction("Index");
+            Console.WriteLine(calVM.userCalendar.Categories[index].Title + " now " + calVM.userCalendar.Categories[index].isToggled.ToString());
+
+            Console.WriteLine("calVM HtmlString: " + calVM.userCalendar.ToJsonHtmlString());
+            return calVM.userCalendar.ToJsonHtmlString();
         }
         public IActionResult ToggleAllCategories(bool toggleValue)
         {

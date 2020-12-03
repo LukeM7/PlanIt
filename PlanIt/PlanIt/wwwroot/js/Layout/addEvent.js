@@ -31,4 +31,3 @@ function initAddEventModal(modelJSON) {
         ctgChooser.appendChild(ctgOption);
     }
 }
-
