@@ -9,7 +9,7 @@ using PlanIt.Data;
 namespace PlanIt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201202114734_test")]
+    [Migration("20201202124411_test")]
     partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -220,7 +220,12 @@ namespace PlanIt.Migrations
                     b.Property<string>("Calendar_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<string>("User_Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.HasKey("Calendar_Id");
+
+                    b.HasIndex("User_Id");
 
                     b.ToTable("Calendar");
                 });
@@ -229,6 +234,9 @@ namespace PlanIt.Migrations
                 {
                     b.Property<string>("Category_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Calendar_Id")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Calender_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
@@ -341,6 +349,13 @@ namespace PlanIt.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PlanIt.Models.Calendar_Model", b =>
+                {
+                    b.HasOne("PlanIt.Models.User_Model", "User")
+                        .WithMany()
+                        .HasForeignKey("User_Id");
                 });
 
             modelBuilder.Entity("PlanIt.Models.Category_Model", b =>

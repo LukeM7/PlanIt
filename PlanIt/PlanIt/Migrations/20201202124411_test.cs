@@ -48,17 +48,6 @@ namespace PlanIt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Calendar",
-                columns: table => new
-                {
-                    Calendar_Id = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Calendar", x => x.Calendar_Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -180,12 +169,31 @@ namespace PlanIt.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Calendar",
+                columns: table => new
+                {
+                    Calendar_Id = table.Column<string>(nullable: false),
+                    User_Id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calendar", x => x.Calendar_Id);
+                    table.ForeignKey(
+                        name: "FK_Calendar_User_User_Id",
+                        column: x => x.User_Id,
+                        principalTable: "User",
+                        principalColumn: "User_Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
                 {
                     Category_Id = table.Column<string>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
+                    Calendar_Id = table.Column<string>(nullable: true),
                     Calender_Id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -258,6 +266,11 @@ namespace PlanIt.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Calendar_User_Id",
+                table: "Calendar",
+                column: "User_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Category_Calender_Id",
                 table: "Category",
                 column: "Calender_Id");
@@ -289,9 +302,6 @@ namespace PlanIt.Migrations
                 name: "Event");
 
             migrationBuilder.DropTable(
-                name: "User");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -302,6 +312,9 @@ namespace PlanIt.Migrations
 
             migrationBuilder.DropTable(
                 name: "Calendar");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

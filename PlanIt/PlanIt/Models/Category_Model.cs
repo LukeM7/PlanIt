@@ -37,7 +37,7 @@ namespace PlanIt.Models
         public List<Event_Model> Events { get; set; }
 
         
-        //public virtual string Calendar_Id { get; set; }
+        public virtual string Calendar_Id { get; set; }
         [ForeignKey("Calender_Id")]
         public virtual Calendar_Model Calendar { get; set; }
     }

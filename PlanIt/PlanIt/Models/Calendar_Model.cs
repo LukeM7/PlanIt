@@ -28,17 +28,17 @@ namespace PlanIt.Models
 
         public List<Category_Model> Categories { get; set; }
 
-        /*
+ 
         public virtual string User_Id { get; set; }
         [ForeignKey("User_Id")]
         public virtual User_Model User { get; set; }
-        */
-
+        
         public string ToJson()
         {
             Console.WriteLine("serialization being called");
             Console.WriteLine(JsonSerializer.Serialize(this));
             return JsonSerializer.Serialize(this);
         }
+        
     }
 }
