@@ -118,21 +118,20 @@ function displayEvents(modelJSON, forDate) {
     flushEventsContainer(container);
 
     var eventsOnDate = [];
-    var fruits = [];
-    
+    var eventColors = [];
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
         if (ctg.isToggled) {
             for (j = 0; j < ctg.Events.length; j++) {
                 if (ctg.Events[j].StartDate == forDate) {
                     eventsOnDate.push(ctg.Events[j]);
-                    fruits.push(ctg.Color);
+                    eventColors.push(ctg.Color);
                 }
             }
         }
     }
     if (eventsOnDate.length > 0) {
-        var eventLayers = generateColoredStructure(eventsOnDate, fruits);
+        var eventLayers = generateColoredStructure(eventsOnDate, eventColors);
         for (var layer = 0; layer < eventLayers.layers.length; layer++) {
             for (var i = 0; i < eventLayers.layers[layer].length; i++) {
 

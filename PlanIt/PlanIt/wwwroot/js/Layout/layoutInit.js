@@ -13,8 +13,8 @@ function initSearchBar() {
         }
     });
     searchButton.addEventListener('click', function () {
-        searchDate(searchBar.value); //from dateNavigation.js 
-    });
+        searchDate(searchBar.value); //from dateNavigation.js     
+    }); 
 }
 
 

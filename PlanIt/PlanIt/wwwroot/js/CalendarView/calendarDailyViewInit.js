@@ -10,22 +10,43 @@ function initDisplayZoom() {
 }
 function initPrevTodNextBtns(modelJSON) {
     document.getElementById('previous-button').addEventListener('click', function () {
-        showPreviousDay(modelJSON);
+        $.ajax({
+            url: '/Calendar/GetModelJSON',
+            type: 'GET',
+            success: function (result) {
+                modelJSON = JSON.parse(result);
+                showPreviousDay(modelJSON);
+            },
+        });
     });
     document.getElementById('today-button').addEventListener('click', function () {
-        showToday(modelJSON);
+        $.ajax({
+            url: '/Calendar/GetModelJSON',
+            type: 'GET',
+            success: function (result) {
+                modelJSON = JSON.parse(result);
+                showToday(modelJSON);
+            },
+        });
     });
     document.getElementById('next-button').addEventListener('click', function () {
-        showNextDay(modelJSON);
+        $.ajax({
+            url: '/Calendar/GetModelJSON',
+            type: 'GET',
+            success: function (result) {
+                modelJSON = JSON.parse(result);
+                showNextDay(modelJSON);
+            },
+        });
     });
 }
 function initToggleAll(modelJSON) {
-    var toggleAll = document.getElementById('toggle-all-categories-input');
+    var togglerAll = document.getElementById('toggle-all-categories-input');
 
-    toggleAll.checked = true;
+    togglerAll.checked = true;
     document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All Off';
-    toggleAll.addEventListener('change', function () {
-        toggleAllCategories(this, modelJSON);
+    togglerAll.addEventListener('change', function () {
+        toggleAllCategories(modelJSON);
     })
 
 }

@@ -94,9 +94,8 @@ function buildCategoryRow(index, categoriesTable, category) {
     }
 }
 
-
-function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
-    if (ctgCheckbox.checked) {
+function toggleColorUpdate(isToggled, ctgLabel, color) {
+    if (isToggled) {
         ctgLabel.style.backgroundColor = color;
         ctgLabel.style.border = "solid 2px " + color;
     }
@@ -104,6 +103,10 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
         ctgLabel.style.backgroundColor = "#cccfd7";
         ctgLabel.style.border = "solid 2px #bbbfca";
     }
+}
+
+function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
+    toggleColorUpdate(ctgCheckbox.checked, ctgLabel, color);
     var id = JSON.stringify(ctgUID);
     $.ajax({
         url: '/Calendar/ToggleCategory',
@@ -112,15 +115,14 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
             id: id,
             index: index,
         },
-        success: function () {
-            location.reload(true);
-            displayEvents(modelJSON, currentDisplayedDate);
-            
+        success: function (result) {
+            modelJSON = JSON.parse(result);
+            displayEvents(modelJSON, dateToString(currentDisplayedDate));
         }
     });
 }
 
-function updateCategory(index, newTitle, newColor, ctgUID) {
+function overwriteCategory(index, newTitle, newColor, ctgUID) {
     var categoriesTable = document.getElementById('categories-table');
     categoriesTable.deleteRow(index);
     buildCategoryRow(index, categoriesTable, newTitle, newColor, ctgUID);
@@ -234,7 +236,7 @@ function buildEditMenu(ctgUID, index, ctgTitle, ctgColor) {
                 newTitle = document.getElementById('edit-ctg-menu-title-input').value;
             }
             const newColor = document.getElementById('edit-ctg-menu-color-input').value;
-            updateCategory(index, newTitle, newColor, ctgUID);
+            overwriteCategory(index, newTitle, newColor, ctgUID);
         });
 
     saveContainer.appendChild(saveButton);
@@ -243,20 +245,33 @@ function buildEditMenu(ctgUID, index, ctgTitle, ctgColor) {
     return menu;
 }
 
+
 //toggleSource must be a checkbox
 
-function toggleAllCategories(toggleSource, modelJSON) {
-    var toggleValue = toggleSource.checked;
+function toggleAllCategories(modelJSON) {
+    var togglerAll = document.getElementById('toggle-all-categories-input');
+    var toggleValue = togglerAll.checked;
+    togglerAll = !toggleValue;
+
     $.ajax({
         url: '/Calendar/ToggleAllCategories',
         type: 'POST',
-        data: toggleValue,
-        success: function (result) {
-            location.reload(true);
+        data: {
+            toggleValue: toggleValue,
         },
+        success: function (result) {
+            modelJSON = JSON.parse(result);
+            //update colors for all categories
+            for (var i = 0; i < modelJSON.Categories.length; i++) {
+                document.getElementById('category-checkbox' + i.toString()).checked = toggleValue;
+                var ctgColor = modelJSON.Categories[i].Color;
+                var ctgLabel = document.getElementById('category-label' + i.toString());
+                toggleColorUpdate(toggleValue, ctgLabel, ctgColor);
+            }
+            displayEvents(modelJSON, dateToString(currentDisplayedDate));
+        }
     });
-
-    if (toggleSource.checked == true) {
+    if (toggleValue == true) {
         document.getElementById('toggle-all-label-text').innerHTML = 'Toggle All Off';
     }
     else {
