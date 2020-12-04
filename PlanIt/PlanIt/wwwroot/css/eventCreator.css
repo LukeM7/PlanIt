@@ -33,10 +33,10 @@
     }
 
 #btnAddEvent {
-    background-color: #4CAF50;
+    background-color: transparent;
+    font-size: 3rem;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+    margin: 10px 0;
     border: none;
     cursor: pointer;
     width: 10%;
@@ -44,6 +44,7 @@
 
 #btnAddEvent:hover {
     opacity: 0.8;
+    color: #4CAF50;
 }
 
 .modalAddEvent.animate {
