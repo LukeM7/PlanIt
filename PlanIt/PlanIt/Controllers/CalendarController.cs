@@ -226,21 +226,20 @@ namespace PlanIt.Controllers
             int ctg_index,
             string evtTitle,
             string evtStartDate,
-            string evtHours, //convert to float in EditEvent function
-            string evtMinutes, //convert to float, divide by 60, add to evtHours
-            string evtStartTimeStr, //convert to float in EditEvent function
+            float evtDuration,
+            float evtStartTime, //convert to float in EditEvent function
             string evtDescription)
         {
-            float evtDuration = float.Parse(evtHours) + (float.Parse(evtMinutes) / 60);
-            float evtStartTime = float.Parse(evtStartTimeStr);
             var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
             //figure out which category this event should go into
+
+
+            calVM.userCalendar.Categories[ctg_index].Events.Add(newEvent);
 
             //call update to database to construct new event...
             db.Update(newEvent);
 
             
-
             return Json(calVM.userCalendar.ToJson());
         }
 
