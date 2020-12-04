@@ -236,7 +236,7 @@ namespace PlanIt.Controllers
 
             //call update to database to construct new event...
 
-            db.Update(evt);
+            
 
             return Json(calVM.userCalendar.ToJson());
         }

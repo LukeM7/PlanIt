@@ -245,6 +245,9 @@ namespace PlanIt.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<bool>("isToggled")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("Category_Id");
 
                     b.HasIndex("Calender_Id");
@@ -260,11 +263,17 @@ namespace PlanIt.Migrations
                     b.Property<string>("Category_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Duration")
+                    b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("StartTime")
+                    b.Property<float>("Duration")
+                        .HasColumnType("float");
+
+                    b.Property<string>("StartDate")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<float>("StartTime")
+                        .HasColumnType("float");
 
                     b.Property<string>("Title")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -352,7 +361,7 @@ namespace PlanIt.Migrations
             modelBuilder.Entity("PlanIt.Models.Calendar_Model", b =>
                 {
                     b.HasOne("PlanIt.Models.User_Model", "User")
-                        .WithMany()
+                        .WithMany("Calendars")
                         .HasForeignKey("User_Id");
                 });
 
