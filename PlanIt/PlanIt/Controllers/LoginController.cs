@@ -39,7 +39,7 @@ namespace PlanIt.Controllers
             {
                 if(user != null)
                 {
-                    return RedirectToAction("Index", "CalendarController");
+                    return RedirectToAction("Index", "Calendar");
                 }
             }
             catch (NullReferenceException e)
