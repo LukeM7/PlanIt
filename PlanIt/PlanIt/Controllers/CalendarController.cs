@@ -91,16 +91,38 @@ namespace PlanIt.Controllers
 
 
         [HttpPost]
-        public JsonResult EditCategory(int index, string ctgTitle, string ctgColor)
+        public JsonResult ToggleCategory(
+            string ctg_id,
+            int index)
         {
-            Console.WriteLine(index);
-            Console.WriteLine(ctgTitle);
-            Console.WriteLine(ctgColor);
+            calVM.userCalendar.Categories[index].isToggled = !calVM.userCalendar.Categories[index].isToggled;
+            return Json(calVM.userCalendar.ToJson());
+        }
+
+        [HttpPost]
+        public JsonResult ToggleAllCategories(bool toggleValue)
+        {
+
+            foreach (Category_Model category in calVM.userCalendar.Categories)
+            {
+                category.isToggled = toggleValue;
+            }
+            //calVM.ToggleAllCategoriesChecker = !toggleValue;
+            return Json(calVM.userCalendar.ToJson());
+        }
+
+        [HttpPost]
+        public JsonResult EditCategory(
+            string ctg_id,
+            int index,
+            string ctgTitle,
+            string ctgColor)
+        {
+
             //call update to database on category with particluar id and write the values...
             Category_Model ctg = calVM.userCalendar.Categories[index];
             ctg.Color = ctgColor;
             ctg.Title = ctgTitle;
-            Console.WriteLine(ctg.Color);
 
             //try
             //{
@@ -117,49 +139,38 @@ namespace PlanIt.Controllers
         }
 
         [HttpPost]
-        public JsonResult ToggleCategory(string id, int index)
+        public JsonResult AddCategory(
+            string ctgTitle,
+            string ctgColor)
         {
-            calVM.userCalendar.Categories[index].isToggled = !calVM.userCalendar.Categories[index].isToggled;
-            return Json(calVM.userCalendar.ToJson());
-        }
-
-        public JsonResult ToggleAllCategories(bool toggleValue)
-        {
-
-            foreach (Category_Model category in calVM.userCalendar.Categories)
-            {
-                category.isToggled = toggleValue;
-            }
-            calVM.ToggleAllCategoriesChecker = !toggleValue;
-            return Json(calVM.userCalendar.ToJson());
-        }
-        [HttpPost]
-        public ActionResult AddCategory(Category_Model ctg)
-        {
-            var title = ctg.Title;
-            var color = ctg.Color;
+            var ctg = new Category_Model(ctgTitle, ctgColor, true, new List<Event_Model>());
+            calVM.userCalendar.Categories.Add(ctg);
             //call update to database to construct brand new category...
-            Calendar_Model cal = Find_Calendar(ctg.Calendar_Id);
+            //calVM.userCalendar.Calendar_Id = Find_Calendar(ctg.Calendar_Id);
 
-            try
-            {
-                cal.Categories.Add(ctg);
-                db.Update(cal);
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Attempted to add a null category: " + e.Message);
-                throw;
-            }
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            //try
+            //{
+            //    cal.Categories.Add(ctg);
+            //    db.Update(cal);
+            //}
+            //catch (NullReferenceException e)
+            //{
+            //    Console.WriteLine("Attempted to add a null category: " + e.Message);
+            //    throw;
+            //}
+            //db.SaveChanges();
+
+            return Json(calVM.userCalendar.ToJson());
         }
 
         [HttpPost]
-        public ActionResult DeleteCategory(string ctg_id)
+        public JsonResult DeleteCategory(
+            string ctg_id,
+            int index)
         {
             //call update to database to delete the category given its id...
             Category_Model tbd_category = Find_Category(ctg_id);
+            calVM.userCalendar.Categories.RemoveAt(index);
             try
             {
                 Calendar_Model cal = Find_Calendar(tbd_category.Calendar_Id);
@@ -171,52 +182,64 @@ namespace PlanIt.Controllers
                 Console.WriteLine("Attempted to delete null category: " + e.Message);
                 throw;
             }
-            return RedirectToAction("Index");
+            return Json(calVM.userCalendar.ToJson());
         }
 
         [HttpPost]
-        public ActionResult EditEvent(Event_Model evt)
+        public JsonResult EditEvent(
+            //string ctg_id, for adding to a new category
+            string evt_id,
+            string evtTitle,
+            string evtStartDate,
+            string evtDuration, //convert to float in EditEvent function
+            string evtStartTime, //convert to float in EditEvent function
+            string evtDescription)
         {
-            var title = evt.Title;
-            var startTime = evt.StartTime;
-            var duration = evt.Duration;
+            //somehow figure out which category this event should go into
+            //find category
+            // var evt calVM.userCalendar.Categories[figure this out].Events[index];
 
-            Event_Model fetched_event = Find_Event(evt.Event_Id);
-            fetched_event.StartDate = evt.StartDate;
-            fetched_event.StartTime = evt.StartTime;
-            fetched_event.Title = evt.Title;
-            fetched_event.Duration = evt.Duration;
-            try
-            {
-                db.Update(fetched_event);
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Attempted to modify a null event: " + e.Message);
-                throw;
-            }
+            //try
+            //{
+            //    db.Update(evt);
+            //}
+            //catch (NullReferenceException e)
+            //{
+            //    Console.WriteLine("Attempted to modify a null event: " + e.Message);
+            //    throw;
+            //}
             //call update to database on event with particular id and write the values...
 
-
-            return RedirectToAction("Index");
+            return Json(calVM.userCalendar.ToJson());
         }
 
         [HttpPost]
-        public ActionResult AddEvent(Event_Model evt)
+        public JsonResult AddEvent(
+            string ctg_id,
+            string evtTitle,
+            string evtStartDate,
+            float evtDuration,
+            float evtStartTime,
+            string evtDescription)
         {
-            var title = evt.Title;
-            var startTime = evt.StartTime;
-            var duration = evt.Duration;
+            var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
+            //figure out which category this event should go into
 
             //call update to database to construct new event...
             db.Update(evt);
 
 
-            return RedirectToAction("Index");
+            return Json(calVM.userCalendar.ToJson());
         }
 
         [HttpPost]
-        public ActionResult DeleteEvent(string evt_id)
+        public ActionResult DeleteEvent(
+            string evt_id,
+            string evtTitle,
+            string evtStartDate,
+            float evtDuration,
+            float evtStartTime,
+            string evtDescription)
         {
             //call update to database to delete the event given its id...
             Event_Model tbd_event = Find_Event(evt_id);

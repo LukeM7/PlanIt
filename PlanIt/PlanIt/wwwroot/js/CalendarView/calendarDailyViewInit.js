@@ -51,12 +51,21 @@ function initToggleAll(modelJSON) {
 
 }
 
-function initCalendarDailyView(modelJSON) {
-    selectDailyView();
-    initDisplayZoom();
-    initPrevTodNextBtns(modelJSON);
-    showToday(modelJSON);
+function initCalendarDailyView() {
+    var modelJSON;
+    $.ajax({
+        url: '/Calendar/GetModelJSON',
+        type: 'GET',
+        success: function (result) {
+            modelJSON = JSON.parse(result);
+            selectDailyView();
+            initDisplayZoom();
+            initPrevTodNextBtns(modelJSON);
+            showToday(modelJSON);
 
-    buildCategoriesTable(modelJSON);
-    initToggleAll(modelJSON);
+            buildCategoriesTable(modelJSON);
+            initToggleAll(modelJSON);
+        },
+    });
+    
 }

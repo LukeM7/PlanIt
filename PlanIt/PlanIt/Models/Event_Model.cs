@@ -17,16 +17,18 @@ namespace PlanIt.Models
             this.StartDate = "0";
             this.StartTime = 0;
             this.Duration = 0;
+            this.Description = "";
         }
 
-        public Event_Model(string t, string sd, float st, float d)
+        public Event_Model(string t, string sd, float st, float dur, string desc)
         {
             Guid new_id = new Guid();
             this.Event_Id = new_id.ToString();
             this.Title = t;
             this.StartDate = sd;
             this.StartTime = st;
-            this.Duration = d;
+            this.Duration = dur;
+            this.Description = desc;
         }
 
         [Key]
@@ -41,6 +43,7 @@ namespace PlanIt.Models
         [DataType(DataType.Time)]
         public float Duration { get; set; }
 
+        public string Description { get; set; }
         
         public virtual string Category_Id { get; set; }
         [ForeignKey("Category_Id")]
