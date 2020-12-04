@@ -40,6 +40,14 @@ function initPrevTodNextBtns(modelJSON) {
         });
     });
 }
+function initAddCtgButton() {
+    var addCtgButton = document.getElementById('add-category-button');
+    addCtgButton.addEventListener('click', function () {
+        var ctgCreatorMenu = buildAddCategoryMenu();
+        var container = document.getElementById('add-category-button-container');
+        container.appendChild(ctgCreatorMenu);
+    });
+}
 function initToggleAll(modelJSON) {
     var togglerAll = document.getElementById('toggle-all-categories-input');
 
@@ -50,6 +58,7 @@ function initToggleAll(modelJSON) {
     })
 
 }
+
 
 function initCalendarDailyView() {
     var modelJSON;
@@ -63,6 +72,7 @@ function initCalendarDailyView() {
             initPrevTodNextBtns(modelJSON);
             showToday(modelJSON);
 
+            initAddCtgButton();
             buildCategoriesTable(modelJSON);
             initToggleAll(modelJSON);
         },

@@ -18,6 +18,8 @@ window.onclick = function (event) {
     }
 }
 
+
+
 //CREATOR CONFIGURATION
 function initEventModal_creator(modelJSON) {
     setModalLabel('Event Creator');

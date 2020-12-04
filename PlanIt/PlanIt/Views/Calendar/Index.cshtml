@@ -61,18 +61,22 @@
         </div>
     </div>
     <div class="right-pane">
-        <div class="rp-half">
+        <div class="rp-top-half">
             <div class="rp-headline">Categories</div>
             <input id="toggle-all-categories-input" type="checkbox" />
             <label for="toggle-all-categories-input" id="toggle-all-label">
                 <span id="toggle-all-label-text"></span>
             </label>
+            <div id="add-category-button-container">
+                <input id="add-category-button" type="button" value="Add New Category" />
+            </div>
+
             <div class="rp-table-container">
                 <table id="categories-table">
                 </table>
             </div>
         </div>
-        <div class="rp-half">
+        <div class="rp-bottom-half">
             <div class="rp-headline">Event Templates</div>
             <div class="event-templates"></div>
         </div>
@@ -82,10 +86,11 @@
 
 
 <script src="~/js/CalendarView/displayEvents.js"></script>
-<script src="~/js/CalendarView/dailyViewZoomDisplay.js"></script>
 <script src="~/js/CalendarView/dateDisplay.js"></script>
-<script src="~/js/CalendarView/calendarDailyViewInit.js"></script>
+<script src="~/js/CalendarView/dailyViewZoomDisplay.js"></script>
 <script src="~/js/CalendarView/categoriesTable.js"></script>
+<script src="~/js/CalendarView/addNewCategoryInterface.js"></script>
+<script src="~/js/CalendarView/calendarDailyViewInit.js"></script>
 
 <script>initCalendarDailyView();</script>
 
