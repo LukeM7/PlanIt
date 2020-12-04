@@ -31,15 +31,15 @@
 }
 
 #btnAddEvent {
-    background-color: #f4f4f2;
+    background-color: #cccfd7;
     font-size: 3rem;
     color: darkgray;
-    margin: 10px 0;
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    width: 10%;
-    height: 100%;
+    padding: 30px 20px;
+    margin: 10px 0; /* Hard-coded to center vertically */
+    margin-right: 43rem; /* Hard-coded to move the button left */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,9 +48,8 @@
 }
 
 #btnAddEvent:hover {
-    opacity: 0.8;
-    background-color: #cccfd7;
-    color: white;
+    background-color: #f4f4f2;
+    color: #4CAF50;
 }
 
 .addEvent {

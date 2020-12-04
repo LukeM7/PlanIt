@@ -16,13 +16,13 @@
 
 .calendar-headline {
     height: auto;
-    padding: 15px;
+    padding: 1.5rem;
     flex: none;
     display: flex;
     justify-content: center;
     align-items: center;
     border: solid #cfd3df 2px;
-    font-size: 24px;
+    font-size: 2rem;
     background: linear-gradient(to bottom right, #4d88ff, #ccddff);
 }
 
