@@ -32,14 +32,14 @@ namespace PlanIt.Controllers
         }
         
         [HttpPost]
-        public IActionResult Authenticate(string username, string password)
+        public IActionResult Authenticate(string username, string pass)
         {
-            User_Model user = Find_User(username, password);
+            User_Model user = Find_User(username, pass);
             try
             {
                 if(user != null)
                 {
-                    return RedirectToAction("Index", "CalendarController");
+                    return RedirectToAction("Index", "Calendar");
                 }
             }
             catch (NullReferenceException e)
