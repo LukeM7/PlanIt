@@ -107,6 +107,8 @@ namespace PlanIt.Controllers
             {
                 category.isToggled = toggleValue;
             }
+            db.Update(calVM.userCalendar);
+            db.SaveChanges();
             //calVM.ToggleAllCategoriesChecker = !toggleValue;
             return Json(calVM.userCalendar.ToJson());
         }
