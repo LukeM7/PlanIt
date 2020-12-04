@@ -19,7 +19,6 @@ btn.onclick = function () {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
@@ -62,13 +61,15 @@ function setModalLabel(title) {
 function initModalCtgSelect_creator(modelJSON) {
     clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
+    ctgChooser.style.borderRadius = "4px";
+    ctgChooser.style.outline = "none";
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
 
         // Create a new HTML option tag for each category
         var ctgOption = document.createElement('option');
 
-        ctgOption.value = ctg.Category_Id + "_" + i.toString();
+        ctgOption.value = ctg.CategoryId + "-" + i.toString();
         ctgOption.innerHTML = ctg.Title;
         ctgOption.style.backgroundColor = ctg.Color;
         ctgChooser.appendChild(ctgOption);
@@ -162,6 +163,8 @@ function initEventModal_editor(modelJSON, event, eventElementId, eventCtgTitle) 
 function initModalCtgSelect_editor(modelJSON, eventCtgTitle) {
     clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
+    ctgChooser.style.borderRadius = "4px";
+    ctgChooser.style.outline = "none";
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
 
@@ -281,4 +284,13 @@ function initSubmitButton_editor(event) {
     document.getElementById('addEvent-submitRow').appendChild(submitBtn);
 }
 
+// When the user selects an option, change the background color to the color of the category
+var selectCtg = document.getElementById("categories_ev");
+var setBgColor = function (select) {
+    select.style.backgroundColor = select.options[select.selectedIndex].style.backgroundColor;
+};
+
+selectCtg.onchange = function () {
+    setBgColor(this);
+};
 
