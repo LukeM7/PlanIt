@@ -33,13 +33,14 @@ function clearCtgSelector() {
         selector.removeChild(selector.lastChild);
     }
 }
-function allFormsFilled() {
-    return !(document.getElementById('eventTitle').value == "" ||
-        document.getElementById('categories_ev').value == "" ||
-        document.getElementById('eventTime').value == "" ||
-        document.getElementById('eventDate').value == "" ||
-        document.getElementById('eventHours').value == "" ||
-        document.getElementById('eventMinutes').value == "")
+function allFormsFilled(title, startDate, hours, minutes, startTime) {
+    //alert(title + ", " + startDate + ", " + startTime + ", " + hours + ", " + minutes);
+
+    return !((title == "" || typeof title == 'undefined') ||
+        (startDate == "" || typeof startDate == 'undefined') ||
+        (hours == "" || typeof hours == 'undefined') ||
+        (minutes == "" || typeof minutes == 'undefined') ||
+        (startTime == "" || typeof startTime == 'undefined'));
 }
 
 //CREATOR CONFIGURATION
@@ -49,7 +50,6 @@ function initEventModal_creator(modelJSON) {
     initModalInputs_creator();
     initSubmitButton_creator();
 }
-
 
 
 function setModalLabel(title) {
@@ -79,41 +79,58 @@ function initModalCtgSelect_creator(modelJSON) {
 function initModalInputs_creator() {
     document.getElementById('eventTitle').value = "";
     document.getElementById('eventTime').value = "12:00";
-    document.getElementById('eventHours').value = "0";
-    document.getElementById('eventMinutes').value = "30";
+    document.getElementById('eventHours').value = "1";
+    document.getElementById('eventMinutes').value = "0";
+    document.getElementById('eventDate').value = dateToString(currentDisplayedDate);
+    document.getElementById('eventDescription').value = "";
 }
 
 function initSubmitButton_creator() {
+    var oldSubmitBtn = document.getElementById('btnCreateEvent');
+    if (oldSubmitBtn != null) {
+        oldSubmitBtn.parentElement.removeChild(oldSubmitBtn);
+    }
     var submitBtn = document.createElement('button');
     submitBtn.id = "btnCreateEvent";
     submitBtn.innerHTML = "Create Event";
     submitBtn.addEventListener('click', function () {
-        if (allFormsFilled()) {
-            var id_index;
-            var title;
-            var startDate;
-            var hours;
-            var minutes;
-            var startTime;
-            var description;
+        var id_index = document.getElementById('categories_ev').value.split('_');
+        var id = id_index[0];
+        var index = id_index[1];
+        index = parseInt(index);
+        var title = document.getElementById('eventTitle').value;
+        var startDate = document.getElementById('eventDate').value;
+        var startTime = document.getElementById('eventTime').value;
+        var hours = document.getElementById('eventHours').value;
+        var minutes = document.getElementById('eventMinutes').value;
+        var description = document.getElementById('eventDescription').value;
+
+        if (allFormsFilled(title, startDate, hours, minutes, startTime)) {
+            startTime = startTime.split(':');
+            var startTimeToFloat = parseFloat(startTime[0]) + (parseFloat(startTime[1]) / 60);
+            var durationFloat = parseFloat(hours) + (parseFloat(minutes) / 60);
             $.ajax({
                 url: "Calendar/AddEvent",
                 type: 'POST',
                 data: {
-                    ctgId_ctgIndex: id_index,
+                    ctg_id: id,
+                    ctg_index: index,
                     evtTitle: title,
                     evtStartDate: startDate,
-                    evtHours: hours, 
-                    evtMinutes: minutes,
-                    evtStartTimeStr: startTime, 
+                    evtStartTime: startTimeToFloat,
+                    evtDuration: durationFloat,
                     evtDescription: description,
                 },
                 success: function (result) {
-                    alert('event add called');
                     modelJSON = JSON.parse(result);
                     displayEvents(modelJSON, dateToString(currentDisplayedDate));
-                };
+                    submitBtn.parentElement.removeChild(submitBtn);
+                    modal.style.display = "none";
+                },
             });
+        }
+        else {
+            alert('Event creation is incomplete!');
         }
     });
     document.getElementById('addEvent-submitRow').appendChild(submitBtn);
@@ -135,9 +152,9 @@ function activateEventModal_editor() {
 
 function initEventModal_editor(modelJSON, event, eventElementId, eventCtgTitle) {
     setModalLabel('Event Editor');
-    setButtonLabel('Edit Event');
     initModalCtgSelect_editor(modelJSON, eventCtgTitle);
     initModalInputs_editor(event);
+    initSubmitButton_editor(event);
 }
 
 
@@ -151,7 +168,7 @@ function initModalCtgSelect_editor(modelJSON, eventCtgTitle) {
         // Create a new HTML option tag for each category
         var ctgOption = document.createElement('option');
 
-        ctgOption.value = ctg.Title;
+        ctgOption.value = i.toString();
         ctgOption.innerHTML = ctg.Title;
         ctgOption.style.backgroundColor = ctg.Color;
         ctgChooser.appendChild(ctgOption);
@@ -203,6 +220,65 @@ function initModalInputs_editor(event) {
     //start date:
 
     document.getElementById('eventDate').value = event.StartDate;
+}
+
+
+function initSubmitButton_editor(event) {
+    var oldSubmitBtn = document.getElementById('btnCreateEvent');
+    if (oldSubmitBtn != null) {
+        oldSubmitBtn.parentElement.removeChild(oldSubmitBtn);
+    }
+    var submitBtn = document.createElement('button');
+    submitBtn.id = "btnCreateEvent";
+    submitBtn.innerHTML = "Save Changes";
+    submitBtn.addEventListener('click', function () {
+        var eventId = event.Event_Id;
+        var eventIndex = 2;
+        var index = document.getElementById('categories_ev').value.parseInt(index);
+        alert('ctg index: ' + index);
+        var title = document.getElementById('eventTitle').value;
+        alert('title: ' + title)
+        var startDate = document.getElementById('eventDate').value;
+        alert('startDate: ' + startDate)
+        var startTime = document.getElementById('eventTime').value;
+        alert('startTime: ' + startTime)
+        var hours = document.getElementById('eventHours').value;
+        alert('hours: ' + hours)
+        var minutes = document.getElementById('eventMinutes').value;
+        alert('minutes: ' + minutes)
+        var description = document.getElementById('eventDescription').value;
+        alert('description: ' + description)
+
+        if (allFormsFilled(title, startDate, hours, minutes, startTime)) {
+            startTime = startTime.split(':');
+            var startTimeToFloat = parseFloat(startTime[0]) + (parseFloat(startTime[1]) / 60);
+            var durationFloat = parseFloat(hours) + (parseFloat(minutes) / 60);
+            $.ajax({
+                url: "Calendar/EditEvent",
+                type: 'POST',
+                data: {
+                    evt_id: eventId,
+                    evt_index: eventIndex,
+                    ctg_index: index,
+                    evtTitle: title,
+                    evtStartDate: startDate,
+                    evtStartTime: startTimeToFloat,
+                    evtDuration: durationFloat,
+                    evtDescription: description,
+                },
+                success: function (result) {
+                    modelJSON = JSON.parse(result);
+                    displayEvents(modelJSON, dateToString(currentDisplayedDate));
+                    submitBtn.parentElement.removeChild(submitBtn);
+                    modal.style.display = "none";
+                },
+            });
+        }
+        else {
+            alert('Event creation is incomplete!');
+        }
+    });
+    document.getElementById('addEvent-submitRow').appendChild(submitBtn);
 }
 
 

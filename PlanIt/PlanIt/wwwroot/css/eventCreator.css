@@ -34,12 +34,18 @@
 
 #btnAddEvent {
     background-color: transparent;
-    font-size: 3rem;
+    font-size: 40px;
+    font-weight: bold;
     color: white;
-    margin: 10px 0;
     border: none;
     cursor: pointer;
     width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    padding: 0px;
 }
 
 #btnAddEvent:hover {

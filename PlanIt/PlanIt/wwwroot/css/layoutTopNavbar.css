@@ -8,8 +8,11 @@
 
 .nrp-upper-half {
     height: 50%;
-    display: block;
+    display: flex;
+    flex-direction: row-reverse;
 }
+
+
 
 .nrp-lower-half {
     height: 50%;

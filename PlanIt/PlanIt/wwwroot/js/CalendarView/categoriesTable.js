@@ -81,17 +81,17 @@ function buildCategoryRow(index, categoriesTable, category) {
         var deleteIcon = document.createElement('span');
         deleteIcon.className = "far fa-trash-alt";
         deleteBtn.addEventListener('click', function () {
-            alert('delete category from model and rebuild table');
-            var d = JSON.stringify(ctgUID);
             $.ajax({
-                url: '/Calendar/Test',
+                url: '/Calendar/DeleteCategory',
                 type: 'POST',
                 data: {
-                    data: d,
+                    ctg_id: ctgUID,
                     ctg_index: index,
                 },
-                success: function () {
-                    alert('reached test method in controller');
+                success: function (result) {
+                    modelJSON = JSON.parse(result);
+                    buildCategoriesTable(modelJSON);
+                    displayEvents(modelJSON, dateToString(currentDisplayedDate));
                 },
             })
         });

@@ -173,19 +173,19 @@ namespace PlanIt.Controllers
             int ctg_index)
         {
             //call update to database to delete the category given its id...
-            Category_Model tbd_category = Find_Category(ctg_id);
+            //Category_Model tbd_category = Find_Category(ctg_id);
             calVM.userCalendar.Categories.RemoveAt(ctg_index);
-            try
-            {
-                Calendar_Model cal = Find_Calendar(tbd_category.Calendar_Id);
-                cal.Categories.Remove(tbd_category);
-                db.Remove(tbd_category);
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Attempted to delete null category: " + e.Message);
-                throw;
-            }
+            //try
+            //{
+            //    Calendar_Model cal = Find_Calendar(tbd_category.Calendar_Id);
+            //    cal.Categories.Remove(tbd_category);
+            //    db.Remove(tbd_category);
+            //}
+            //catch (NullReferenceException e)
+            //{
+            //    Console.WriteLine("Attempted to delete null category: " + e.Message);
+            //    throw;
+            //}
             return Json(calVM.userCalendar.ToJson());
         }
 
@@ -226,10 +226,11 @@ namespace PlanIt.Controllers
             int ctg_index,
             string evtTitle,
             string evtStartDate,
-            float evtDuration,
             float evtStartTime, //convert to float in EditEvent function
+            float evtDuration,
             string evtDescription)
         {
+            Console.WriteLine(ctg_id);
             var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
             //figure out which category this event should go into
 
@@ -237,7 +238,7 @@ namespace PlanIt.Controllers
             calVM.userCalendar.Categories[ctg_index].Events.Add(newEvent);
 
             //call update to database to construct new event...
-            db.Update(newEvent);
+            //db.Update(newEvent);
 
             return Json(calVM.userCalendar.ToJson());
         }
