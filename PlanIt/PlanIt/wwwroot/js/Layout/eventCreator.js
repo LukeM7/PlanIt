@@ -25,6 +25,19 @@ window.onclick = function (event) {
     }
 }
 
+// When the user selects an option, change the background color to the color of the category
+
+var selectCtg = document.getElementById("categories_ev");
+var setBgColor = function (select) {
+    select.style.backgroundColor = select.options[select.selectedIndex].style.backgroundColor;
+};
+
+selectCtg.onchange = function () {
+    setBgColor(this);
+};
+
+
+
 function clearCtgSelector() {
     var selector = document.getElementById("categories_ev");
 
@@ -151,17 +164,17 @@ function activateEventModal_editor() {
     modal.style.display = "block";
 }
 
-function initEventModal_editor(modelJSON, event, eventIndex, eventCtgTitle) {
+function initEventModal_editor(modelJSON, event, eventIndex, eventCtgIndex) {
     setModalLabel('Event Editor');
-    initModalCtgSelect_editor(modelJSON, eventCtgTitle);
+    initModalCtgSelect_editor(modelJSON, eventCtgIndex);
     initModalInputs_editor(event);
-    var initialCtgIndex = parseInt(document.getElementById("categories_ev").value);
+    var initialCtgIndex = eventCtgIndex;
     initSubmitButton_editor(event, eventIndex, initialCtgIndex);
 }
 
 
 
-function initModalCtgSelect_editor(modelJSON, eventCtgTitle) {
+function initModalCtgSelect_editor(modelJSON, eventCtgIndex) {
     clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
     ctgChooser.style.borderRadius = "4px";
@@ -178,7 +191,7 @@ function initModalCtgSelect_editor(modelJSON, eventCtgTitle) {
         ctgChooser.appendChild(ctgOption);
 
         //pre-set to event's category 
-        if (eventCtgTitle == ctgOption.innerHTML) {
+        if (i == eventCtgIndex) {
             const val = ctgOption.value;
             ctgChooser.value = val;
         }
@@ -237,7 +250,6 @@ function initSubmitButton_editor(event, eventIndex, initialCtgIndex) {
     submitBtn.innerHTML = "Save Changes";
     submitBtn.addEventListener('click', function () {
         var eventId = event.Event_Id;
-        var eventIndexToInt = parseInt(eventIndex);
         var newCtgIndex = parseInt(document.getElementById('categories_ev').value);
         var title = document.getElementById('eventTitle').value;
         var startDate = document.getElementById('eventDate').value;
@@ -280,13 +292,4 @@ function initSubmitButton_editor(event, eventIndex, initialCtgIndex) {
     document.getElementById('addEvent-submitRow').appendChild(submitBtn);
 }
 
-// When the user selects an option, change the background color to the color of the category
-var selectCtg = document.getElementById("categories_ev");
-var setBgColor = function (select) {
-    select.style.backgroundColor = select.options[select.selectedIndex].style.backgroundColor;
-};
-
-selectCtg.onchange = function () {
-    setBgColor(this);
-};
 
