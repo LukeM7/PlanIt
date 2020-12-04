@@ -84,7 +84,7 @@ function buildCategoryRow(index, categoriesTable, category) {
                 type: 'POST',
                 data: {
                     data: d,
-                    index: index,
+                    ctg_index: index,
                 },
                 success: function () {
                     alert('reached test method in controller');
@@ -115,8 +115,8 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
         url: '/Calendar/ToggleCategory',
         type: 'POST',
         data: {
-            id: id,
-            index: index,
+            ctg_id: id,
+            ctg_index: index,
         },
         success: function (result) {
             modelJSON = JSON.parse(result);
@@ -242,12 +242,14 @@ function buildCreatorMenu(index, category) {
             const ind = index;
             //grab the color from the color input  
             const ctgColor = document.getElementById('ctg-creatormenu-color-input').value;
+            const ctgUID = category.Category_Id;
             $.ajax({
                 //url: '/Controller/Action'
                 url: '/Calendar/EditCategory',
                 type: 'POST',
                 data: {
-                    index: ind,
+                    ctg_id: ctgUID,
+                    ctg_index: ind,
                     ctgTitle: ctgTitle,
                     ctgColor: ctgColor,
                 },

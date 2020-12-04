@@ -8,8 +8,15 @@ namespace PlanIt.ViewModels
 {
     public class CalendarViewModel
     {
-        public Calendar_Model userCalendar =
-            new Calendar_Model(new List<Category_Model>() {
+        public Calendar_Model userCalendar;
+                
+
+        public bool ToggleAllCategoriesChecker = true;
+
+        public CalendarViewModel()
+        {
+            userCalendar = new Calendar_Model(
+                new List<Category_Model>() {
                 new Category_Model("General", "#bc665c", true, new List<Event_Model>()
                     { new Event_Model("general0", "2020-12-03", 12f, 4f, "stuff"),
                       new Event_Model("general1", "2020-12-03", 6f, 1f, ""),
@@ -48,9 +55,8 @@ namespace PlanIt.ViewModels
                     { }
                     )
                 }
-            );
-
-        public bool ToggleAllCategoriesChecker = true;
+                );
+        }
 
         public string ToJson()
         {
