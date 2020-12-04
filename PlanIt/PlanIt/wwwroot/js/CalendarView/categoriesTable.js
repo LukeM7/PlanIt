@@ -127,7 +127,6 @@ function toggleCategory(ctgUID, index, ctgCheckbox, ctgLabel, color) {
 
 function overwriteCategory(index, category) {
     var categoriesTable = document.getElementById('categories-table');
-    alert(category.Color);
     categoriesTable.deleteRow(index);
     buildCategoryRow(index, categoriesTable, category);
 }
@@ -221,7 +220,7 @@ function buildCreatorMenu(index, category) {
         menu.appendChild(editingTitleContainer);
     }
 
-    //MENU SAVE BUTTON 
+    //MENU SAVE BUTTON (WHERE EDIT CATEGORY IS CALLED)
     var saveContainer = document.createElement('div');
     saveContainer.id = 'ctg-creatormenu-save-container';
 
@@ -231,15 +230,20 @@ function buildCreatorMenu(index, category) {
         saveButton.value = 'Save Changes';
         saveButton.addEventListener('click', function () {
             var ctgTitle;
+            //since General category title can't be edited
+
             if (index > 0) {
                 ctgTitle = document.getElementById('ctg-creatormenu-title-input').value;
             }
             else {
                 ctgTitle = 'General';
             }
+
             const ind = index;
+            //grab the color from the color input  
             const ctgColor = document.getElementById('ctg-creatormenu-color-input').value;
             $.ajax({
+                //url: '/Controller/Action'
                 url: '/Calendar/EditCategory',
                 type: 'POST',
                 data: {
@@ -248,14 +252,11 @@ function buildCreatorMenu(index, category) {
                     ctgColor: ctgColor,
                 },
                 success: function (result) {
-                    alert('success from editCategory!');
                     var modelJSON = JSON.parse(result);
-                    alert(modelJSON.Categories[index].Color);
                     overwriteCategory(index, modelJSON.Categories[index]);
                     displayEvents(modelJSON, dateToString(currentDisplayedDate));
                 },
             });
-            
         });
 
     saveContainer.appendChild(saveButton);
@@ -269,7 +270,7 @@ function buildCreatorMenu(index, category) {
 
 function toggleAllCategories(modelJSON) {
     var togglerAll = document.getElementById('toggle-all-categories-input');
-    var toggleValue = togglerAll.checked;
+    const toggleValue = togglerAll.checked;
     togglerAll = !toggleValue;
 
     $.ajax({

@@ -20,7 +20,10 @@ namespace PlanIt.Controllers
         {
             foreach (var i in db.User)
             {
-                if (i.Name == name && i.Password == password) return i;
+                if (i.Name == name && i.Password == password)
+                {
+                    return i;
+                }
             }
 
             return null;
