@@ -32,28 +32,12 @@
                 <div id="modalAddEvent" class="addEvent">
                     <!-- Content -->
                     <div class="modalAddEvent-content">
-<<<<<<< HEAD
-                        <form class="modalAddEvent animate" asp-controller="Calendar" asp-action="AddEvent" method="post">
-                            <div class="modalContainer">
-                                <div class="addEvent-row">
-                                    <span class="square" id="eventModalLabel"></span>
-                                    <input type="text" id="eventTitle" name="title" placeholder="Title" required />
-                                    <div>
-                                        <textarea id="eventDescription" name="description" placeholder="Description (Optional)"></textarea>
-                                    </div>
-                                    <div class="custom-select">
-                                        <select name="categories_ev" id="categories_ev" class="">
-                                            <!-- Don't worry about it -->
-                                        </select>
-                                    </div>
-=======
                         <div class="modalContainer">
                             <div class="addEvent-row">
                                 <span class="square" id="eventModalLabel"></span>
                                 <input type="text" id="eventTitle" placeholder="Title" required />
                                 <div>
                                     <textarea id="eventDescription" placeholder="Description (Optional)"></textarea>
->>>>>>> c7be3804dcdf4daffabe93c74ac39c4c5a527c24
                                 </div>
                                 <div class="custom-select">
                                     <select id="categories_ev">
@@ -70,9 +54,9 @@
                                 </div>
                                 <div class="field">
                                     <label for="eventHours" class="fieldLabel">Duration</label>
-                                    <input type="number"  value="0" min="0" max="24" id="eventHours" class="eventDuration" />
+                                    <input type="number" value="0" min="0" max="24" id="eventHours" class="eventDuration" />
                                     <span>Hours</span>
-                                    <input type="number"  value="30" min="0" max="60" id="eventMinutes" class="eventDuration" />
+                                    <input type="number" value="30" min="0" max="60" id="eventMinutes" class="eventDuration" />
                                     <span>Minutes</span>
                                 </div>
                             </div>
