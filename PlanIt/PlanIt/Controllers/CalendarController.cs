@@ -53,7 +53,7 @@ namespace PlanIt.Controllers
         {
             foreach(var evnt in db.Event)
             {
-                if (i.Event_Id == evt_id) return evnt;
+                if (evnt.Event_Id == evt_id) return evnt;
             }
             return null;
         }
@@ -226,7 +226,7 @@ namespace PlanIt.Controllers
             //figure out which category this event should go into
 
             //call update to database to construct new event...
-            db.Update(evt);
+            db.Update(newEvent);
 
 
             return Json(calVM.userCalendar.ToJson());

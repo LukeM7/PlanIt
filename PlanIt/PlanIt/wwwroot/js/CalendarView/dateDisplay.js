@@ -53,7 +53,7 @@ function GetClock() {
     if (nmin <= 9) nmin = "0" + nmin;
     if (nsec <= 9) nsec = "0" + nsec;
 
-    var clocktext = "" + weekDayNames[nday] + ", " + monthNames[nmonth] + " " + ndate + ", " + nyear + " " + nhour + ":" + nmin + ":" + nsec + ap + "";
+    var clocktext = "" + weekDayNames[nday] + ", " + monthNames[nmonth] + " " + ndate + ", " + nyear + " " + nhour + ":" + nmin + ap + "";
     document.getElementById('today-headline').innerHTML = clocktext;
 }
 
