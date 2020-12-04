@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using PlanIt.Data;
 using PlanIt.ViewModels;
 using PlanIt.Models;
-
+using System.Text.Json;
 
 namespace PlanIt.Controllers
 {
@@ -28,7 +28,20 @@ namespace PlanIt.Controllers
             _logger = logger;
             this.db = db;
         }
+        /*
+        private User_Model Find_User(string user_id)
+        {
+            foreach (var i in db.User)
+            {
+                if (i.User_Id == user_id)
+                {
+                    return i;
+                }
+            }
 
+            return null;
+        }
+        */
         private Calendar_Model Find_Calendar(string cal_id)
         {
             foreach(var cal in db.Calendar)
@@ -63,24 +76,14 @@ namespace PlanIt.Controllers
         //GET: Calendar
         public IActionResult Index()
         {
-            User_Model user = new User_Model();
-            user.Calendars.Add(new Calendar_Model());
-            user.Calendars[0].Categories.Add(new Category_Model() { Title = "Test", Color = "#bc665c" });
-            CalendarViewModel viewModel = new CalendarViewModel() { userCalendar = user.Calendars[0] };
-            //build user's calendar by pulling from database
-            
-            
             return View(calVM);
+        }
 
-
-            /*Calendar_Model calendar;
-            foreach(var i in db.Calendar)
-            {
-                if(i.User_Id == )
-            }*/
-
-            //Console.WriteLine("index called");
-            //return View(viewModel);
+        public IActionResult ConstructCalendar()
+        {
+            Calendar_Model cal = Find_Calendar(TempData["calendar"].ToString());
+            calVM.userCalendar = cal;
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -163,7 +166,8 @@ namespace PlanIt.Controllers
             //    throw;
             //}
             //db.SaveChanges();
-
+            db.Add(calVM.userCalendar);
+            db.SaveChanges();
             return Json(calVM.userCalendar.ToJson());
         }
 
@@ -226,21 +230,20 @@ namespace PlanIt.Controllers
             int ctg_index,
             string evtTitle,
             string evtStartDate,
-            string evtHours, //convert to float in EditEvent function
-            string evtMinutes, //convert to float, divide by 60, add to evtHours
-            string evtStartTimeStr, //convert to float in EditEvent function
+            float evtDuration,
+            float evtStartTime, //convert to float in EditEvent function
             string evtDescription)
         {
-            float evtDuration = float.Parse(evtHours) + (float.Parse(evtMinutes) / 60);
-            float evtStartTime = float.Parse(evtStartTimeStr);
             var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
             //figure out which category this event should go into
+
+
+            calVM.userCalendar.Categories[ctg_index].Events.Add(newEvent);
 
             //call update to database to construct new event...
             db.Update(newEvent);
 
             
-
             return Json(calVM.userCalendar.ToJson());
         }
 

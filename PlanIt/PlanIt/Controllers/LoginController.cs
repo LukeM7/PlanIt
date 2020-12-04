@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PlanIt.Data;
 using PlanIt.Models;
 using System;
@@ -16,11 +17,11 @@ namespace PlanIt.Controllers
         {
             this.db = db;
         }
-        private User_Model Find_User(string name, string password)
+        private Calendar_Model Find_Calendar(string name, string password)
         {
-            foreach (var i in db.User)
+            foreach (var i in db.Calendar)
             {
-                if (i.Name == name && i.Password == password)
+                if (i.username == name && i.password == password)
                 {
                     return i;
                 }
@@ -33,24 +34,21 @@ namespace PlanIt.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult Authenticate(string username, string password)
         {
-            User_Model user = Find_User(username, password);
-            try
+            Calendar_Model cal = Find_Calendar(username, password);
+            if(cal != null)
             {
-                if(user != null)
-                {
-                    return RedirectToAction("Index", "Calendar");
-                }
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Null User: " + e.Message);
-                throw;
-            }
-            return RedirectToAction("Index");
+                TempData["calendar"] = cal.Calendar_Id;
+                return RedirectToAction("ConstructCalendar", "Calendar");
+            };
+            cal = new Calendar_Model();
+            TempData["calendar"] = cal.Calendar_Id;
+            db.Add(cal);
+            db.SaveChanges();
+            return RedirectToAction("ConstructCalendar", "Calendar");
         }
     }
 }

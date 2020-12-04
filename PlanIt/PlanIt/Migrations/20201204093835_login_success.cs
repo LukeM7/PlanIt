@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlanIt.Migrations
 {
-    public partial class final : Migration
+    public partial class login_success : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,18 +48,16 @@ namespace PlanIt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Calendar",
                 columns: table => new
                 {
-                    User_Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Phone_Number = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
+                    Calendar_Id = table.Column<string>(nullable: false),
+                    username = table.Column<string>(nullable: true),
+                    password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.User_Id);
+                    table.PrimaryKey("PK_Calendar", x => x.Calendar_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,24 +167,6 @@ namespace PlanIt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Calendar",
-                columns: table => new
-                {
-                    Calendar_Id = table.Column<string>(nullable: false),
-                    User_Id = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Calendar", x => x.Calendar_Id);
-                    table.ForeignKey(
-                        name: "FK_Calendar_User_User_Id",
-                        column: x => x.User_Id,
-                        principalTable: "User",
-                        principalColumn: "User_Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
                 {
@@ -269,11 +249,6 @@ namespace PlanIt.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Calendar_User_Id",
-                table: "Calendar",
-                column: "User_Id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Category_Calender_Id",
                 table: "Category",
                 column: "Calender_Id");
@@ -315,9 +290,6 @@ namespace PlanIt.Migrations
 
             migrationBuilder.DropTable(
                 name: "Calendar");
-
-            migrationBuilder.DropTable(
-                name: "User");
         }
     }
 }

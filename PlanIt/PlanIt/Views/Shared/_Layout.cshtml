@@ -32,6 +32,7 @@
                 <div id="modalAddEvent" class="addEvent">
                     <!-- Content -->
                     <div class="modalAddEvent-content">
+<<<<<<< HEAD
                         <form class="modalAddEvent animate" asp-controller="Calendar" asp-action="AddEvent" method="post">
                             <div class="modalContainer">
                                 <div class="addEvent-row">
@@ -45,28 +46,40 @@
                                             <!-- Don't worry about it -->
                                         </select>
                                     </div>
+=======
+                        <div class="modalContainer">
+                            <div class="addEvent-row">
+                                <span class="square" id="eventModalLabel"></span>
+                                <input type="text" id="eventTitle" placeholder="Title" required />
+                                <div>
+                                    <textarea id="eventDescription" placeholder="Description (Optional)"></textarea>
+>>>>>>> c7be3804dcdf4daffabe93c74ac39c4c5a527c24
                                 </div>
-
-                                <div class="addEvent-row">
-                                    <div class="field">
-                                        <label for="eventTime" class="fieldLabel">Time</label>
-                                        <input type="time" id="eventTime" placeholder="12:00pm" />
-                                        <input type="date" id="eventDate" />
-                                    </div>
-                                    <div class="field">
-                                        <label for="eventHours" class="fieldLabel">Duration</label>
-                                        <input type="number" value="0" min="0" max="24" id="eventHours" class="eventDuration" />
-                                        <span>Hours</span>
-                                        <input type="number" value="30" min="0" max="60" id="eventMinutes" class="eventDuration" />
-                                        <span>Minutes</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="addEvent-row">
-                                    <button type="submit" id="btnCreateEvent">Create Event</button>
+                                <div class="custom-select">
+                                    <select name="ctgId_ctgIndex" id="categories_ev">
+                                        <!-- Don't worry about it -->
+                                    </select>
                                 </div>
                             </div>
-                        </form>
+
+                            <div class="addEvent-row">
+                                <div class="field">
+                                    <label for="eventTime" class="fieldLabel">Time</label>
+                                    <input type="time" id="eventTime" placeholder="12:00pm" />
+                                    <input type="date" id="eventDate" />
+                                </div>
+                                <div class="field">
+                                    <label for="eventHours" class="fieldLabel">Duration</label>
+                                    <input type="number"  value="0" min="0" max="24" id="eventHours" class="eventDuration" />
+                                    <span>Hours</span>
+                                    <input type="number"  value="30" min="0" max="60" id="eventMinutes" class="eventDuration" />
+                                    <span>Minutes</span>
+                                </div>
+                            </div>
+
+                            <div class="addEvent-row" id="addEvent-submitRow">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

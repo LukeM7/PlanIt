@@ -36,9 +36,9 @@ function clearCtgSelector() {
 //CREATOR CONFIGURATION
 function initEventModal_creator(modelJSON) {
     setModalLabel('Event Creator');
-    setButtonLabel('Create Event')
     initModalCtgSelect_creator(modelJSON);
     initModalInputs_creator();
+    initSubmitButton_creator();
 }
 
 
@@ -47,9 +47,6 @@ function setModalLabel(title) {
     document.getElementById('eventModalLabel').innerHTML = title;
 }
 
-function setButtonLabel(title) {
-    document.getElementById('btnCreateEvent').innerHTML = title;
-}
 
 // Initialize the Add Event Modal UI with the user's categories list
 function initModalCtgSelect_creator(modelJSON) {
@@ -63,11 +60,16 @@ function initModalCtgSelect_creator(modelJSON) {
         // Create a new HTML option tag for each category
         var ctgOption = document.createElement('option');
 
+<<<<<<< HEAD
         ctgOption.value = ctg.CategoryId + "-" + i.toString();
+=======
+        ctgOption.value = ctg.Category_Id + "_" + i.toString();
+>>>>>>> c7be3804dcdf4daffabe93c74ac39c4c5a527c24
         ctgOption.innerHTML = ctg.Title;
         ctgOption.style.backgroundColor = ctg.Color;
         ctgChooser.appendChild(ctgOption);
     }
+
 }
 
 function initModalInputs_creator() {
@@ -75,6 +77,47 @@ function initModalInputs_creator() {
     document.getElementById('eventTime').value = "12:00";
     document.getElementById('eventHours').value = "0";
     document.getElementById('eventMinutes').value = "30";
+}
+
+function initSubmitButton_creator() {
+    var submitBtn = document.createElement('button');
+    submitBtn.id = "btnCreateEvent";
+    submitBtn.innerHTML = "Create Event";
+    submitBtn.addEventListener('click', function () {
+        if (allFormsFilled()) {
+            var id_index;
+            var title;
+            var startDate;
+            var hours;
+            var minutes;
+            var startTime;
+            var description;
+            $.ajax({
+                url: "Calendar/AddEvent",
+                type: 'POST',
+                data: {
+                    ctgId_ctgIndex: id_index,
+                    evtTitle: title,
+                    evtStartDate: startDate,
+                    evtHours: hours, 
+                    evtMinutes: minutes,
+                    evtStartTimeStr: startTime, 
+                    evtDescription: description,
+                },
+                success: function (result) {
+                    alert('event add called');
+                    modelJSON = JSON.parse(result);
+                    displayEvents(modelJSON, dateToString(currentDisplayedDate));
+                };
+            });
+        }
+    });
+    document.getElementById('addEvent-submitRow').appendChild(submitBtn);
+}
+
+function allFormsFilled() {
+    var 
+    return true;
 }
 //END CREATOR CONFIGURATION
 
@@ -115,7 +158,7 @@ function initModalCtgSelect_editor(modelJSON, eventCtgTitle) {
         ctgChooser.appendChild(ctgOption);
 
         //pre-set to event's category 
-        if (eventCtgTitle == ctgOption.value) {
+        if (eventCtgTitle == ctgOption.innerHTML) {
             const val = ctgOption.value;
             ctgChooser.value = val;
         }
