@@ -51,9 +51,9 @@ namespace PlanIt.Controllers
 
         private Event_Model Find_Event (string evt_id)
         {
-            foreach(var i in db.Event)
+            foreach(var evnt in db.Event)
             {
-                if (i.Event_Id == evt_id) return i;
+                if (i.Event_Id == evt_id) return evnt;
             }
             return null;
         }
@@ -209,7 +209,7 @@ namespace PlanIt.Controllers
             var duration = evt.Duration;
 
             //call update to database to construct new event...
-
+            db.Update(evt);
 
 
             return RedirectToAction("Index");
