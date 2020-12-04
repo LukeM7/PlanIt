@@ -33,18 +33,22 @@
     }
 
 #btnAddEvent {
-    background-color: transparent;
+    background-color: #f4f4f2;
     font-size: 3rem;
-    color: white;
+    color: darkgray;
     margin: 10px 0;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
     width: 10%;
+    outline: none;
+    transition-duration: 0.4s;
 }
 
 #btnAddEvent:hover {
     opacity: 0.8;
-    color: #4CAF50;
+    background-color: #cccfd7;
+    color: white;
 }
 
 .addEvent {
@@ -63,6 +67,7 @@
     animation-name: fadeIn;
     animation-duration: 0.4s
 }
+
 
 .modalContainer {
     background-color: #f4f4f2;
