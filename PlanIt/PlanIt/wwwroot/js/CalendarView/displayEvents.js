@@ -187,7 +187,6 @@ function addDeleteBtn(eventSpan, evtId, evtIndex, ctgIndex) {
                 evt_index: evtIndex,
             },
             success: function (result) {
-                alert('delete success');
                 modelJSON = JSON.parse(result);
                 displayEvents(modelJSON, dateToString(currentDisplayedDate));
             },

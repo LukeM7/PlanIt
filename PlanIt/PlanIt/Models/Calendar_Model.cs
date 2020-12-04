@@ -19,7 +19,7 @@ namespace PlanIt.Models
             this.username = "admin";
             this.password = "123";
             this.Categories = new List<Category_Model>();
-            this.Categories.Add(new Category_Model() { Title = "General", Color = "#bc99cd" });
+            this.Categories.Add(new Category_Model() { Title = "General", Color = "#839b97" });
         }
         public Calendar_Model(List<Category_Model> ctgs)
         {
