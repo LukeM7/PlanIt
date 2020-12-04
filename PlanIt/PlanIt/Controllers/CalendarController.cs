@@ -31,9 +31,9 @@ namespace PlanIt.Controllers
 
         private Calendar_Model Find_Calendar(string cal_id)
         {
-            foreach(var i in db.Calendar)
+            foreach(var cal in db.Calendar)
             {
-                if (i.Calendar_Id == cal_id) return i;
+                if (cal.Calendar_Id == cal_id) return cal;
             }
 
             return null;
@@ -41,9 +41,9 @@ namespace PlanIt.Controllers
 
         private Category_Model Find_Category(string cat_id)
         {
-            foreach (var i in db.Category)
+            foreach (var ctg in db.Category)
             {
-                if (i.Category_Id == cat_id) return i;
+                if (ctg.Category_Id == cat_id) return ctg;
             }
 
             return null;
@@ -233,8 +233,8 @@ namespace PlanIt.Controllers
             //figure out which category this event should go into
 
             //call update to database to construct new event...
-            //db.Update(evt);
 
+            db.Update(evt);
 
             return Json(calVM.userCalendar.ToJson());
         }

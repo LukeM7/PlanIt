@@ -64,7 +64,7 @@ namespace PlanIt
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Calendar}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
 
                 endpoints.MapRazorPages();
             });

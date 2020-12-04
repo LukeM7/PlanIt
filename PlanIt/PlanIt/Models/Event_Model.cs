@@ -49,13 +49,5 @@ namespace PlanIt.Models
         [ForeignKey("Category_Id")]
         public virtual Category_Model Category { get; set; }
 
-
-
-        /*
-        public string Entry_Id { get; set; }
-
-        [ForeignKey("Entry_Id")]
-        public Entry_Model Entry { get; set; }
-        */
     }
 }
