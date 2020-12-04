@@ -39,6 +39,10 @@
     border-radius: 50%;
     cursor: pointer;
     width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     outline: none;
     transition-duration: 0.4s;
 }
