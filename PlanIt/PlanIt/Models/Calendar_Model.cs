@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Html;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
@@ -35,10 +36,13 @@ namespace PlanIt.Models
         
         public string ToJson()
         {
-            Console.WriteLine("serialization being called");
-            Console.WriteLine(JsonSerializer.Serialize(this));
+            Console.WriteLine("calendar serialization called");
             return JsonSerializer.Serialize(this);
         }
-        
+        public HtmlString ToJsonHtmlString()
+        {
+            return new HtmlString(this.ToJson());
+        }
+
     }
 }

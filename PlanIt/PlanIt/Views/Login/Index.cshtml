@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Login";
-    Layout = "";
+    Layout = null;
 }
 
 <head>
@@ -35,7 +35,7 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-                <form class="login100-form validate-form flex-sb flex-w">
+                <form class="login100-form validate-form flex-sb flex-w" asp-controller="Login" asp-action="Authenticate" method="post">
                     <span class="login100-form-title p-b-32">
                         User Login
                     </span>
@@ -44,7 +44,7 @@
                         Username
                     </span>
                     <div class="wrap-input100 validate-input m-b-36" data-validate="Username is required">
-                        <input class="input100" type="text" name="username">
+                        <input class="input100" type="text" name="username" id="login-username">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -55,7 +55,7 @@
                         <span class="btn-show-pass">
                             <i class="fa fa-eye"></i>
                         </span>
-                        <input class="input100" type="password" name="pass">
+                        <input class="input100" type="password" name="password" id="login-password">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -104,5 +104,4 @@
     <script src="~/vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="~/js/LoginView/validation.js"></script>
-
 </body>

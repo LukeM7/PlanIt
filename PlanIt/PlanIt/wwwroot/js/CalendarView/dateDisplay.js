@@ -6,22 +6,22 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
 const weekDayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-// 'YYYY-MM-DD'
-function parseDate(s) {
-    //  the /\D/ here is a metacharacter for any value that is a nondigit
 
-    var d = s.split(/\D/);
-    //d = [YYYY, MM, DD]
-    //d[1] is being decremented by 1, for some reason this has to happen.
-    return new Date(d[0], --d[1], d[2]);
-}
 
+// in: date object
 function dateToString(date) {
 //months start at zero, so add 1 to month value:
 
-    return date.getFullYear().toString()
-        + '-' + (date.getMonth() + 1).toString()
-        + '-' + date.getDate().toString();
+    const fullYear = date.getFullYear().toString();
+    const month = (date.getMonth() + 1).toString();
+    var day = date.getDate();
+    if (day < 10) {
+        day = "0" + day.toString();
+    }
+    else {
+        day = day.getDate().toString();
+    }
+    return fullYear + '-' + month + '-' + day;
 }
 
 function dateAsHeadline(date) {
@@ -75,17 +75,15 @@ function setDateHeadlineToday() {
 }
 
 
-//IN: 'YYYY-MM-DD' 
-function updateCalendarDateDisplay(modelJSON, dateString) {
+function updateCalendarDateDisplay(modelJSON) {
     //check whether today's headline is running (it's a special refreshing function)   
     var todayH = document.getElementById('today-headline');
     if (todayH != null) {
         todayH.parentElement.removeChild(todayH);
     }
 
-    currentDisplayedDate = parseDate(dateString); //returns actual date object
-    const today = new Date();
 
+    const today = new Date();
     const headline = dateAsHeadline(currentDisplayedDate);   
     if (dateAsHeadline(today) == headline) {
         setDateHeadlineToday();  
@@ -93,23 +91,23 @@ function updateCalendarDateDisplay(modelJSON, dateString) {
     else {
         document.getElementById('calendar-headline').innerHTML = headline;
     }
-    displayEvents(modelJSON, dateString); 
+    displayEvents(modelJSON, dateToString(currentDisplayedDate)); 
 }
 
 
 
 function showToday(modelJSON) {
-    setDateHeadlineToday(); //sets currentDisplayDate to today 
-    updateCalendarDateDisplay(modelJSON, dateToString(currentDisplayedDate));
+    currentDisplayedDate = new Date();
+    updateCalendarDateDisplay(modelJSON);
 }
 
 function showPreviousDay(modelJSON) {
     currentDisplayedDate.setDate(currentDisplayedDate.getDate() - 1);
-    updateCalendarDateDisplay(modelJSON, dateToString(currentDisplayedDate));
+    updateCalendarDateDisplay(modelJSON);
 }
 
 function showNextDay(modelJSON) {
     currentDisplayedDate.setDate(currentDisplayedDate.getDate() + 1);
-    updateCalendarDateDisplay(modelJSON, dateToString(currentDisplayedDate));
+    updateCalendarDateDisplay(modelJSON);
 }
 

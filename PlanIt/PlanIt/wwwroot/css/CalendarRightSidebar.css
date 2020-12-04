@@ -53,7 +53,7 @@
     padding-top: 8px;
     overflow-y: scroll;
 }
-#edit-category-menu {
+.category-creator-menu {
     position: absolute;
     right: calc(100% + 8px);
     z-index: 100;
@@ -64,43 +64,43 @@
     display: flex;
     flex-direction: column;
 }
-#edit-ctg-menu-title-container {
+#ctg-creatormenu-title-container {
     height: 24px;
     flex: none;
 }
-#edit-ctg-menu-exit-btn {
+#ctg-creatormenu-exit-btn {
     display: none;
 }
-#edit-ctg-menu-exit-label {
+#ctg-creatormenu-exit-label {
     margin-left: 4px;
     display: inline;
     font-size: 18px;
     color: black;
 }
-    #edit-ctg-menu-exit-label:hover {
+    #ctg-creatormenu-exit-label:hover {
         color: #bbbfca;
     }
-#edit-ctg-menu-title {
+#ctg-creatormenu-title {
     font-size: 20px;
     margin-left: 8px;
     color: black;
 }
 
-.edit-ctg-menu-editing-container {
+.ctg-creatormenu-editing-container {
     flex: auto;
     margin: 4px;
 }
-.edit-ctg-menu-input {
+.ctg-creatormenu-input {
     height: 100%;
     width: 50%;
 }
 
-#edit-ctg-menu-save-container {
+#ctg-creatormenu-save-container {
     height: 24px;
     font-size: 24px;
     flex: none;
 }
-#edit-ctg-menu-save-btn {
+#ctg-creatormenu-save-btn {
     display: inline-block;
     height: 100%;
     width: 50%;

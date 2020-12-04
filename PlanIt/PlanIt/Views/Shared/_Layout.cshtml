@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/css/layoutTopNavbar.css" />
     <link rel="stylesheet" href="~/css/CalendarRightSidebar.css" />
     <link rel="stylesheet" href="~/css/calendarMainView.css" />
-    <link rel="stylesheet" href="~/css/addEvent.css" />
+    <link rel="stylesheet" href="~/css/eventCreator.css" />
 
     <!--temporary object declaration-->
     <script src="~/js/categoriesobject.js"></script>
@@ -20,12 +20,6 @@
     <!--ICONS-->
     <script src="https://kit.fontawesome.com/88c449e1f8.js" crossorigin="anonymous"></script>
     <title>PlanIt</title>
-    <script>
-        //var True = true;
-        var modelJSON = @(Html.Raw(Model.userCalendar.ToJson()));
-        var toggleAllCtgsVal = @(Model.ToggleAllCategoriesChecker);
-        alert(toggleAllCtgsVal);
-    </script>
 </head>
 <body class="body-layout" id="body-layout">
     
@@ -33,72 +27,44 @@
         <div class="navbar-right-half-container">
             <div class="nrp-upper-half">
                 <!-- Add Event Button -->
-                <button id="btnAddEvent">Event</button>
+                <button id="btnAddEvent">+</button>
                 <!-- Modal Add Event UI -->
                 <div id="modalAddEvent" class="addEvent">
                     <!-- Content -->
                     <div class="modalAddEvent-content">
-                        <form class="modalAddEvent animate" action="/add_event_page.php" method="post">
-                            <div class="container">
+                        <form class="modalAddEvent animate" asp-controller="Calendar" asp-action="AddEvent" method="post">
+                            <div class="modalContainer">
                                 <div class="addEvent-row">
-                                    <span class="square">Event Creator</span>
-                                    <input type="text" id="title" name="title" placeholder="Title" required />
+                                    <span class="square" id="eventModalLabel"></span>
+                                    <input type="text" id="eventTitle" name="title" placeholder="Title" required />
                                     <div>
-                                        <textarea id="description" name="description" placeholder="Description (Optional)"></textarea>
+                                        <textarea id="eventDescription" name="description" placeholder="Description (Optional)"></textarea>
                                     </div>
                                     <div class="custom-select">
                                         <select name="categories_ev" id="categories_ev">
-                                            <option value="Personal">Personal</option>
-                                            <option value="Travel">Travel</option>
-                                            <option value="School">School</option>
-                                            <option value="Work">Work</option>
+                                            <!-- Don't worry about it -->
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="addEvent-row">
                                     <div class="field">
-                                        <label for="time">Time (Optional):</label>
-                                        <input type="time" id="time" placeholder="12:00pm" />
-                                        <input type="date" id="date" />
+                                        <label for="eventTime" class="fieldLabel">Time</label>
+                                        <input type="time" id="eventTime" placeholder="12:00pm" />
+                                        <input type="date" id="eventDate" />
                                     </div>
                                     <div class="field">
-                                        <label for="duration">Duration</label>
-                                        <input type="number" min="0" id="duration" />
-                                        <select name="duration-select" id="duration-select">
-                                            <option value="Minutes">Minutes</option>
-                                            <option value="Hours">Hours</option>
-                                        </select>
+                                        <label for="eventHours" class="fieldLabel">Duration</label>
+                                        <input type="number" value="0" min="0" max="24" id="eventHours" class="eventDuration" />
+                                        <span>Hours</span>
+                                        <input type="number" value="30" min="0" max="60" id="eventMinutes" class="eventDuration" />
+                                        <span>Minutes</span>
                                     </div>
                                 </div>
-
+                                
                                 <div class="addEvent-row">
-                                    <div class="field">
-                                        <label for="recurr-table">Recurrences (Optional)</label>
-                                        <table id="recurr-table" class="recurr-table" width="50%">
-                                            <tr>
-                                                <td>
-                                                    <input type="radio" class="view-selector" name="view-selector" id="daily-opt" />
-                                                    <label class="view-selector-label" for="day-view">Daily</label>
-                                                </td>
-                                                <td>
-                                                    <input type="radio" class="view-selector" name="view-selector" id="weekly-opt" />
-                                                    <label class="view-selector-label" for="week-view">Weekly</label>
-                                                </td>
-                                                <td>
-                                                    <input type="radio" class="view-selector" name="view-selector" id="monthly-opt" />
-                                                    <label class="view-selector-label" for="month-view">Monthly</label>
-                                                </td>
-                                                <td>
-                                                    <input type="radio" class="view-selector" name="view-selector" id="yearly-opt" />
-                                                    <label class="view-selector-label" for="month-view">Yearly</label>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
                                     <button type="submit" id="btnCreateEvent">Create Event</button>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -135,7 +101,7 @@
         @RenderBody()
     </div>
 
-    <script src="~/js/Layout/addEvent.js"></script>
+    <script src="~/js/Layout/eventCreator.js"></script>
     <script src="~/js/Layout/dateNavigation.js"></script>
     <script src="~/js/Layout/layoutInit.js"></script>
 
