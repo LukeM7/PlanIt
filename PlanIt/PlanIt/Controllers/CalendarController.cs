@@ -93,14 +93,11 @@ namespace PlanIt.Controllers
         [HttpPost]
         public JsonResult EditCategory(int index, string ctgTitle, string ctgColor)
         {
-            Console.WriteLine(index);
-            Console.WriteLine(ctgTitle);
-            Console.WriteLine(ctgColor);
+
             //call update to database on category with particluar id and write the values...
             Category_Model ctg = calVM.userCalendar.Categories[index];
             ctg.Color = ctgColor;
             ctg.Title = ctgTitle;
-            Console.WriteLine(ctg.Color);
 
             //try
             //{
@@ -123,6 +120,7 @@ namespace PlanIt.Controllers
             return Json(calVM.userCalendar.ToJson());
         }
 
+        [HttpPost]
         public JsonResult ToggleAllCategories(bool toggleValue)
         {
 
@@ -130,29 +128,31 @@ namespace PlanIt.Controllers
             {
                 category.isToggled = toggleValue;
             }
-            calVM.ToggleAllCategoriesChecker = !toggleValue;
+            //calVM.ToggleAllCategoriesChecker = !toggleValue;
             return Json(calVM.userCalendar.ToJson());
         }
-        [HttpPost]
-        public ActionResult AddCategory(Category_Model ctg)
-        {
-            var title = ctg.Title;
-            var color = ctg.Color;
-            //call update to database to construct brand new category...
-            Calendar_Model cal = Find_Calendar(ctg.Calendar_Id);
 
-            try
-            {
-                cal.Categories.Add(ctg);
-                db.Update(cal);
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Attempted to add a null category: " + e.Message);
-                throw;
-            }
-            db.SaveChanges();
-            return RedirectToAction("Index");
+        [HttpPost]
+        public JsonResult AddCategory(string ctgTitle, string ctgColor)
+        {
+            var ctg = new Category_Model(ctgTitle, ctgColor, true, new List<Event_Model>());
+            calVM.userCalendar.Categories.Add(ctg);
+            //call update to database to construct brand new category...
+            //calVM.userCalendar.Calendar_Id = Find_Calendar(ctg.Calendar_Id);
+
+            //try
+            //{
+            //    cal.Categories.Add(ctg);
+            //    db.Update(cal);
+            //}
+            //catch (NullReferenceException e)
+            //{
+            //    Console.WriteLine("Attempted to add a null category: " + e.Message);
+            //    throw;
+            //}
+            //db.SaveChanges();
+
+            return Json(calVM.userCalendar.ToJson());
         }
 
         [HttpPost]
