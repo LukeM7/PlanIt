@@ -95,6 +95,7 @@ namespace PlanIt.Controllers
             string ctg_id,
             int ctg_index)
         {
+            Console.WriteLine(ctg_index);
             calVM.userCalendar.Categories[ctg_index].isToggled = !calVM.userCalendar.Categories[ctg_index].isToggled;
             return Json(calVM.userCalendar.ToJson());
         }
@@ -244,6 +245,7 @@ namespace PlanIt.Controllers
         [HttpPost]
         public ActionResult DeleteEvent(
             string evt_id,
+            int ctg_index,
             int evt_index,
             string evtTitle,
             string evtStartDate,
