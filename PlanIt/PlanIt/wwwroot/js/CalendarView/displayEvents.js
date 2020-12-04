@@ -69,29 +69,29 @@ function swap(arr, a, b) {
     arr[b] = temp;
 }
 
-function generateColoredStructure(events, eventColors) {
+function generateColoredStructure(events, eventCtgTitlesColors) {
     var numEvents = events.length;
     if (numEvents <= 0) {
         return;
     }
     var layers = [[events[0]]];
-    var colors = [[eventColors[0]]];
+    var titles_colors = [[eventCtgTitlesColors[0]]];
     for (var i = 1; i < events.length; i++) {
         
         var evt = events[i];
-        var evtClr = eventColors[i]
+        var evtClr = eventCtgTitlesColors[i]
         const eventStart = evt.StartTime;
         const eventEnd = eventStart + (evt.Duration);
         for (var layer = 0; layer < layers.length; layer++) {
             if (layerIsOpen(eventStart, eventEnd, layers[layer])) {
                 layers[layer].push(evt);
-                colors[layer].push(evtClr);
+                titles_colors[layer].push(evtClr);
                 break;
             }
             else {
                 if (layer == layers.length - 1) {
                     layers.push([evt]);
-                    colors.push([evtClr]);
+                    titles_colors.push([evtClr]);
                     break;
                 }
             }
@@ -100,7 +100,7 @@ function generateColoredStructure(events, eventColors) {
 
     return {
         layers,
-        colors
+        titles_colors
     };
 }
 
@@ -112,51 +112,61 @@ function flushEventsContainer(container) {
     }
 }
 
-//forDate must be a string with the following format: " YYYY-MM-DD " 
+//forDate must be a string with the following format: " YYYY-MM-DD "
+
 function displayEvents(modelJSON, forDate) {
     var container = document.getElementById('event-inner-container');
     flushEventsContainer(container);
 
     var eventsOnDate = [];
-    var fruits = [];
-    
+    var eventCtgTitlesColors = [];
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
         if (ctg.isToggled) {
             for (j = 0; j < ctg.Events.length; j++) {
                 if (ctg.Events[j].StartDate == forDate) {
                     eventsOnDate.push(ctg.Events[j]);
-                    fruits.push(ctg.Color);
+                    eventCtgTitlesColors.push(ctg.Title + "_" + ctg.Color);
                 }
             }
         }
     }
     if (eventsOnDate.length > 0) {
-        var eventLayers = generateColoredStructure(eventsOnDate, fruits);
+        var counter = 0;
+        var eventLayers = generateColoredStructure(eventsOnDate, eventCtgTitlesColors);
         for (var layer = 0; layer < eventLayers.layers.length; layer++) {
             for (var i = 0; i < eventLayers.layers[layer].length; i++) {
-
+                
                 const event = eventLayers.layers[layer][i];
-                const color = eventLayers.colors[layer][i];
+                const title_color = eventLayers.titles_colors[layer][i].split("_");
+                const ctgTitle = title_color[0];
+                const color = title_color[1];
 
                 var eventSpan = document.createElement('span');
                 eventSpan.className = 'event';
-                eventSpan.id = 'event-withID-' + event.Title + i.toString();
+                eventSpan.id = 'event-' + event.Title + "-" + counter.toString();
+                const evtId = eventSpan.id;
+
+                const evt = event;
                 eventSpan.addEventListener('click', function () {
-                    alert('bring up event editor for ' + eventSpan.id);
+                    initEventModal_editor(modelJSON, evt, evtId, ctgTitle);
+                    activateEventModal_editor();
                 });
 
                 eventSpan.style.width = calculateWidth(event.Duration);
                 eventSpan.style.left = calculateHorizPosition(event.StartTime);
-                eventSpan.style.bottom = (layer * 42).toString() + 'px';
+                eventSpan.style.bottom = (layer * 43).toString() + 'px';
                 eventSpan.style.backgroundColor = color;
                 eventSpan.innerHTML = event.Title;
                 container.appendChild(eventSpan);
+
+                counter++;
             }
         }
     }
     
 }
+
 
 
 

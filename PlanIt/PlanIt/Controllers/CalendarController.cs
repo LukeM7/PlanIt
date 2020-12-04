@@ -5,8 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using PlanIt.Data;
 using PlanIt.ViewModels;
@@ -57,6 +59,7 @@ namespace PlanIt.Controllers
         }
 
         public static CalendarViewModel calVM = new CalendarViewModel();
+        
         //GET: Calendar
         public IActionResult Index()
         {
@@ -65,62 +68,71 @@ namespace PlanIt.Controllers
             user.Calendars[0].Categories.Add(new Category_Model() { Title = "Test", Color = "#bc665c" });
             CalendarViewModel viewModel = new CalendarViewModel() { userCalendar = user.Calendars[0] };
             //build user's calendar by pulling from database
-            Console.WriteLine("index called");
-            return View(viewModel);
-        }
-        
-        [HttpPost]
-        public void Test(string data, int index)
-        {
-            Console.WriteLine("output from test with msg: " + data);
+            
+            
+            return View(calVM);
+
+
+            /*Calendar_Model calendar;
+            foreach(var i in db.Calendar)
+            {
+                if(i.User_Id == )
+            }*/
+
+            //Console.WriteLine("index called");
+            //return View(viewModel);
         }
 
-        [HttpPost]
-        public ActionResult EditCategory(Category_Model ctg)
+        [HttpGet]
+        public JsonResult GetModelJSON()
         {
-            var title = ctg.Title;
-            var color = ctg.Color;
+            return Json(calVM.userCalendar.ToJson());
+        }
+
+
+        [HttpPost]
+        public JsonResult EditCategory(int index, string ctgTitle, string ctgColor)
+        {
+            Console.WriteLine(index);
+            Console.WriteLine(ctgTitle);
+            Console.WriteLine(ctgColor);
             //call update to database on category with particluar id and write the values...
-            Category_Model fetched_category = Find_Category(ctg.Category_Id);
-            fetched_category.Color = ctg.Color;
-            fetched_category.Events = ctg.Events;
-            fetched_category.isToggled = ctg.isToggled;
-            fetched_category.Title = ctg.Title;
+            Category_Model ctg = calVM.userCalendar.Categories[index];
+            ctg.Color = ctgColor;
+            ctg.Title = ctgTitle;
+            Console.WriteLine(ctg.Color);
 
-            try
-            {
-                db.Update(fetched_category);
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Null reference error when attempting to edit category: " + e.Message);
-                throw;
-            }
-            db.SaveChanges();
+            //try
+            //{
+            //    db.Update(fetched_category);
+            //}
+            //catch (NullReferenceException e)
+            //{
+            //    Console.WriteLine("Null reference error when attempting to edit category: " + e.Message);
+            //    throw;
+            //}
+            //db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return Json(calVM.userCalendar.ToJson());
         }
 
         [HttpPost]
-        public IActionResult ToggleCategory(string id, int index)
+        public JsonResult ToggleCategory(string id, int index)
         {
-            Console.WriteLine("ToggleCategory: " + id);
-            Console.WriteLine("ToggleCategory: " + index.ToString());
-            Console.WriteLine("toggling " + calVM.userCalendar.Categories[index].Title + " off of " + calVM.userCalendar.Categories[index].isToggled.ToString());
             calVM.userCalendar.Categories[index].isToggled = !calVM.userCalendar.Categories[index].isToggled;
-            Console.WriteLine("now " + calVM.userCalendar.Categories[index].isToggled.ToString());
-            return RedirectToAction("Index");
+            return Json(calVM.userCalendar.ToJson());
         }
-        public IActionResult ToggleAllCategories(bool toggleValue)
+
+        public JsonResult ToggleAllCategories(bool toggleValue)
         {
 
             foreach (Category_Model category in calVM.userCalendar.Categories)
             {
                 category.isToggled = toggleValue;
             }
-            return RedirectToAction("Index");
+            calVM.ToggleAllCategoriesChecker = !toggleValue;
+            return Json(calVM.userCalendar.ToJson());
         }
-
         [HttpPost]
         public ActionResult AddCategory(Category_Model ctg)
         {
