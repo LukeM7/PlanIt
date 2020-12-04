@@ -31,26 +31,24 @@
 }
 
 #btnAddEvent {
-    background-color: #cccfd7;
-    font-size: 3rem;
-    color: darkgray;
+    font-size: 52px;
+    padding: 0;
+    color: #f4f4f2;
+    margin-right: 8px;
+    margin-bottom: 12px;
+    background-color: transparent;
     border: none;
-    border-radius: 50%;
     cursor: pointer;
-    padding: 30px 20px;
-    margin: 10px 0; /* Hard-coded to center vertically */
-    margin-right: 43rem; /* Hard-coded to move the button left */
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
     outline: none;
-    transition-duration: 0.4s;
 }
+    #btnAddEvent:hover {
+        color: #cccfd7;
+    }
 
-#btnAddEvent:hover {
-    background-color: #f4f4f2;
-    color: #4CAF50;
-}
 
 .addEvent {
     display: none; /* Hidden by default */

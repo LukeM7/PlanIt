@@ -9,7 +9,7 @@
 .nrp-upper-half {
     height: 50%;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 
 
