@@ -19,7 +19,6 @@ btn.onclick = function () {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
@@ -62,8 +61,9 @@ function initModalCtgSelect_creator(modelJSON) {
         // Create a new HTML option tag for each category
         var ctgOption = document.createElement('option');
 
-        ctgOption.value = ctg.Title;
+        ctgOption.value = ctg.CategoryId + "-" + i.toString();
         ctgOption.innerHTML = ctg.Title;
+        ctgOption.className = ctg.Title;
         ctgOption.style.backgroundColor = ctg.Color;
         ctgChooser.appendChild(ctgOption);
     }
@@ -160,4 +160,10 @@ function initModalInputs_editor(event) {
     document.getElementById('eventDate').value = event.StartDate;
 }
 
+
+// When the user selects an option, change the background color to the color of the category
+$("#categories_ev").change(function () {
+    var color = $("option:selected", this).attr("class");
+    $("#categories_ev").attr("class", color);
+});
 
