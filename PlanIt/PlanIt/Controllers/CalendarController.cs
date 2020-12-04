@@ -147,6 +147,7 @@ namespace PlanIt.Controllers
             string ctgColor)
         {
             var ctg = new Category_Model(ctgTitle, ctgColor, true, new List<Event_Model>());
+            Console.WriteLine(ctg.Title);
             calVM.userCalendar.Categories.Add(ctg);
             //call update to database to construct brand new category...
             //calVM.userCalendar.Calendar_Id = Find_Calendar(ctg.Calendar_Id);
@@ -236,6 +237,10 @@ namespace PlanIt.Controllers
             //figure out which category this event should go into
 
             //call update to database to construct new event...
+<<<<<<< HEAD
+=======
+            db.Update(newEvent);
+>>>>>>> 69997cb54a8e107b97542ea60e511d0e65b57473
 
             
 
