@@ -248,7 +248,7 @@ namespace PlanIt.Controllers
             float evtDuration,
             string evtDescription)
         {
-            Console.WriteLine("addEvent called with ctg_id: " + ctg_id);
+            Console.WriteLine("addEvent called with ctg_index: " + ctg_index);
             var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
             //figure out which category this event should go into
 
@@ -265,25 +265,21 @@ namespace PlanIt.Controllers
         public ActionResult DeleteEvent(
             string evt_id,
             int ctg_index,
-            int evt_index,
-            string evtTitle,
-            string evtStartDate,
-            float evtDuration,
-            float evtStartTime,
-            string evtDescription)
+            int evt_index)
         {
-            //call update to database to delete the event given its id...
-            Event_Model tbd_event = Find_Event(evt_id);
-            try
-            {
-                db.Remove(tbd_event);
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Attempted to delete a null event from database: " + e.Message);
-                throw;
-            }
-            db.SaveChanges();
+            calVM.userCalendar.Categories[ctg_index].Events.RemoveAt(evt_index);
+            //    //call update to database to delete the event given its id...
+            //    Event_Model tbd_event = Find_Event(evt_id);
+            //    try
+            //    {
+            //        db.Remove(tbd_event);
+            //    }
+            //    catch (NullReferenceException e)
+            //    {
+            //        Console.WriteLine("Attempted to delete a null event from database: " + e.Message);
+            //        throw;
+            //    }
+            //    db.SaveChanges();
             return RedirectToAction("Index");
         }
 

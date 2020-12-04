@@ -69,7 +69,7 @@ function initModalCtgSelect_creator(modelJSON) {
         // Create a new HTML option tag for each category
         var ctgOption = document.createElement('option');
 
-        ctgOption.value = ctg.CategoryId + "-" + i.toString();
+        ctgOption.value = ctg.Category_Id + "_" + i.toString();
         ctgOption.innerHTML = ctg.Title;
         ctgOption.style.backgroundColor = ctg.Color;
         ctgChooser.appendChild(ctgOption);
@@ -96,9 +96,9 @@ function initSubmitButton_creator() {
     submitBtn.innerHTML = "Create Event";
     submitBtn.addEventListener('click', function () {
         var id_index = document.getElementById('categories_ev').value.split('_');
-        var id = id_index[0];
-        var index = id_index[1];
-        index = parseInt(index);
+        var ctgId = id_index[0];
+        var ctgIndex = id_index[1];
+        ctgIndex = parseInt(ctgIndex);
         var title = document.getElementById('eventTitle').value;
         var startDate = document.getElementById('eventDate').value;
         var startTime = document.getElementById('eventTime').value;
@@ -114,8 +114,8 @@ function initSubmitButton_creator() {
                 url: "Calendar/AddEvent",
                 type: 'POST',
                 data: {
-                    ctg_id: id,
-                    ctg_index: index,
+                    ctg_id: ctgId,
+                    ctg_index: ctgIndex,
                     evtTitle: title,
                     evtStartDate: startDate,
                     evtStartTime: startTimeToFloat,
