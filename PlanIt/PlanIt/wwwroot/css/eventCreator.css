@@ -25,10 +25,6 @@
     padding-top: 7.5px;
 }
 
-.fieldLabel:hover {
-    background-color: #e8e8e8;
-}
-
 .field {
     height: 50%;
     padding: 16px 0px;
@@ -104,7 +100,8 @@
     text-align: center;
     font-size: 24px;
     float: right;
-    border: 1px solid black;
+    border: 1px solid #001a33;
+    border-radius: 5px;
 }
 
 #eventDescription {
@@ -116,7 +113,13 @@
     resize: none;
     height: 100px;
     background-color: #e8e8e8;
-    border: 1px solid black;
+    border: 1px solid #001a33;
+    border-radius: 5px;
+}
+
+#eventTitle:focus, #eventDescription:focus {
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    outline: none;
 }
 
 /* Categories Select dropdown */

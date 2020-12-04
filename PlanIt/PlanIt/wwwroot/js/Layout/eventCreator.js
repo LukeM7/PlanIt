@@ -55,6 +55,8 @@ function setButtonLabel(title) {
 function initModalCtgSelect_creator(modelJSON) {
     clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
+    ctgChooser.style.borderRadius = "4px";
+    ctgChooser.style.outline = "none";
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
 
@@ -63,7 +65,6 @@ function initModalCtgSelect_creator(modelJSON) {
 
         ctgOption.value = ctg.CategoryId + "-" + i.toString();
         ctgOption.innerHTML = ctg.Title;
-        ctgOption.className = ctg.Title;
         ctgOption.style.backgroundColor = ctg.Color;
         ctgChooser.appendChild(ctgOption);
     }
@@ -100,6 +101,8 @@ function initEventModal_editor(modelJSON, event, eventElementId, eventCtgTitle) 
 function initModalCtgSelect_editor(modelJSON, eventCtgTitle) {
     clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
+    ctgChooser.style.borderRadius = "4px";
+    ctgChooser.style.outline = "none";
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
 
@@ -162,8 +165,12 @@ function initModalInputs_editor(event) {
 
 
 // When the user selects an option, change the background color to the color of the category
-$("#categories_ev").change(function () {
-    var color = $("option:selected", this).attr("class");
-    $("#categories_ev").attr("class", color);
-});
+var selectCtg = document.getElementById("categories_ev");
+var setBgColor = function (select) {
+    select.style.backgroundColor = select.options[select.selectedIndex].style.backgroundColor;
+};
+
+selectCtg.onchange = function () {
+    setBgColor(this);
+};
 
