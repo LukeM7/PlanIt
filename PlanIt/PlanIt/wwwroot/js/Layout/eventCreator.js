@@ -33,6 +33,14 @@ function clearCtgSelector() {
         selector.removeChild(selector.lastChild);
     }
 }
+function allFormsFilled() {
+    return !(document.getElementById('eventTitle').value == "" ||
+        document.getElementById('categories_ev').value == "" ||
+        document.getElementById('eventTime').value == "" ||
+        document.getElementById('eventDate').value == "" ||
+        document.getElementById('eventHours').value == "" ||
+        document.getElementById('eventMinutes').value == "")
+}
 
 //CREATOR CONFIGURATION
 function initEventModal_creator(modelJSON) {
@@ -50,6 +58,7 @@ function setModalLabel(title) {
 
 
 // Initialize the Add Event Modal UI with the user's categories list
+
 function initModalCtgSelect_creator(modelJSON) {
     clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
@@ -110,10 +119,7 @@ function initSubmitButton_creator() {
     document.getElementById('addEvent-submitRow').appendChild(submitBtn);
 }
 
-function allFormsFilled() {
-    var 
-    return true;
-}
+
 //END CREATOR CONFIGURATION
 
 
