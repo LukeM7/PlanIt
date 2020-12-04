@@ -111,8 +111,8 @@ namespace PlanIt.Controllers
             {
                 category.isToggled = toggleValue;
             }
-            db.Update(calVM.userCalendar);
-            db.SaveChanges();
+            //db.Update(calVM.userCalendar);
+            //db.SaveChanges();
             //calVM.ToggleAllCategoriesChecker = !toggleValue;
             return Json(calVM.userCalendar.ToJson());
         }
@@ -150,6 +150,7 @@ namespace PlanIt.Controllers
             string ctgColor)
         {
             var ctg = new Category_Model(ctgTitle, ctgColor, true, new List<Event_Model>());
+            Console.WriteLine(ctg.Title);
             calVM.userCalendar.Categories.Add(ctg);
             //call update to database to construct brand new category...
             //calVM.userCalendar.Calendar_Id = Find_Calendar(ctg.Calendar_Id);
@@ -229,20 +230,20 @@ namespace PlanIt.Controllers
             int ctg_index,
             string evtTitle,
             string evtStartDate,
-            string evtHours, //convert to float in EditEvent function
-            string evtMinutes, //convert to float, divide by 60, add to evtHours
-            string evtStartTimeStr, //convert to float in EditEvent function
+            float evtDuration,
+            float evtStartTime, //convert to float in EditEvent function
             string evtDescription)
         {
-            float evtDuration = float.Parse(evtHours) + (float.Parse(evtMinutes) / 60);
-            float evtStartTime = float.Parse(evtStartTimeStr);
             var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
             //figure out which category this event should go into
 
+
+            calVM.userCalendar.Categories[ctg_index].Events.Add(newEvent);
+
             //call update to database to construct new event...
+            db.Update(newEvent);
 
             
-
             return Json(calVM.userCalendar.ToJson());
         }
 

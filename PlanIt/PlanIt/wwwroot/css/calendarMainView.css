@@ -15,14 +15,15 @@
 }
 
 .calendar-headline {
-    height: 40px;
+    height: auto;
+    padding: 10px;
     flex: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #bbbfca;
     border: solid #cfd3df 2px;
     font-size: 24px;
+    background: linear-gradient(to bottom right, #4d88ff, #ccddff)
 }
 
 .date-headline {
@@ -50,10 +51,12 @@
     position: absolute;
     border-radius: 8px;
     height: 42px;
+    text-align: center;
+    padding-top: 10px; /* Hard-coded to vertically align the text */
 }
-    .event:hover {
-        border: solid 2px #bbbfca;
-    }
+.event:hover {
+    border: solid 2px #bbbfca;
+}
 
 #timeline-img {
     flex: none;
