@@ -262,11 +262,12 @@ namespace PlanIt.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteEvent(
-            string evt_id,
+        public JsonResult DeleteEvent(
             int ctg_index,
+            string evt_id,
             int evt_index)
         {
+            Console.WriteLine("delete event for event at index: " + evt_index.ToString());
             calVM.userCalendar.Categories[ctg_index].Events.RemoveAt(evt_index);
             //    //call update to database to delete the event given its id...
             //    Event_Model tbd_event = Find_Event(evt_id);
@@ -280,7 +281,7 @@ namespace PlanIt.Controllers
             //        throw;
             //    }
             //    db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(calVM.userCalendar.ToJson());
         }
 
         

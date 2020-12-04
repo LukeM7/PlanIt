@@ -51,12 +51,33 @@
     position: absolute;
     border-radius: 8px;
     height: 42px;
-    text-align: center;
-    padding-top: 10px; /* Hard-coded to vertically align the text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-size: 16px;
 }
-.event:hover {
-    border: solid 2px #bbbfca;
+    .event:hover {
+        border: solid 2px #bbbfca;
+    }
+.event-title {
+    flex: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: inherit;
+    width: 80%;
+    height: 100%;
 }
+    
+#event-delete-button {
+    flex: none;
+    font-size: 16px;
+    margin-right: 4px;
+    width: 32px;
+    height: 80%;
+}
+
 
 #timeline-img {
     flex: none;
