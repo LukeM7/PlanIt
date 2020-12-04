@@ -98,7 +98,7 @@ namespace PlanIt.Controllers
             string ctg_id,
             int ctg_index)
         {
-            Console.WriteLine(ctg_index);
+            Console.WriteLine("category toggled, index: " + ctg_index.ToString());
             calVM.userCalendar.Categories[ctg_index].isToggled = !calVM.userCalendar.Categories[ctg_index].isToggled;
             return Json(calVM.userCalendar.ToJson());
         }
@@ -166,8 +166,8 @@ namespace PlanIt.Controllers
             //    throw;
             //}
             //db.SaveChanges();
-            db.Add(calVM.userCalendar);
-            db.SaveChanges();
+            //db.Add(calVM.userCalendar);
+            //db.SaveChanges();
             return Json(calVM.userCalendar.ToJson());
         }
 
@@ -248,7 +248,7 @@ namespace PlanIt.Controllers
             float evtDuration,
             string evtDescription)
         {
-            Console.WriteLine(ctg_id);
+            Console.WriteLine("addEvent called with ctg_id: " + ctg_id);
             var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
             //figure out which category this event should go into
 

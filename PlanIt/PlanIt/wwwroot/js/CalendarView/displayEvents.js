@@ -136,7 +136,7 @@ function displayEvents(modelJSON, forDate) {
         var eventLayers = generateColoredStructure(eventsOnDate, eventInd_ctgTitle_ctgColors);
         for (var layer = 0; layer < eventLayers.layers.length; layer++) {
             for (var i = 0; i < eventLayers.layers[layer].length; i++) {
-                
+
                 const event = eventLayers.layers[layer][i];
                 const id_title_color = eventLayers.ids_titles_colors[layer][i].split("_");
                 const evtIndex = id_title_color[0];

@@ -42,6 +42,7 @@
     colorInput.type = 'color';
     colorInput.id = 'ctg-creatormenu-color-input';
     colorInput.className = 'ctg-menu-input';
+    colorInput.value = '#495464';
     colorInput.addEventListener('change', function () {
         const clr = this.value;
         var title = document.getElementById('ctg-creatormenu-title-container');
@@ -87,7 +88,7 @@
             success: function (result) {
                 var modelJSON = JSON.parse(result);
                 buildCategoriesTable(modelJSON);
-                displayEvents(modelJSON);
+                displayEvents(modelJSON, dateToString(currentDisplayedDate));
                 menu.parentElement.removeChild(menu);
             },
         });
