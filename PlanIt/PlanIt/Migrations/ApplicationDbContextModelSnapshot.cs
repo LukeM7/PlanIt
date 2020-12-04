@@ -218,12 +218,13 @@ namespace PlanIt.Migrations
                     b.Property<string>("Calendar_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<string>("User_Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<string>("password")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("username")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Calendar_Id");
-
-                    b.HasIndex("User_Id");
 
                     b.ToTable("Calendar");
                 });
@@ -285,28 +286,6 @@ namespace PlanIt.Migrations
                     b.ToTable("Event");
                 });
 
-            modelBuilder.Entity("PlanIt.Models.User_Model", b =>
-                {
-                    b.Property<string>("User_Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Phone_Number")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("User_Id");
-
-                    b.ToTable("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -356,13 +335,6 @@ namespace PlanIt.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PlanIt.Models.Calendar_Model", b =>
-                {
-                    b.HasOne("PlanIt.Models.User_Model", "User")
-                        .WithMany("Calendars")
-                        .HasForeignKey("User_Id");
                 });
 
             modelBuilder.Entity("PlanIt.Models.Category_Model", b =>

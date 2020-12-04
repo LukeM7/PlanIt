@@ -11,12 +11,15 @@ namespace PlanIt.Models
 {
     public class Calendar_Model
     {
+
         public Calendar_Model()
         {
             var new_id = Guid.NewGuid();
             this.Calendar_Id = new_id.ToString();
+            this.username = "admin";
+            this.password = "123";
             this.Categories = new List<Category_Model>();
-            this.Categories.Add(new Category_Model() { Title = "General", Color = "#bc665c" });
+            this.Categories.Add(new Category_Model() { Title = "General", Color = "#bc99cd" });
         }
         public Calendar_Model(List<Category_Model> ctgs)
         {
@@ -27,13 +30,13 @@ namespace PlanIt.Models
 
         [Key]
         public string Calendar_Id { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
 
         public List<Category_Model> Categories { get; set; }
 
- 
-        public virtual string User_Id { get; set; }
-        [ForeignKey("User_Id")]
-        public virtual User_Model User { get; set; }
+
+
         
         public string ToJson()
         {

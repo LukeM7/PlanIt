@@ -10,13 +10,13 @@ namespace PlanIt.Models
     {
         public User_Model()
         {
-            Guid new_id = new Guid();
+            var new_id = Guid.NewGuid();
             this.User_Id = new_id.ToString();
             this.Name = "Test";
             this.Email = "0";
             this.Phone_Number = "0";
             this.Password = "0";
-            this.Calendars = new List<Calendar_Model>();
+            this.Calendar = new Calendar_Model();
         }
 
         [Key]
@@ -31,6 +31,6 @@ namespace PlanIt.Models
 
         public string Password { get; set; }
 
-        public List<Calendar_Model> Calendars { get; set; }
+        public Calendar_Model Calendar { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace PlanIt.Data
         }
 
         public DbSet<Category_Model> Category{ get; set; }
-        public DbSet<User_Model> User { get; set; }
+        //public DbSet<User_Model> User { get; set; }
         public DbSet<Calendar_Model> Calendar { get; set; }
         public DbSet<Event_Model> Event { get; set; }
 
@@ -23,10 +23,12 @@ namespace PlanIt.Data
         {
             return Category;
         }
+        /*
         public IEnumerable<User_Model> Get_Users()
         {
             return User;
         }
+        */
         public IEnumerable<Calendar_Model> Get_Calendars()
         {
             return Calendar;
