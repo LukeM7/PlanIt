@@ -151,11 +151,12 @@ function activateEventModal_editor() {
     modal.style.display = "block";
 }
 
-function initEventModal_editor(modelJSON, event, eventElementId, eventCtgTitle) {
+function initEventModal_editor(modelJSON, event, eventIndex, eventCtgTitle) {
     setModalLabel('Event Editor');
     initModalCtgSelect_editor(modelJSON, eventCtgTitle);
     initModalInputs_editor(event);
-    initSubmitButton_editor(event);
+    var initialCtgIndex = parseInt(document.getElementById("categories_ev").value);
+    initSubmitButton_editor(event, eventIndex, initialCtgIndex);
 }
 
 
@@ -226,7 +227,7 @@ function initModalInputs_editor(event) {
 }
 
 
-function initSubmitButton_editor(event) {
+function initSubmitButton_editor(event, eventIndex, initialCtgIndex) {
     var oldSubmitBtn = document.getElementById('btnCreateEvent');
     if (oldSubmitBtn != null) {
         oldSubmitBtn.parentElement.removeChild(oldSubmitBtn);
@@ -236,21 +237,14 @@ function initSubmitButton_editor(event) {
     submitBtn.innerHTML = "Save Changes";
     submitBtn.addEventListener('click', function () {
         var eventId = event.Event_Id;
-        var eventIndex = 2;
-        var index = document.getElementById('categories_ev').value.parseInt(index);
-        alert('ctg index: ' + index);
+        var eventIndexToInt = parseInt(eventIndex);
+        var newCtgIndex = parseInt(document.getElementById('categories_ev').value);
         var title = document.getElementById('eventTitle').value;
-        alert('title: ' + title)
         var startDate = document.getElementById('eventDate').value;
-        alert('startDate: ' + startDate)
         var startTime = document.getElementById('eventTime').value;
-        alert('startTime: ' + startTime)
         var hours = document.getElementById('eventHours').value;
-        alert('hours: ' + hours)
         var minutes = document.getElementById('eventMinutes').value;
-        alert('minutes: ' + minutes)
         var description = document.getElementById('eventDescription').value;
-        alert('description: ' + description)
 
         if (allFormsFilled(title, startDate, hours, minutes, startTime)) {
             startTime = startTime.split(':');
@@ -262,7 +256,8 @@ function initSubmitButton_editor(event) {
                 data: {
                     evt_id: eventId,
                     evt_index: eventIndex,
-                    ctg_index: index,
+                    ctg_index: initialCtgIndex,
+                    newCtg_index: newCtgIndex,
                     evtTitle: title,
                     evtStartDate: startDate,
                     evtStartTime: startTimeToFloat,
@@ -270,7 +265,9 @@ function initSubmitButton_editor(event) {
                     evtDescription: description,
                 },
                 success: function (result) {
+                    alert('successful edit');
                     modelJSON = JSON.parse(result);
+                    //buildCategoriesTable(modelJSON);
                     displayEvents(modelJSON, dateToString(currentDisplayedDate));
                     submitBtn.parentElement.removeChild(submitBtn);
                     modal.style.display = "none";

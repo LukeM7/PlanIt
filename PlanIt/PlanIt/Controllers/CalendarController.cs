@@ -199,16 +199,30 @@ namespace PlanIt.Controllers
             string evt_id,
             int evt_index,
             int ctg_index,
+            int newCtg_index,
             string evtTitle,
             string evtStartDate,
-            string evtHours, //convert to float in EditEvent function
-            string evtMinutes, //convert to float, divide by 60, add to evtHours
-            string evtStartTime, //convert to float in EditEvent function
+            float evtDuration,
+            float evtStartTime, //convert to float in EditEvent function
             string evtDescription)
         {
-            //somehow figure out which category this event should go into
-            //find category
-            // var evt calVM.userCalendar.Categories[figure this out].Events[index];
+            if (ctg_index != newCtg_index)
+            {
+                Console.WriteLine("Moved " + evtTitle + " to different category");
+                calVM.userCalendar.Categories[ctg_index].Events.RemoveAt(evt_index);
+                var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
+                calVM.userCalendar.Categories[newCtg_index].Events.Add(newEvent);
+            }
+            else
+            {
+                Console.WriteLine("Edited " + evtTitle + " but same category");
+                var evt = calVM.userCalendar.Categories[ctg_index].Events[evt_index];
+                evt.Title = evtTitle;
+                evt.StartDate = evtStartDate;
+                evt.Duration = evtDuration;
+                evt.StartTime = evtStartTime;
+                evt.Description = evtDescription;
+            }
 
             //try
             //{

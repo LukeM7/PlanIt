@@ -75,7 +75,7 @@ function generateColoredStructure(events, eventCtgTitlesColors) {
         return;
     }
     var layers = [[events[0]]];
-    var titles_colors = [[eventCtgTitlesColors[0]]];
+    var ids_titles_colors = [[eventCtgTitlesColors[0]]];
     for (var i = 1; i < events.length; i++) {
         
         var evt = events[i];
@@ -85,13 +85,13 @@ function generateColoredStructure(events, eventCtgTitlesColors) {
         for (var layer = 0; layer < layers.length; layer++) {
             if (layerIsOpen(eventStart, eventEnd, layers[layer])) {
                 layers[layer].push(evt);
-                titles_colors[layer].push(evtClr);
+                ids_titles_colors[layer].push(evtClr);
                 break;
             }
             else {
                 if (layer == layers.length - 1) {
                     layers.push([evt]);
-                    titles_colors.push([evtClr]);
+                    ids_titles_colors.push([evtClr]);
                     break;
                 }
             }
@@ -100,7 +100,7 @@ function generateColoredStructure(events, eventCtgTitlesColors) {
 
     return {
         layers,
-        titles_colors
+        ids_titles_colors
     };
 }
 
@@ -119,37 +119,37 @@ function displayEvents(modelJSON, forDate) {
     flushEventsContainer(container);
 
     var eventsOnDate = [];
-    var eventCtgTitlesColors = [];
+    var eventInd_ctgTitle_ctgColors = [];
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
         if (ctg.isToggled) {
             for (j = 0; j < ctg.Events.length; j++) {
                 if (ctg.Events[j].StartDate == forDate) {
                     eventsOnDate.push(ctg.Events[j]);
-                    eventCtgTitlesColors.push(ctg.Title + "_" + ctg.Color);
+                    eventInd_ctgTitle_ctgColors.push(j.toString() + "_" + ctg.Title + "_" + ctg.Color);
                 }
             }
         }
     }
     if (eventsOnDate.length > 0) {
         var counter = 0;
-        var eventLayers = generateColoredStructure(eventsOnDate, eventCtgTitlesColors);
+        var eventLayers = generateColoredStructure(eventsOnDate, eventInd_ctgTitle_ctgColors);
         for (var layer = 0; layer < eventLayers.layers.length; layer++) {
             for (var i = 0; i < eventLayers.layers[layer].length; i++) {
                 
                 const event = eventLayers.layers[layer][i];
-                const title_color = eventLayers.titles_colors[layer][i].split("_");
-                const ctgTitle = title_color[0];
-                const color = title_color[1];
+                const id_title_color = eventLayers.ids_titles_colors[layer][i].split("_");
+                const evtIndex = id_title_color[0];
+                const ctgTitle = id_title_color[1];
+                const color = id_title_color[2];
 
                 var eventSpan = document.createElement('span');
                 eventSpan.className = 'event';
                 eventSpan.id = 'event-' + event.Title + "-" + counter.toString();
-                const evtId = eventSpan.id;
 
                 const evt = event;
                 eventSpan.addEventListener('click', function () {
-                    initEventModal_editor(modelJSON, evt, evtId, ctgTitle);
+                    initEventModal_editor(modelJSON, evt, evtIndex, ctgTitle);
                     activateEventModal_editor();
                 });
 
