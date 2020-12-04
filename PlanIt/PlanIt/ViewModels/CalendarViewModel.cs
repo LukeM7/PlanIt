@@ -60,6 +60,3 @@ namespace PlanIt.ViewModels
         }
     }
 }
-
-
-

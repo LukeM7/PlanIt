@@ -120,6 +120,8 @@ namespace PlanIt.Controllers
         public JsonResult ToggleCategory(string id, int index)
         {
             calVM.userCalendar.Categories[index].isToggled = !calVM.userCalendar.Categories[index].isToggled;
+            db.Update(calVM.userCalendar);
+            db.SaveChanges();
             return Json(calVM.userCalendar.ToJson());
         }
 

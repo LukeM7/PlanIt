@@ -16,6 +16,7 @@ namespace PlanIt.Models
             var new_id = Guid.NewGuid();
             this.Calendar_Id = new_id.ToString();
             this.Categories = new List<Category_Model>();
+            this.Categories.Add(new Category_Model() { Title = "General", Color = "#bc665c" });
         }
         public Calendar_Model(List<Category_Model> ctgs)
         {

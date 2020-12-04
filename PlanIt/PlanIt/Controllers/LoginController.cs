@@ -20,7 +20,10 @@ namespace PlanIt.Controllers
         {
             foreach (var i in db.User)
             {
-                if (i.Name == name && i.Password == password) return i;
+                if (i.Name == name && i.Password == password)
+                {
+                    return i;
+                }
             }
 
             return null;
@@ -32,9 +35,9 @@ namespace PlanIt.Controllers
         }
         
         [HttpPost]
-        public IActionResult Authenticate(string username, string pass)
+        public IActionResult Authenticate(string username, string password)
         {
-            User_Model user = Find_User(username, pass);
+            User_Model user = Find_User(username, password);
             try
             {
                 if(user != null)
