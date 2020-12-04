@@ -11,22 +11,22 @@
     titleContainer.id = 'ctg-creatormenu-title-container';
     titleContainer.style.backgroundColor = '#e8e8e8';
 
-    var xButton = document.createElement('input');
-    xButton.id = 'ctg-creatormenu-exit-btn';
-    xButton.className = 'ctg-menu-exit-btn';
-    xButton.type = 'button';
-    xButton.addEventListener('click', function () {
-        menu.parentElement.removeChild(menu);
-    });
+        var xButton = document.createElement('input');
+        xButton.id = 'ctg-creatormenu-exit-btn';
+        xButton.className = 'ctg-menu-exit-btn';
+        xButton.type = 'button';
+        xButton.addEventListener('click', function () {
+            menu.parentElement.removeChild(menu);
+        });
 
-    var xButtonLabel = document.createElement('label');
-    xButtonLabel.className = 'ctg-menu-exit-label';
-    xButtonLabel.innerHTML = '<span class="fas fa-times"></span>';
-    xButtonLabel.htmlFor = xButton.id;
+        var xButtonLabel = document.createElement('label');
+        xButtonLabel.className = 'ctg-menu-exit-label';
+        xButtonLabel.innerHTML = '<span class="fas fa-times"></span>';
+        xButtonLabel.htmlFor = xButton.id;
 
-    var menuTitle = document.createElement('span');
-    menuTitle.className = 'ctg-menu-title';
-    menuTitle.innerHTML = 'Add New Category';
+        var menuTitle = document.createElement('span');
+        menuTitle.className = 'ctg-menu-title';
+        menuTitle.innerHTML = 'Add New Category';
 
     titleContainer.appendChild(xButton);
     titleContainer.appendChild(xButtonLabel);
@@ -38,32 +38,45 @@
     var editingClrContainer = document.createElement('div');
     editingClrContainer.className = 'ctg-menu-editing-container';
 
-    var colorInput = document.createElement('input');
-    colorInput.type = 'color';
-    colorInput.id = 'ctg-creatormenu-color-input';
-    colorInput.className = 'ctg-menu-input';
-    colorInput.value = '#495464';
-    colorInput.addEventListener('change', function () {
-        const clr = this.value;
-        var title = document.getElementById('ctg-creatormenu-title-container');
-        title.style.backgroundColor = clr;
-        var ctgMenu = document.getElementById('category-creator-menu');
-        ctgMenu.style.border = 'solid 2px ' + clr;
-    });
+        var colorInput = document.createElement('input');
+        colorInput.type = 'color';
+        colorInput.id = 'ctg-creatormenu-color-input';
+        colorInput.className = 'ctg-menu-inputColor';
+        colorInput.value = '#495464';
+        colorInput.addEventListener('change', function () {
+            const clr = this.value;
+            var title = document.getElementById('ctg-creatormenu-title-container');
+            title.style.backgroundColor = clr;
+            var ctgMenu = document.getElementById('category-creator-menu');
+            ctgMenu.style.border = 'solid 2px ' + clr;
+        });
+
+        var colorInpLabel = document.createElement('label');
+        colorInpLabel.className = 'ctg-menu-input-label';
+        colorInpLabel.htmlFor = 'ctg-creatormenu-color-input';
+        colorInpLabel.innerHTML = 'Color';
 
     editingClrContainer.appendChild(colorInput);
+    editingClrContainer.appendChild(colorInpLabel);
     menu.appendChild(editingClrContainer);
 
     var editingTitleContainer = document.createElement('div');
     editingTitleContainer.className = 'ctg-menu-editing-container';
-    var titleInput = document.createElement('input');
-    titleInput.type = 'text';
-    titleInput.maxLength = '12';
-    titleInput.id = 'ctg-creatormenu-title-input';
-    titleInput.className = 'ctg-menu-input';
-    titleInput.placeholder = 'Enter a title';
+
+        var titleInput = document.createElement('input');
+        titleInput.type = 'text';
+        titleInput.maxLength = '12';
+        titleInput.id = 'ctg-creatormenu-title-input';
+        titleInput.className = 'ctg-menu-inputTitle';
+        titleInput.placeholder = 'Enter a title';
+
+        var titleInpLabel = document.createElement('label');
+        titleInpLabel.className = 'ctg-menu-input-label';
+        titleInpLabel.htmlFor = 'ctg-creatormenu-title-input';
+        titleInpLabel.innerHTML = 'Title';
 
     editingTitleContainer.appendChild(titleInput);
+    editingTitleContainer.appendChild(titleInpLabel);
     menu.appendChild(editingTitleContainer);
 
     //MENU SAVE BUTTON (WHERE EDIT CATEGORY IS CALLED)
@@ -77,21 +90,23 @@
     saveButton.addEventListener('click', function () {
         const ctgTitle = document.getElementById('ctg-creatormenu-title-input').value;
         const ctgColor = document.getElementById('ctg-creatormenu-color-input').value;
-        $.ajax({
-            //url: '/Controller/Action'
-            url: '/Calendar/AddCategory',
-            type: 'POST',
-            data: {
-                ctgTitle: ctgTitle,
-                ctgColor: ctgColor,
-            },
-            success: function (result) {
-                var modelJSON = JSON.parse(result);
-                buildCategoriesTable(modelJSON);
-                displayEvents(modelJSON, dateToString(currentDisplayedDate));
-                menu.parentElement.removeChild(menu);
-            },
-        });
+        if (ctgTitle != "") {
+            $.ajax({
+                //url: '/Controller/Action'
+                url: '/Calendar/AddCategory',
+                type: 'POST',
+                data: {
+                    ctgTitle: ctgTitle,
+                    ctgColor: ctgColor,
+                },
+                success: function (result) {
+                    var modelJSON = JSON.parse(result);
+                    buildCategoriesTable(modelJSON);
+                    displayEvents(modelJSON, dateToString(currentDisplayedDate));
+                    menu.parentElement.removeChild(menu);
+                },
+            });
+        }
     });
 
     saveContainer.appendChild(saveButton);

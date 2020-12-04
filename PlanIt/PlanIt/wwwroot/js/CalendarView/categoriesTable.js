@@ -204,7 +204,7 @@ function buildCtgEditorMenu(index, category) {
         var colorInput = document.createElement('input');
         colorInput.type = 'color';
         colorInput.id = 'ctg-editormenu-color-input';
-        colorInput.className = 'ctg-menu-input';
+        colorInput.className = 'ctg-menu-inputColor';
         colorInput.value = category.Color;
         colorInput.addEventListener('change', function () {
             const clr = this.value;
@@ -214,7 +214,14 @@ function buildCtgEditorMenu(index, category) {
             ctgMenu.style.border = 'solid 2px ' + clr;
         });
 
+
+        var colorInpLabel = document.createElement('label');
+        colorInpLabel.className = 'ctg-menu-input-label';
+        colorInpLabel.htmlFor = 'ctg-editormenu-color-input';
+        colorInpLabel.innerHTML = 'Color';
+
     editingClrContainer.appendChild(colorInput);
+    editingClrContainer.appendChild(colorInpLabel);
     menu.appendChild(editingClrContainer);
 
     if (index > 0) {
@@ -224,16 +231,22 @@ function buildCtgEditorMenu(index, category) {
             titleInput.type = 'text';
             titleInput.maxLength = '12';
             titleInput.id = 'ctg-editormenu-title-input';
-            titleInput.className = 'ctg-menu-input';
+            titleInput.className = 'ctg-menu-inputTitle';
             titleInput.value = category.Title;
 
+            var titleInpLabel = document.createElement('label');
+            titleInpLabel.className = 'ctg-menu-input-label';
+            titleInpLabel.htmlFor = 'ctg-editormenu-title-input';
+            titleInpLabel.innerHTML = 'Title';
+
         editingTitleContainer.appendChild(titleInput);
+        editingTitleContainer.appendChild(titleInpLabel);
         menu.appendChild(editingTitleContainer);
     }
 
     //MENU SAVE BUTTON (WHERE EDIT CATEGORY IS CALLED)
     var saveContainer = document.createElement('div');
-    saveContainer.id = 'ctg-menu-save-container';
+    saveContainer.className = 'ctg-menu-save-container';
 
         var saveButton = document.createElement('input');
         saveButton.type = 'button';

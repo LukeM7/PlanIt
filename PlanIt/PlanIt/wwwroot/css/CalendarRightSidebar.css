@@ -94,7 +94,7 @@
     border: solid 2px #e8e8e8;
     box-shadow: 2px 2px 8px #AAAAAA;
     width: 200px;
-    height: 120px;
+    height: 140px;
     display: flex;
     flex-direction: column;
 }
@@ -106,7 +106,7 @@
     background-color: white;
     box-shadow: 2px 2px 8px #AAAAAA;
     width: 200px;
-    height: 120px;
+    height: 140px;
     display: flex;
     flex-direction: column;
 }
@@ -134,17 +134,41 @@
 
 .ctg-menu-editing-container {
     flex: auto;
+    display: flex;
+    flex-direction: row-reverse;
     margin: 4px;
 }
-.ctg-menu-input {
+.ctg-menu-inputColor {
     height: 100%;
-    width: 50%;
+    width: 20%;
+    flex: none;
 }
+.ctg-menu-inputTitle {
+    height: 100%;
+    width: 75%;
+    flex: none;
+}
+.ctg-menu-input-label {
+    font-size: 16px;
+    height: 100%;
+    flex: auto;
+    margin-right: 4px;
+    background-color: #f4f4f2;
+    border: solid 2px #e8e8e8;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    .ctg-menu-input-label:hover {
+        background-color: white;
+    }
 
-#ctg-menu-save-container {
+.ctg-menu-save-container {
     height: 24px;
     font-size: 24px;
     flex: none;
+    margin: 4px;
 }
 #ctg-editormenu-save-btn {
     display: inline-block;
