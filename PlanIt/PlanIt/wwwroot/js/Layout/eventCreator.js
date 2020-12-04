@@ -6,8 +6,16 @@ var btn = document.getElementById("btnAddEvent");
 
 // When the user clicks the button, open the modal
 btn.onclick = function () {
-    initEventModal_creator(modelJSON);
-    modal.style.display = "block";
+    var modelJSON;
+    $.ajax({
+        url: '/Calendar/GetModelJSON',
+        type: 'GET',
+        success: function (result) {
+            modelJSON = JSON.parse(result);
+            initEventModal_creator(modelJSON);
+            modal.style.display = "block";
+        },
+    });
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -18,9 +26,18 @@ window.onclick = function (event) {
     }
 }
 
+function clearCtgSelector() {
+    var selector = document.getElementById("categories_ev");
+
+    while (selector.firstChild != null) {
+        selector.removeChild(selector.lastChild);
+    }
+}
+
 //CREATOR CONFIGURATION
 function initEventModal_creator(modelJSON) {
     setModalLabel('Event Creator');
+    setButtonLabel('Create Event')
     initModalCtgSelect_creator(modelJSON);
     initModalInputs_creator();
 }
@@ -30,8 +47,14 @@ function initEventModal_creator(modelJSON) {
 function setModalLabel(title) {
     document.getElementById('eventModalLabel').innerHTML = title;
 }
+
+function setButtonLabel(title) {
+    document.getElementById('btnCreateEvent').innerHTML = title;
+}
+
 // Initialize the Add Event Modal UI with the user's categories list
 function initModalCtgSelect_creator(modelJSON) {
+    clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];
@@ -67,6 +90,7 @@ function activateEventModal_editor() {
 
 function initEventModal_editor(modelJSON, event, eventElementId, eventCtgTitle) {
     setModalLabel('Event Editor');
+    setButtonLabel('Edit Event');
     initModalCtgSelect_editor(modelJSON, eventCtgTitle);
     initModalInputs_editor(event);
 }
@@ -74,6 +98,7 @@ function initEventModal_editor(modelJSON, event, eventElementId, eventCtgTitle) 
 
 
 function initModalCtgSelect_editor(modelJSON, eventCtgTitle) {
+    clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
     for (var i = 0; i < modelJSON.Categories.length; i++) {
         var ctg = modelJSON.Categories[i];

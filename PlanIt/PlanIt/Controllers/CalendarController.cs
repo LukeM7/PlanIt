@@ -236,6 +236,7 @@ namespace PlanIt.Controllers
             //figure out which category this event should go into
 
             //call update to database to construct new event...
+            db.Update(newEvent);
 
             
 
