@@ -91,29 +91,29 @@ namespace PlanIt.Controllers
 
 
         [HttpPost]
-        public ActionResult EditCategory(Category_Model ctg)
+        public JsonResult EditCategory(int index, string ctgTitle, string ctgColor)
         {
-            var title = ctg.Title;
-            var color = ctg.Color;
+            Console.WriteLine(index);
+            Console.WriteLine(ctgTitle);
+            Console.WriteLine(ctgColor);
             //call update to database on category with particluar id and write the values...
-            Category_Model fetched_category = Find_Category(ctg.Category_Id);
-            fetched_category.Color = ctg.Color;
-            fetched_category.Events = ctg.Events;
-            fetched_category.isToggled = ctg.isToggled;
-            fetched_category.Title = ctg.Title;
+            Category_Model ctg = calVM.userCalendar.Categories[index];
+            ctg.Color = ctgColor;
+            ctg.Title = ctgTitle;
+            Console.WriteLine(ctg.Color);
 
-            try
-            {
-                db.Update(fetched_category);
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine("Null reference error when attempting to edit category: " + e.Message);
-                throw;
-            }
-            db.SaveChanges();
+            //try
+            //{
+            //    db.Update(fetched_category);
+            //}
+            //catch (NullReferenceException e)
+            //{
+            //    Console.WriteLine("Null reference error when attempting to edit category: " + e.Message);
+            //    throw;
+            //}
+            //db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return Json(calVM.userCalendar.ToJson());
         }
 
         [HttpPost]
