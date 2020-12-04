@@ -31,9 +31,9 @@ namespace PlanIt.Controllers
 
         private Calendar_Model Find_Calendar(string cal_id)
         {
-            foreach(var i in db.Calendar)
+            foreach(var cal in db.Calendar)
             {
-                if (i.Calendar_Id == cal_id) return i;
+                if (cal.Calendar_Id == cal_id) return cal;
             }
 
             return null;
@@ -41,9 +41,9 @@ namespace PlanIt.Controllers
 
         private Category_Model Find_Category(string cat_id)
         {
-            foreach (var i in db.Category)
+            foreach (var ctg in db.Category)
             {
-                if (i.Category_Id == cat_id) return i;
+                if (ctg.Category_Id == cat_id) return ctg;
             }
 
             return null;
@@ -93,9 +93,10 @@ namespace PlanIt.Controllers
         [HttpPost]
         public JsonResult ToggleCategory(
             string ctg_id,
-            int index)
+            int ctg_index)
         {
-            calVM.userCalendar.Categories[index].isToggled = !calVM.userCalendar.Categories[index].isToggled;
+            Console.WriteLine(ctg_index);
+            calVM.userCalendar.Categories[ctg_index].isToggled = !calVM.userCalendar.Categories[ctg_index].isToggled;
             return Json(calVM.userCalendar.ToJson());
         }
 
@@ -107,6 +108,8 @@ namespace PlanIt.Controllers
             {
                 category.isToggled = toggleValue;
             }
+            //db.Update(calVM.userCalendar);
+            //db.SaveChanges();
             //calVM.ToggleAllCategoriesChecker = !toggleValue;
             return Json(calVM.userCalendar.ToJson());
         }
@@ -114,13 +117,13 @@ namespace PlanIt.Controllers
         [HttpPost]
         public JsonResult EditCategory(
             string ctg_id,
-            int index,
+            int ctg_index,
             string ctgTitle,
             string ctgColor)
         {
 
             //call update to database on category with particluar id and write the values...
-            Category_Model ctg = calVM.userCalendar.Categories[index];
+            Category_Model ctg = calVM.userCalendar.Categories[ctg_index];
             ctg.Color = ctgColor;
             ctg.Title = ctgTitle;
 
@@ -166,11 +169,11 @@ namespace PlanIt.Controllers
         [HttpPost]
         public JsonResult DeleteCategory(
             string ctg_id,
-            int index)
+            int ctg_index)
         {
             //call update to database to delete the category given its id...
             Category_Model tbd_category = Find_Category(ctg_id);
-            calVM.userCalendar.Categories.RemoveAt(index);
+            calVM.userCalendar.Categories.RemoveAt(ctg_index);
             try
             {
                 Calendar_Model cal = Find_Calendar(tbd_category.Calendar_Id);
@@ -189,9 +192,12 @@ namespace PlanIt.Controllers
         public JsonResult EditEvent(
             //string ctg_id, for adding to a new category
             string evt_id,
+            int evt_index,
+            int ctg_index,
             string evtTitle,
             string evtStartDate,
-            string evtDuration, //convert to float in EditEvent function
+            string evtHours, //convert to float in EditEvent function
+            string evtMinutes, //convert to float, divide by 60, add to evtHours
             string evtStartTime, //convert to float in EditEvent function
             string evtDescription)
         {
@@ -216,18 +222,23 @@ namespace PlanIt.Controllers
         [HttpPost]
         public JsonResult AddEvent(
             string ctg_id,
+            int ctg_index,
             string evtTitle,
             string evtStartDate,
-            float evtDuration,
-            float evtStartTime,
+            string evtHours, //convert to float in EditEvent function
+            string evtMinutes, //convert to float, divide by 60, add to evtHours
+            string evtStartTimeStr, //convert to float in EditEvent function
             string evtDescription)
         {
+            float evtDuration = float.Parse(evtHours) + (float.Parse(evtMinutes) / 60);
+            float evtStartTime = float.Parse(evtStartTimeStr);
             var newEvent = new Event_Model(evtTitle, evtStartDate, evtStartTime, evtDuration, evtDescription);
             //figure out which category this event should go into
 
             //call update to database to construct new event...
             db.Update(newEvent);
 
+            
 
             return Json(calVM.userCalendar.ToJson());
         }
@@ -235,6 +246,8 @@ namespace PlanIt.Controllers
         [HttpPost]
         public ActionResult DeleteEvent(
             string evt_id,
+            int ctg_index,
+            int evt_index,
             string evtTitle,
             string evtStartDate,
             float evtDuration,

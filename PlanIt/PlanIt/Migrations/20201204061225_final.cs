@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlanIt.Migrations
 {
-    public partial class test : Migration
+    public partial class final : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -193,6 +193,7 @@ namespace PlanIt.Migrations
                     Category_Id = table.Column<string>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
+                    isToggled = table.Column<bool>(nullable: false),
                     Calendar_Id = table.Column<string>(nullable: true),
                     Calender_Id = table.Column<string>(nullable: true)
                 },
@@ -213,8 +214,10 @@ namespace PlanIt.Migrations
                 {
                     Event_Id = table.Column<string>(nullable: false),
                     Title = table.Column<string>(nullable: true),
-                    StartTime = table.Column<string>(nullable: true),
-                    Duration = table.Column<string>(nullable: true),
+                    StartDate = table.Column<string>(nullable: true),
+                    StartTime = table.Column<float>(nullable: false),
+                    Duration = table.Column<float>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     Category_Id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
