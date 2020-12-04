@@ -77,7 +77,7 @@
     height: 100%;
 }
 
-.modalAddEvent-content input[type=text] {
+.modalContainer input[type=text] {
     background-color: #e8e8e8;
 }
 

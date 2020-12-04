@@ -265,7 +265,6 @@ function initSubmitButton_editor(event, eventIndex, initialCtgIndex) {
                     evtDescription: description,
                 },
                 success: function (result) {
-                    alert('successful edit');
                     modelJSON = JSON.parse(result);
                     //buildCategoriesTable(modelJSON);
                     displayEvents(modelJSON, dateToString(currentDisplayedDate));
