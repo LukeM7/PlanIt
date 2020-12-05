@@ -38,7 +38,7 @@ namespace PlanIt.Models
 
         
         public virtual string Calendar_Id { get; set; }
-        [ForeignKey("Calender_Id")]
+        [ForeignKey("Calendar_Id")]
         public virtual Calendar_Model Calendar { get; set; }
     }
 }

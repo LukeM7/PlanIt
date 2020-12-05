@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlanIt.Migrations
 {
-    public partial class login_success : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -174,15 +174,14 @@ namespace PlanIt.Migrations
                     Title = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
                     isToggled = table.Column<bool>(nullable: false),
-                    Calendar_Id = table.Column<string>(nullable: true),
-                    Calender_Id = table.Column<string>(nullable: true)
+                    Calendar_Id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Category_Id);
                     table.ForeignKey(
-                        name: "FK_Category_Calendar_Calender_Id",
-                        column: x => x.Calender_Id,
+                        name: "FK_Category_Calendar_Calendar_Id",
+                        column: x => x.Calendar_Id,
                         principalTable: "Calendar",
                         principalColumn: "Calendar_Id",
                         onDelete: ReferentialAction.Restrict);
@@ -249,9 +248,9 @@ namespace PlanIt.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Category_Calender_Id",
+                name: "IX_Category_Calendar_Id",
                 table: "Category",
-                column: "Calender_Id");
+                column: "Calendar_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Event_Category_Id",

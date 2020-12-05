@@ -15,7 +15,7 @@ namespace PlanIt.ViewModels
 
         public CalendarViewModel()
         {
-            userCalendar = new Calendar_Model();
+            this.userCalendar = new Calendar_Model();
         }
 
         public string ToJson()

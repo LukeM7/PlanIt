@@ -235,9 +235,6 @@ namespace PlanIt.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Calendar_Id")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Calender_Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Color")
@@ -251,7 +248,7 @@ namespace PlanIt.Migrations
 
                     b.HasKey("Category_Id");
 
-                    b.HasIndex("Calender_Id");
+                    b.HasIndex("Calendar_Id");
 
                     b.ToTable("Category");
                 });
@@ -341,7 +338,7 @@ namespace PlanIt.Migrations
                 {
                     b.HasOne("PlanIt.Models.Calendar_Model", "Calendar")
                         .WithMany("Categories")
-                        .HasForeignKey("Calender_Id");
+                        .HasForeignKey("Calendar_Id");
                 });
 
             modelBuilder.Entity("PlanIt.Models.Event_Model", b =>

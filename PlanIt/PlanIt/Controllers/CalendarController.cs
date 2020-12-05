@@ -28,20 +28,6 @@ namespace PlanIt.Controllers
             _logger = logger;
             this.db = db;
         }
-        /*
-        private User_Model Find_User(string user_id)
-        {
-            foreach (var i in db.User)
-            {
-                if (i.User_Id == user_id)
-                {
-                    return i;
-                }
-            }
-
-            return null;
-        }
-        */
         private Calendar_Model Find_Calendar(string cal_id)
         {
             foreach(var cal in db.Calendar)
@@ -52,23 +38,28 @@ namespace PlanIt.Controllers
             return null;
         }
 
-        private Category_Model Find_Category(string cat_id)
+        private List<Category_Model> Get_Categories(string cal_id)
         {
+            List<Category_Model> categories = new List<Category_Model>();
             foreach (var ctg in db.Category)
             {
-                if (ctg.Category_Id == cat_id) return ctg;
+                if (ctg.Calendar_Id == cal_id) categories.Add(ctg);
             }
 
-            return null;
+            return categories;
         }
 
-        private Event_Model Find_Event (string evt_id)
+        private List<Event_Model> Get_Events(string cat_id)
         {
-            foreach(var evnt in db.Event)
+            List<Event_Model> events = new List<Event_Model>();
+            foreach(var i in db.Event)
             {
-                if (evnt.Event_Id == evt_id) return evnt;
+                if(i.Category_Id == cat_id)
+                {
+                    events.Add(i);
+                }
             }
-            return null;
+            return events;
         }
 
         public static CalendarViewModel calVM = new CalendarViewModel();
@@ -81,8 +72,12 @@ namespace PlanIt.Controllers
 
         public IActionResult ConstructCalendar()
         {
-            Calendar_Model cal = Find_Calendar(TempData["calendar"].ToString());
-            calVM.userCalendar = cal;
+            calVM.userCalendar = Find_Calendar(TempData["calendar"].ToString());
+            calVM.userCalendar.Categories = Get_Categories(calVM.userCalendar.Calendar_Id);
+            foreach(var i in calVM.userCalendar.Categories)
+            {
+                i.Events = Get_Events(i.Category_Id);
+            }
             return RedirectToAction("Index");
         }
 
@@ -130,16 +125,6 @@ namespace PlanIt.Controllers
             ctg.Color = ctgColor;
             ctg.Title = ctgTitle;
 
-            //try
-            //{
-            //    db.Update(fetched_category);
-            //}
-            //catch (NullReferenceException e)
-            //{
-            //    Console.WriteLine("Null reference error when attempting to edit category: " + e.Message);
-            //    throw;
-            //}
-            //db.SaveChanges();
 
             return Json(calVM.userCalendar.ToJson());
         }
@@ -149,25 +134,9 @@ namespace PlanIt.Controllers
             string ctgTitle,
             string ctgColor)
         {
-            var ctg = new Category_Model(ctgTitle, ctgColor, true, new List<Event_Model>());
-            Console.WriteLine(ctg.Title);
-            calVM.userCalendar.Categories.Add(ctg);
-            //call update to database to construct brand new category...
-            //calVM.userCalendar.Calendar_Id = Find_Calendar(ctg.Calendar_Id);
-
-            //try
-            //{
-            //    cal.Categories.Add(ctg);
-            //    db.Update(cal);
-            //}
-            //catch (NullReferenceException e)
-            //{
-            //    Console.WriteLine("Attempted to add a null category: " + e.Message);
-            //    throw;
-            //}
-            //db.SaveChanges();
-            //db.Add(calVM.userCalendar);
-            //db.SaveChanges();
+            var ctg = new Category_Model() { Title = ctgTitle, Color = ctgColor, isToggled = true, Calendar_Id = calVM.userCalendar.Calendar_Id };
+            db.Category.Add(ctg);
+            db.SaveChanges();
             return Json(calVM.userCalendar.ToJson());
         }
 

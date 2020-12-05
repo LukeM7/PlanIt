@@ -30,7 +30,7 @@ namespace PlanIt.Controllers
         public IActionResult Index()
         {
             //Add Testing
-            /*
+            
             Calendar_Model calendar = new Calendar_Model();
             db.Add(calendar);
             calendar.Categories.Add(new Category_Model());
@@ -40,7 +40,7 @@ namespace PlanIt.Controllers
             db.Add(new_calendar);
             new_calendar.Categories.Add(new Category_Model());
             db.SaveChanges();
-            */
+            
             //Edit Testing
             /*
             var cal_id = Seed();
@@ -57,7 +57,7 @@ namespace PlanIt.Controllers
             */
             //Read Testing
             //DB must have entries already in it
-            
+            /*
             Seed();
             Category_Model test;
             foreach(var i in db.Category){
@@ -66,7 +66,7 @@ namespace PlanIt.Controllers
                     test = i;
                 }
             }
-            
+            */
             return View();
         }
     }

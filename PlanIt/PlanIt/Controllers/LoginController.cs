@@ -42,6 +42,7 @@ namespace PlanIt.Controllers
             if(cal != null)
             {
                 TempData["calendar"] = cal.Calendar_Id;
+                
                 return RedirectToAction("ConstructCalendar", "Calendar");
             };
             cal = new Calendar_Model();
