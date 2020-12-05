@@ -137,20 +137,21 @@
     margin-left: 5%;
     padding: 10px 25px;
     height: 100%;
-    width: 120px;
+    width: 180px;
 }
 
 #eventDate {
-    float: right;
+    margin-left: 5%;
     padding: 10px 25px;
     height: 100%;
+    width: 180px;
 }
 
 .eventDuration {
     margin-left: 5%;
     padding: 10px 25px;
     height: 100%;
-    width: 80px;
+    width: 120px;
 }
 
 .recurr-table {

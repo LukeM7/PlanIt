@@ -15,15 +15,14 @@
 }
 
 .calendar-headline {
-    height: auto;
-    padding: 1.5rem;
+    height: 60px;
     flex: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid #cfd3df 2px;
-    font-size: 2rem;
-    background: linear-gradient(to bottom right, #4d88ff, #ccddff);
+    background-color: #bbbfca;
+    font-size: 28px;
+    border: solid 2px #cfd3df;
 }
 
 .date-headline {

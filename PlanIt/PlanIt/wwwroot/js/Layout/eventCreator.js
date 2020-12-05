@@ -35,6 +35,13 @@ var setBgColor = function (select) {
 selectCtg.onchange = function () {
     setBgColor(this);
 };
+var ctgChooser = document.getElementById("categories_ev");
+function setBgColor(ctgChooser) {
+    ctgChooser.style.backgroundColor = ctgChooser.options[ctgChooser.selectedIndex].style.backgroundColor;
+}
+ctgChooser.addEventListener('change', function () {
+    setBgColor(this);
+})
 
 
 
@@ -74,6 +81,7 @@ function setModalLabel(title) {
 function initModalCtgSelect_creator(modelJSON) {
     clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
+    
     ctgChooser.style.borderRadius = "4px";
     ctgChooser.style.outline = "none";
     for (var i = 0; i < modelJSON.Categories.length; i++) {
@@ -87,6 +95,7 @@ function initModalCtgSelect_creator(modelJSON) {
         ctgOption.style.backgroundColor = ctg.Color;
         ctgChooser.appendChild(ctgOption);
     }
+    setBgColor(ctgChooser);
 
 }
 
@@ -177,6 +186,7 @@ function initEventModal_editor(modelJSON, event, eventIndex, eventCtgIndex) {
 function initModalCtgSelect_editor(modelJSON, eventCtgIndex) {
     clearCtgSelector();
     var ctgChooser = document.getElementById("categories_ev");
+    
     ctgChooser.style.borderRadius = "4px";
     ctgChooser.style.outline = "none";
     for (var i = 0; i < modelJSON.Categories.length; i++) {
@@ -196,6 +206,7 @@ function initModalCtgSelect_editor(modelJSON, eventCtgIndex) {
             ctgChooser.value = val;
         }
     }
+    setBgColor(ctgChooser);
 }
 
 function initModalInputs_editor(event) {
